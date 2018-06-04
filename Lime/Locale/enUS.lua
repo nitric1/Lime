@@ -1,4 +1,5 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "enUS")
+local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "enUS", false)
+if not L then return end
 
 L["Lime_leftclick"] = "Left Click: Preference"
 L["Lime_rightclick"] = "Right Click: Menus"

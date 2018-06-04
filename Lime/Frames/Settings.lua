@@ -9,7 +9,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 local lime = _G[...]
 local wipe = _G.table.wipe
 local LBDB = LibStub("LibLimeDB-1.1")
-local version = 2
+local version = 3
 
 lime.classes = { "WARRIOR", "DRUID", "PALADIN", "DEATHKNIGHT", "PRIEST", "SHAMAN", "ROGUE", "MAGE", "WARLOCK", "HUNTER", "MONK", "DEMONHUNTER" }
 local function newTable() return {} end
@@ -129,7 +129,7 @@ function lime:InitDB()
 			version = version,
 			profileKeys = {},
 			profiles = {},
-			minimapButton = { show = true, radius = 80, angle = 19, dragable = true, rounding = 10 },
+			minimapButton = { hide = true, radius = 80, angle = 19, dragable = true, rounding = 10 },
 		}
 		lime:Message(L["Lime_reset"])
 	end

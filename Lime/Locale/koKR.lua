@@ -1,5 +1,4 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "koKR", true)
-if not L then return end
 
 L["Lime_leftclick"] = "좌클릭: 환경 설정"
 L["Lime_rightclick"] = "우클릭: 메뉴"

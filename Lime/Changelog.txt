@@ -1,27 +1,35 @@
 
 
-******************************
-2018. 6. 4.
 
-Lime 4
-영어 환경에서 애드온이 영어로 출력됩니다. 아직은 완벽하지 않습니다. 
-몇몇 오류를 수정합니다.
+Lime 5 [2018.6.5.]
+- 환경 설정이 잘못 저장되는 문제를 수정합니다.
+- 미니맵 버튼이 정상적으로 작동하지 않던 문제를 수정합니다.
+- 이번 버전으로 업데이트 하면 환경 설정이 초기화됩니다.
+- 한국어 환경에서 영어 번역 파일이 오류가 나던 문제를 수정합니다.
+
+- Fixed a bug: preferences are saved incorrectly.
+- Fixed a bug: the mini-map button didn't work properly.
+- If you update to this version, the preferences will be initialized.
+- Fixed a bug in English translation file. (KoKR)
+
+Lime 4 [2018.6.4.]
+- 영어를 지원합니다. 아직은 완벽하지 않습니다. 
+- 몇몇 오류를 수정합니다.
+
+- Supports English. It is not perfect yet.
+- Fix some errors.
 
 Lime 2
-몇몇 오류를 수정합니다.
+- Fix some errors.
 
-Lime 1
-******************************
+Lime 1 [2018.6.3.]
 애드온 구조가 크게 바뀌었습니다.
 애드온을 모두 삭제 후 재설치 하시기 바랍니다.
 인벤 레이드 프레임에서 사용하던 리소스를 제거하고 있습니다.
 Ace 3.0 라이브러리 등을 도입할 예정입니다.
-******************************
 
 
-
-
-
+양파 레이드 프레임
 
 8.0 Beta 7 [2018.5.25.]
 	- 아주 아주 사소한 수정을 했어요.

@@ -45,28 +45,28 @@ function Option:CreateUseMenu(menu, parent)
 	)
 	menu.lock:SetPoint("TOP", menu.use, "BOTTOM", 0, -10)
 	self.lockMenu = menu.lock
-	menu.mapButtonToggle = LBO:CreateWidget("CheckBox", parent, "미니맵 버튼 표시", "미니맵 버튼을 표시합니다.", nil, nil, true,
-		function() return limeDB.minimapButton.show end,
+	menu.mapButtonToggle = LBO:CreateWidget("CheckBox", parent, "미니맵 버튼 숨기기", "미니맵 버튼을 숨깁니다.", nil, nil, true,
+		function() return limeDB.minimapButton.hide end,
 		function(v)
-			limeDB.minimapButton.show = v
-			if limeDB.minimapButton.show then
-				icon:Show("limeMapButton")
+			limeDB.minimapButton.hide = v
+			if limeDB.minimapButton.hide then
+				icon:Hide("Lime")
 			else
-				icon:Hide("limeMapButton")
+				icon:Show("Lime")
 			end
 			menu.mapButtonLock:Update()
 		end
 	)
 	menu.mapButtonToggle:SetPoint("TOP", menu.tooltip, "BOTTOM", 0, 0)
 	menu.mapButtonLock = LBO:CreateWidget("CheckBox", parent, "미니맵 버튼 고정", "미니맵 버튼을 고정합니다.", nil,
-		function() return not limeDB.minimapButton.show end, nil,
+		function() return limeDB.minimapButton.hide end, nil,
 		function() return not limeDB.minimapButton.dragable end,
 		function(v)
 			limeDB.minimapButton.dragable = not v
 			if limeDB.minimapButton.dragable then
-			    icon:Unlock("limeMapButton")
+			    icon:Unlock("Lime")
 			else
-			    icon:Lock("limeMapButton")
+			    icon:Lock("Lime")
 			end
 		end
 	)

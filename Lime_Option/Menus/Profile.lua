@@ -24,7 +24,7 @@ function Option:CreateProfileMenu(menu, parent)
 	end
 	menu.current = parent:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 	menu.current:SetPoint("TOPLEFT", 5, -5)
-	menu.current:SetText("현재 설정: |cffffffff"..(limeDB.profileKeys[lime.profileName] or "기본값"))
+	menu.current:SetText("현재 설정: |cffffffff"..(limeDB.profileKeys[lime.profileName] or "Default"))
 	menu.list = LBO:CreateWidget("List", parent, "설정 목록", nil, nil, disable, nil,
 		function()
 			return Option:ConvertTable(limeDB.profiles, profiles), true
@@ -75,7 +75,7 @@ function Option:CreateProfileMenu(menu, parent)
 			if disable() then
 				return true
 			elseif getTargetProfile() then
-				if menu.targetProfile == "기본값" or menu.targetProfile == lime.dbName then
+				if menu.targetProfile == "Default" or menu.targetProfile == lime.dbName then
 					return true
 				else
 					return nil
@@ -167,7 +167,7 @@ function Option:CreateProfileMenu(menu, parent)
 		button1 = YES, button2 = NO, hideOnEscape = 1, timeout = 0, exclusive = 1, whileDead = 1, showAlert = 1,
 		OnUpdate = checkCombat, OnShow = togglePopup, OnHide = togglePopup,
 		OnAccept = function(self)
-			menu.current:SetText("현재 설정: |cffffffff"..(menu.targetProfile or "기본값"))
+			menu.current:SetText("현재 설정: |cffffffff"..(menu.targetProfile or "Default"))
 			lime:SetProfile(menu.targetProfile)
 			lime:ApplyProfile()
 			lime:Message(("[|cff8080ff%s|r] 설정이 현재 캐릭터에 적용되었습니다."):format(menu.targetProfile))

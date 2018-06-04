@@ -245,6 +245,7 @@ local function setupMemberAll(self)
 	limeMember_SetupCastingBarPos(self)
 	limeMember_SetupIconPos(self)
 	limeMember_SetAuraFont(self)
+	
 	self.name:SetFont(SM:Fetch("font", lime.db.font.file), lime.db.font.size, lime.db.font.attribute)
 	self.name:SetShadowColor(0, 0, 0)
 	if lime.db.font.shadow then

@@ -25,7 +25,6 @@ function lime:PLAYER_LOGIN()
 	self.PLAYER_LOGIN = nil
 	self.playerClass = select(2, UnitClass("player"))
 	self:InitDB()
-
 	self.version = GetAddOnMetadata(self:GetName(), "Version")
 	self:ApplyProfile()
 	self:SelectClickCastingDB()
@@ -38,7 +37,7 @@ function lime:PLAYER_LOGIN()
 	self.PLAYER_REGEN_DISABLED = self.UpdateTooltipState
 
 	--- Broker 라이브러리
-	local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("limeMapButton", {
+	local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Lime", {
 	type = "data source",
 	text = "lime",
 	icon = "Interface\\AddOns\\Lime\\Shared\\Texture\\Icon.tga",
@@ -51,16 +50,16 @@ function lime:PLAYER_LOGIN()
 	})
 	-- 맵 아이콘 라이브러리
 	local icon = LibStub("LibDBIcon-1.0")
-	icon:Register("limeMapButton", LDB, limeDB.minimapButton)
-	if limeDB.minimapButton.show then
-		icon:Show("limeMapButton")
+	icon:Register("Lime", LDB, limeDB.minimapButton)
+	if limeDB.minimapButton.hide then
+		icon:Show("Lime")
 	else
-		icon:Hide("limeMapButton")
+		icon:Hide("Lime")
 	end
 	if limeDB.minimapButton.dragable then
-	    icon:Unlock("limeMapButton")
+	    icon:Unlock("Lime")
 	else
-	    icon:Lock("limeMapButton")
+	    icon:Lock("Lime")
 	end
 	self:SetScript("OnHide", limeMember_OnDragStop)
 	
@@ -442,7 +441,7 @@ local function initializeDropDown()
 	L_UIDropDownMenu_AddButton(info)
 end
 
-lime.mapButtonMenu = CreateFrame("Frame", "limeMapButtonMenu", lime, "L_UIDropDownMenuTemplate")
+lime.mapButtonMenu = CreateFrame("Frame", "LimeMenu", lime, "L_UIDropDownMenuTemplate")
 lime.mapButtonMenu:SetID(1)
 lime.mapButtonMenu:SetWidth(10)
 lime.mapButtonMenu:SetHeight(10)
