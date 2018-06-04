@@ -4,6 +4,8 @@
 애드온에 대해 잘 아는 사람만 아래 환경 변수를 수정하시기 바랍니다.
 ]]
 
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local lime = _G[...]
 local wipe = _G.table.wipe
 local LBDB = LibStub("LibLimeDB-1.1")
@@ -11,7 +13,7 @@ local version = 2
 
 lime.classes = { "WARRIOR", "DRUID", "PALADIN", "DEATHKNIGHT", "PRIEST", "SHAMAN", "ROGUE", "MAGE", "WARLOCK", "HUNTER", "MONK", "DEMONHUNTER" }
 local function newTable() return {} end
-local defaultProfile = "기본값"
+local defaultProfile = "Default"
 local colorWhite = { 1, 1, 1 }
 local colorRed = { 1, 0, 0 }
 local colorGreen = { 0, 1, 0 }
@@ -129,7 +131,7 @@ function lime:InitDB()
 			profiles = {},
 			minimapButton = { show = true, radius = 80, angle = 19, dragable = true, rounding = 10 },
 		}
-		lime:Message("사용자 환경 설정에 이상이 발생하여, 사용자 환경을 초깃값으로 설정하였습니다.")
+		lime:Message(L["Lime_reset"])
 	end
 
 	for name, key in pairs(limeDB.profileKeys) do
@@ -251,7 +253,7 @@ function lime:UpdateGroupFilter()
 	if self.db.partyTag and self.db.groupby == "GROUP" then
 		self.headers[0].partyTag:Show()
 		self.headers[0].partyTag.tex:SetColorTexture(unpack(self.db.partyTagParty))
-		self.headers[0].partyTag.text:SetText(setPartyTag(self.headers[0]) and "내 파티" or "P")
+		self.headers[0].partyTag.text:SetText(setPartyTag(self.headers[0]) and L["Lime_my_partytag"] or "P")
 	else
 		self.headers[0].partyTag:Hide()
 	end
@@ -261,7 +263,7 @@ function lime:UpdateGroupFilter()
 			if self.db.partyTag then
 				self.headers[i].partyTag:Show()
 				self.headers[i].partyTag.tex:SetColorTexture(unpack(i == self.playerGroup and self.db.partyTagParty or self.db.partyTagRaid))
-				self.headers[i].partyTag.text:SetFormattedText(setPartyTag(self.headers[i]) and "%d 파티" or "%d", i)
+				self.headers[i].partyTag.text:SetFormattedText(setPartyTag(self.headers[i]) and L["Lime_partytag"] or "%d", i)
 			else
 				self.headers[i].partyTag:Hide()
 			end

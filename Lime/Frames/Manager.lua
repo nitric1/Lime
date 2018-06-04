@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local _G = _G
 local lime = _G[...]
 local texturePath = "Interface\\AddOns\\Lime\\Shared\\Texture\\"
@@ -41,7 +44,7 @@ for i = 0, 9 do
 		btn:SetAttribute("*marker*", i)
 	end
 end
-_G["BINDING_NAME_CLICK limeWorldMarker0:LeftButton"] = "위치 표시기 메뉴"
+_G["BINDING_NAME_CLICK limeWorldMarker0:LeftButton"] = L["Lime_Marker"]
 for i = 1, 8 do
 	_G["BINDING_NAME_CLICK limeWorldMarker"..i..":LeftButton"] = _G["WORLD_MARKER"..i]:gsub("\124T.+\124t", ""):gsub("\124r", ""):gsub("\124c[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]", ""):trim()
 end
@@ -72,7 +75,7 @@ local function updateCount()
 	if IsInGroup() then
 		lime.manager.content.label:SetFormattedText("%s%d %s%d %s%d %s%d", "|TInterface\\LFGFrame\\LFGRole:14:14:0:0:64:16:32:48:0:16|t", RaidInfoCounts.totalRoleTANK, "|TInterface\\LFGFrame\\LFGRole:14:14:0:0:64:16:48:64:0:16|t", RaidInfoCounts.totalRoleHEALER, "|TInterface\\LFGFrame\\LFGRole:14:14:0:0:64:16:16:32:0:16|t", RaidInfoCounts.totalRoleDAMAGER, "|TInterface\\RaidFrame\\ReadyCheck-NotReady:14:14:0:0|t", RaidInfoCounts.totalRoleNONE)
 	else
-		lime.manager.content.label:SetText("공격대 관리자")
+		lime.manager.content.label:SetText(L["Lime_Manager"])
 	end
 	lime.manager.content.memberCountLabel:SetFormattedText("%d/%d", RaidInfoCounts.totalAlive, RaidInfoCounts.totalCount)
 end
@@ -124,7 +127,7 @@ end)
 
 lime.manager.content.hideButton:SetScript("OnClick", function(self)
 	lime:SetAttribute("run", not lime.db.run)
-	limeOverlord:GetScript("PostClick")(limeOverlord)
+	LimeOverlord:GetScript("PostClick")(LimeOverlord)
 end)
 
 function lime:ToggleManager()

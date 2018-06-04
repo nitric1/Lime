@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local _G = _G
 local select = _G.select
 local tonumber = _G.tonumber
@@ -117,13 +120,13 @@ local function getStatusText(self, bracket)
 	local width = 0
 	if self.isOffline then
 		prefix, postfix = "|cff9d9d9d<", ">|r"
-		text = "오프"
+		text = L["Lime_offline"]
 	elseif self.isGhost then
 		prefix, postfix = "|cff9d9d9d<", ">|r"
-		text = "유령"
+		text = L["Lime_ghost"]
 	elseif self.isDead then
 		prefix, postfix = "|cffff0000<", ">|r"
-		text = "죽음"
+		text = L["Lime_dead"]
 	elseif self.survivalSkill then
 		text = ("<%s%s>"):format(self.survivalSkill, self.survivalSkillTimeLeft or "")
 	elseif (self.lostHealth > 0 or self.overAbsorb > 0) and lime.db.units.healthType ~= 0 and checkRange(self) then
@@ -138,7 +141,7 @@ local function getStatusText(self, bracket)
 		end
 	elseif self.isAFK then
 		prefix, postfix = "|cff9d9d9d<", ">|r"
-		text = "자리"
+		text = L["Lime_afk"]
 	else
 		return "", 0
 	end

@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local _G = _G
 local lime = _G[...]
 local GetTime = _G.GetTime
@@ -104,7 +107,7 @@ function limeMember_UpdateAura(self)
 				if isBossAura and not bossAuraId[spellId] and not bossAuraName[name] and lime.db.userAura[spellId] ~= false and lime.db.userAura[name] ~= false then
 					lime.db.userAura[spellId] = true
 					bossAuraId[spellId] = true
-					lime:Message("새로운 중요 약화 효과 \""..name.."\"|1을;를; 발견하여 중요 약화 효과 목록에 추가합니다.")
+					lime:Message("|cffff6600"..name.."|r"..L["Lime_register_BossAura"]) 
 				end
 				if self.optionTable.useBossAura and (not baIndex or bsIsBuff) and (bossAuraId[spellId] or bossAuraName[name]) then--약화 효과는 항상 강화 효과에 우선합니다.
 					-- 중요 효과 내용 임시 테이블에 저장
@@ -143,7 +146,7 @@ function limeMember_UpdateAura(self)
 			if isBossAuraB and not bossAuraId[spellIdB] and not bossAuraName[nameB] and lime.db.userAura[spellIdB] ~= false and lime.db.userAura[nameB] ~= false then
 				lime.db.userAura[spellIdB] = true
 				bossAuraId[spellIdB] = true
-				lime:Message("새로운 중요 강화 효과 \""..nameB.."\"|1을;를; 발견하여 중요 강화 효과 목록에 추가합니다.")
+				lime:Message("|cffff6600"..nameB.."|r"..L["Lime_register_BossAura"]) 
 			end
 			if bossAuraId[spellIdB] or bossAuraName[nameB] then
 				-- 중요 효과 내용 임시 테이블에 저장

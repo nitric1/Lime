@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local _G = _G
 local type = _G.type
 local pairs = _G.pairs
@@ -6,7 +9,6 @@ local GetSpellInfo = _G.GetSpellInfo
 local LBDB = LibStub("LibLimeDB-1.1")
 local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
 local UnitIsGroupLeader = _G.UnitIsGroupLeader
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 -- 코어 프레임 설정
 local overlord = CreateFrame("Button", (...).."Overlord", UIParent, "SecureHandlerClickTemplate")
@@ -130,7 +132,7 @@ function lime:BorderUpdate(fast)
 end
 
 function lime:Message(msg)
-	ChatFrame1:AddMessage("|cffffff00<lime> |r"..msg, 1, 1, 1)
+	ChatFrame1:AddMessage("|cffa2e665<Lime> |r"..msg, 1, 1, 1)
 end
 
 function lime:IsLeader()
@@ -296,7 +298,7 @@ lime.optionFrame:SetScript("OnShow", function(self)
 			self.version:SetText(lime.version)
 			self.version:SetPoint("LEFT", self.title, "RIGHT", 2, 0)
 			self.combatWarn = self:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-			self.combatWarn:SetText("전투 중에는 환경 설정을 할 수 없습니다.\n전투 종료 후 환경 설정을 해주세요.")
+			self.combatWarn:SetText("combatWarn")
 			self.combatWarn:SetPoint("CENTER", 0, 0)
 		end
 		if not self:IsEventRegistered("PLAYER_REGEN_ENABLED") then
@@ -335,15 +337,15 @@ local command, arg1 = strsplit(" ",msg)
 			if not InCombatLockdown() then
 				lime:SetProfile(arg1)
 				lime:ApplyProfile()
-				lime:Message(("[|cff8080ff%s|r] 설정이 현재 캐릭터에 적용되었습니다."):format(arg1))
+				lime:Message(L[("Lime_applyprofile")]:format(arg1))
 			else 
-				lime:Message("전투 중에는 설정을 변경할 수 없습니다.")
+				lime:Message(L[("Lime_profile_error1")])
 			end
 		else 	
-			lime:Message(("[|cff8080ff%s|r] 설정이 존재하지 않습니다."):format(arg1))
+			lime:Message(L[("Lime_profile_error2")]:format(arg1))
 		end 
 	elseif command == "s" then
-			lime:Message("설정 이름을 지정해주세요. 명령어 사용법: /ya s [설정 이름]")
+			lime:Message(L["Lime_profile_info"])
 	else
 		InterfaceOptionsFrame_Show()
 		InterfaceOptionsFrame_OpenToCategory(lime.optionFrame)
@@ -359,9 +361,9 @@ overlord:SetScript("PostClick", function()
 	if lime.db.run ~= lime:GetAttribute("run") then
 		lime.db.run = lime:GetAttribute("run")
 		if lime.db.run then
-			lime:Message("공격대 창을 보이게 합니다.")
+			lime:Message(L["Lime_Show"])
 		else
-			lime:Message("공격대 창을 숨깁니다.")
+			lime:Message(L["Lime_Hide"])
 		end
 		if lime.optionFrame.runMenu and lime.optionFrame.runMenu:IsVisible() then
 			lime.optionFrame.runMenu:Update()
@@ -372,10 +374,10 @@ end)
 
 -- 단축키 설정 
 BINDING_HEADER_lime = "Lime"
-BINDING_NAME_lime_OPTION = "환경 설정"
-BINDING_NAME_lime_DOREADYCHECK = "전투 준비 확인"
-BINDING_NAME_lime_INITIATEROLEPOLL = "역할 확인"
-_G["BINDING_NAME_CLICK limeOverlord:LeftButton"] = "사용 전환"
+BINDING_NAME_lime_OPTION = L["Lime_Preference"]
+BINDING_NAME_lime_DOREADYCHECK = L["Lime_ReadyCheck"]
+BINDING_NAME_lime_INITIATEROLEPOLL = L["Lime_RoleCheck"]
+_G["BINDING_NAME_CLICK limeOverlord:LeftButton"] = L["Lime_Toggle"]
 
 function lime:OnClick(button)
 	if button == "RightButton" then
@@ -392,8 +394,8 @@ end
 function lime:OnTooltip(tooltip)
 	tooltip = tooltip or GameTooltip
 	tooltip:AddLine("Lime".." "..lime.version)
-	tooltip:AddLine("좌클릭: 환경 설정", 1, 1, 0)
-	tooltip:AddLine("우클릭: 메뉴", 1, 1, 0)
+	tooltip:AddLine(L["Lime_leftclick"], 1, 1, 0)
+	tooltip:AddLine(L["Lime_rightclick"], 1, 1, 0)
 end
 
 local function runFunc()
@@ -413,25 +415,25 @@ local function initializeDropDown()
 	local info = L_UIDropDownMenu_CreateInfo()
 	info.notCheckable = true
 	info.isNotRadio = true
-	info.text = "환경 설정"
+	info.text = L["Lime_Preference"]
 	info.func = lime.OnClick
 	L_UIDropDownMenu_AddButton(info)
 	info.notCheckable = nil
-	info.text = "사용"
+	info.text = L["Lime_use"]
 	info.checked = lime.db and lime.db.run
 	info.func = runFunc
 	L_UIDropDownMenu_AddButton(info)
-	info.text = "고정"
+	info.text = L["Lime_lock"]
 	info.checked = lime.db and lime.db.lock
 	info.func = lockFunc
 	L_UIDropDownMenu_AddButton(info)
 	info.notCheckable = true
 	info.checked = nil
-	info.text = "전투 준비 확인"
+	info.text = L["Lime_ReadyCheck"]
 	info.disabled = not lime:IsLeader()
 	info.func = DoReadyCheck
 	L_UIDropDownMenu_AddButton(info)
-	info.text = "역할 확인"
+	info.text = L["Lime_RoleCheck"]
 	info.func = InitiateRolePoll
 	L_UIDropDownMenu_AddButton(info)
 	info.disabled = nil
@@ -455,6 +457,6 @@ function lime:CheckIncompatible()
 	end
 	-- 경고문 표시 설정
 	if self.db.cflag == false and self.db.cwarning == true then
-		lime:Message("|cffff6600[경고]|r 아군 이름표를 표시하면 Lime의 툴팁이 보이지 않게 됩니다.")
+		lime:Message(L["Lime_CheckIncompatible"])
 	end
 end

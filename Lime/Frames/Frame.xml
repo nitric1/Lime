@@ -449,7 +449,7 @@
 						</Texture>
 					</Layer>
 					<Layer level="OVERLAY">
-						<FontString name="$parentRaidMembersLabel" inherits="GameFontNormal" text="공격대 관리자" parentKey="label" maxLines="1">
+						<FontString name="$parentRaidMembersLabel" inherits="GameFontNormal" text="Raid Manager" parentKey="label" maxLines="1">
 							<Anchors>
 								<Anchor point="LEFT" relativeTo="$parentHeader" x="6" y="0"/>
 							</Anchors>
