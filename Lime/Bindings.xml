@@ -1,0 +1,26 @@
+<Bindings>
+	<Binding name="lime_OPTION" header="lime" category="ADDONS">
+		lime:OnClick("LeftButton")
+	</Binding>
+	<Binding name="CLICK limeOverlord:LeftButton" category="ADDONS"/>
+	<Binding name="lime_DOREADYCHECK" category="ADDONS">
+		if lime:IsLeader() then
+			DoReadyCheck()
+		end
+	</Binding>
+	<Binding name="lime_INITIATEROLEPOLL" category="ADDONS">
+		if lime:IsLeader() then
+			InitiateRolePoll()
+		end
+	</Binding>
+	<Binding name="CLICK limeWorldMarker0:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker1:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker2:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker3:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker4:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker5:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker6:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker7:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker8:LeftButton" category="ADDONS"/>
+	<Binding name="CLICK limeWorldMarker9:LeftButton" category="ADDONS"/>
+</Bindings>
