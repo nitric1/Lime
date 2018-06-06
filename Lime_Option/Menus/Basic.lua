@@ -4,7 +4,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 local lime = lime
 local Option = lime.optionFrame
 local LBO = LibStub("LibLimeOption-1.0")
-local icon = LibStub("LibDBIcon-1.0")
+local lime_mapicon = LibStub("LibDBIcon-1.0")
 
 function Option:CreateUseMenu(menu, parent)
 	self.CreateUseMenu = nil
@@ -53,9 +53,9 @@ function Option:CreateUseMenu(menu, parent)
 		function(v)
 			limeDB.minimapButton.hide = v
 			if limeDB.minimapButton.hide then
-				icon:Hide("Lime")
+				lime_mapicon:Hide("Lime")
 			else
-				icon:Show("Lime")
+				lime_mapicon:Show("Lime")
 			end
 			menu.mapButtonLock:Update()
 		end
@@ -67,9 +67,9 @@ function Option:CreateUseMenu(menu, parent)
 		function(v)
 			limeDB.minimapButton.dragable = not v
 			if limeDB.minimapButton.dragable then
-			    icon:Unlock("Lime")
+			    lime_mapicon:Unlock("Lime")
 			else
-			    icon:Lock("Lime")
+			    lime_mapicon:Lock("Lime")
 			end
 		end
 	)

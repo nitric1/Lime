@@ -49,17 +49,17 @@ function lime:PLAYER_LOGIN()
 	OnLeave = GameTooltip_Hide,
 	})
 	-- 맵 아이콘 라이브러리
-	local icon = LibStub("LibDBIcon-1.0")
-	icon:Register("Lime", LDB, limeDB.minimapButton)
+	local lime_mapicon = LibStub("LibDBIcon-1.0")
+	lime_mapicon:Register("Lime", LDB, limeDB.minimapButton)
 	if limeDB.minimapButton.hide then
-		icon:Show("Lime")
+		lime_mapicon:Hide("Lime")
 	else
-		icon:Hide("Lime")
+		lime_mapicon:Show("Lime")
 	end
 	if limeDB.minimapButton.dragable then
-	    icon:Unlock("Lime")
+	    lime_mapicon:Unlock("Lime")
 	else
-	    icon:Lock("Lime")
+	    lime_mapicon:Lock("Lime")
 	end
 	self:SetScript("OnHide", limeMember_OnDragStop)
 	

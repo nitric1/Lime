@@ -1,4 +1,6 @@
 
+Lime 8 [2018.6.6.]
+- 미니맵 버튼이 숨겨지지 않는 오류를 수정합니다.
 
 Lime 7 [2018.6.6.]
 - Supports English. It is not perfect yet.
