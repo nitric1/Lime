@@ -178,7 +178,7 @@ function limeMember_UpdateAura(self)
 			self.bossAura.endTime = baExpirationTime
 			self.bossAura.startTime = baExpirationTime - baDuration
 			if not self.bossAura.ticker then
-				self.bossAura.ticker = C_Timer.NewTicker(0.5, function() bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt) end)
+				self.bossAura.ticker = C_Timer.NewTicker(1.0, function() bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt) end)
 			end
 			bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt)
 		else

@@ -2,7 +2,7 @@
 ## Title: |cffa2e665Lime|r
 ## Notes: 구 양파 레이드 프레임
 ## Author: Yangpa
-## Version: 8.0 r11
+## Version: 8.0 r12
 ## SavedVariables: limeDB
 ## SavedVariablesPerCharacter: limeCharDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0.lua

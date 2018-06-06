@@ -1,4 +1,4 @@
-local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 22
+local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 23
 
 local lib = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then return end

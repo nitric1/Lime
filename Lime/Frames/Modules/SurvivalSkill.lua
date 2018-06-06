@@ -6,12 +6,10 @@ local _G = _G
 local pairs = _G.pairs
 local GetTime = _G.GetTime
 local lime = _G[...]
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
-
 
 -- 직업별 생존기 정의 (*는 타인에게 걸 수 있는 생존기)
 local SL = lime.GetSpellName
-local skills = {	-- 7.2.5
+local skills = {
 	["DEATHKNIGHT"] = { [SL(48792)] = "얼인", [SL(55233)] = "흡혈", [SL(81256)] = "춤룬", [SL(48707)] = "대보", [SL(194679)] = "룬전", [SL(212552)] = "망령" },
 	["DEMONHUNTER"] = { [SL(187827)] = "탈태", [SL(218256)] = "강화", [SL(196555)] = "황천", [SL(198589)] = "흐릿" },
 	["DRUID"] = { [SL(61336)] = "생본", [SL(22812)] = "껍질", [SL(200851)] = "분노" },
@@ -80,7 +78,7 @@ function limeMember_UpdateSurvivalSkill(self)
 		self.survivalSkill, self.survivalSkillEndTime = checkSkill(self.displayedUnit, self.class)
 		self.survivalSkillTimeLeft = self.survivalSkillEndTime and (self.survivalSkillEndTime - GetTime()) or ""
 		if not self.survivalticker then
-			self.survivalticker = C_Timer.NewTicker(0.5, function() survivalSkillOnUpdate(self) end)
+			self.survivalticker = C_Timer.NewTicker(1.0, function() survivalSkillOnUpdate(self) end)
 		end
 		survivalSkillOnUpdate(self)
 	else
