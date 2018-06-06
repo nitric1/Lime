@@ -1,3 +1,6 @@
+
+local LimeAura = LibStub:GetLibrary("LibAuras")
+
 local _G = _G
 local next = _G.next
 local pairs = _G.pairs
@@ -5,13 +8,11 @@ local ipairs = _G.ipairs
 local select = _G.select
 local tinsert = _G.table.insert
 local wipe = _G.wipe
-local UnitBuff = _G.UnitBuff
 local GetSpellInfo = _G.GetSpellInfo
 local IsSpellKnown = _G.IsSpellKnown
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitInVehicle = _G.UnitInVehicle
 local lime = _G[...]
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 lime.raidBuffData = {}
 
@@ -32,8 +33,11 @@ local classRaidBuffs = ({
 	ROGUE = {
 	},
 	PRIEST = {
+		[21562] = { 2 },		-- 신의 권능: 인내
 	},
 	MAGE = {
+		[1459] = { 5 },		-- 신비한 총명함
+		[61316] = { 5 },
 	},
 	WARLOCK = {
 	},
@@ -58,7 +62,7 @@ if not classRaidBuffs then return end
 local raidBuffs = {
 	-- 능력치
 	[1] = {
-		--1126,		-- [드루이드] 야생의 징표
+		1126,		-- [드루이드] 야생의 징표
 		--20217,	-- [성기사] 왕의 축복
 		--116781,	-- [수도사] 백호의 유산
 		--115921,	-- [수도사] 황제의 유산
@@ -70,7 +74,7 @@ local raidBuffs = {
 	},
 	-- 체력
 	[2] = {
-		--21562,	-- [사제] 신의 권능: 인내
+		21562,	-- [사제] 신의 권능: 인내
 		--469,		-- [전사] 지휘의 외침
 		--166928,	-- [흑마법사] 피의 서약
 		--160199,	-- [사냥꾼] 고독한 늑대: 곰의 인내력
@@ -96,8 +100,8 @@ local raidBuffs = {
 	},
 	-- 주문력
 	[5] = {
-		--1459,		-- [마법사] 신비한 총명함
-		--61316,	-- [마법사] 달라란의 총명함
+		1459,		-- [마법사] 신비한 총명함
+		61316,	-- [마법사] 달라란의 총명함
 		--109773,	-- [흑마법사] 검은 의도
 		--160205,	-- [사냥꾼] 고독한 늑대: 독사의 지혜
 		--90309,	-- [Pet] Terrifying Roar
@@ -157,7 +161,7 @@ local raidBuffs = {
 }
 
 local sameBuffs = {
-	--	[1459] = 61316,	-- 신비한 총명함 = 달라란의 총명함
+	--[1459] = 61316,	-- 신비한 총명함 = 달라란의 총명함
 }
 
 lime.raidBuffData = {
@@ -173,7 +177,7 @@ local linkRaidBuffs = {}
 local raidBuffInfo = {}
 
 local function addRaidBuff(tbl, spellId, isClassBuff)
-	local spellName, spellRank, spellIcon = GetSpellInfo(spellId)
+	local spellName, _, spellIcon, _, _, _, spellId = GetSpellInfo(spellId)
 	if spellName then
 		if isClassBuff then
 			for _, v in ipairs(tbl) do
@@ -185,7 +189,6 @@ local function addRaidBuff(tbl, spellId, isClassBuff)
 		tinsert(tbl, {
 			id = spellId,
 			name = spellName,
-			rank = spellRank,
 			icon = spellIcon,
 			passive = IsPassiveSpell(spellId)
 		})
@@ -233,11 +236,11 @@ local function hideBuffIcon(icon)
 end
 
 local function getBuff(unit, spellId)
-	if UnitBuff(unit, raidBuffInfo[spellId].name, raidBuffInfo[spellId].rank) then
+	if LimeAura:UnitBuff(unit, raidBuffInfo[spellId].name) then
 		for _, i in ipairs(classRaidBuffs[spellId]) do
 			checkMask[i] = raidBuffInfo[spellId]
 		end
-	elseif sameBuffs[spellId] and UnitBuff(unit, raidBuffInfo[sameBuffs[spellId]].name, raidBuffInfo[sameBuffs[spellId]].rank) then
+	elseif sameBuffs[spellId] and LimeAura:UnitBuff(unit, raidBuffInfo[sameBuffs[spellId]].name) then
 		for _, i in ipairs(classRaidBuffs[spellId]) do
 			checkMask[i] = raidBuffInfo[sameBuffs[spellId]]
 		end
@@ -246,7 +249,7 @@ local function getBuff(unit, spellId)
 			if checkMask[i] == nil then
 				checkMask[i] = false
 				for _, v in ipairs(raidBuffs[i]) do
-					if UnitBuff(unit, v.name, v.rank) then
+					if LimeAura:UnitBuff(unit, v.name) then
 						checkMask[i] = v
 						break
 					end
@@ -285,13 +288,14 @@ limeMember_UpdateBuffs = function(self)
 			if buff then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[spellId].icon)
+				lime:Message("SHOW")
 			end
 		end
 		if buffCnt == 2 then return end
 	end
 	for a, b in pairs(linkRaidBuffs) do
-		buff = UnitBuff(self.displayedUnit, raidBuffInfo[a].name, raidBuffInfo[a].rank, "PLAYER")
-		buff2 = not buff and UnitBuff(self.displayedUnit, raidBuffInfo[b].name, raidBuffInfo[b].rank, "PLAYER") or nil
+		buff = LimeAura:UnitBuff(self.displayedUnit, raidBuffInfo[a].name, "PLAYER")
+		buff2 = not buff and LimeAura:UnitBuff(self.displayedUnit, raidBuffInfo[b].name, "PLAYER") or nil
 		if limeCharDB.classBuff2[b] == 1 then
 			-- 버프가 없을 때 표시
 			if not buff and not buff2 then
@@ -318,9 +322,11 @@ limeMember_UpdateBuffs = function(self)
 			if buff then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[a].icon)
+				lime:Message("SHOW2")
 			elseif buff2 then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[b].icon)
+				lime:Message("SHOW3")
 			end
 		end
 		if buffCnt == 2 then return end

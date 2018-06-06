@@ -1,3 +1,6 @@
+
+local LimeAura = LibStub:GetLibrary("LibAuras")
+
 local _G = _G
 local lime = _G[...]
 local ipairs = _G.ipairs
@@ -9,7 +12,6 @@ local numberFont = lime:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 local numberFontWidth = {}
 local SL = lime.GetSpellName
 local blockSpellID = {}
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 function lime:UpdateSpellTimerFont()
 	for _, header in pairs(lime.headers) do
@@ -130,7 +132,7 @@ function limeMember_UpdateSpellTimer(self)
 			local spellId = tonumber(spellname)
 			if type(spellId) == "number" then
 				for i = 1, 40 do
-					local name2, _, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i , filter)
+					local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i , filter)
 					if name2 and spellId2 == spellId then
 						found = true
 						setIcon(self["spellTimer"..index], index, duration2, expirationTime2, icon2, count2)
@@ -138,11 +140,11 @@ function limeMember_UpdateSpellTimer(self)
 					end
 				end
 			else
-				local name, _, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = UnitAura(self.displayedUnit, spellname, nil, filter)
-					if name and (filterNum == 1 or filterNum == 2) and unitCaster ~= "player" then -- fix 6.0 UnitAura bug.
+				local name, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = LimeAura:UnitAura(self.displayedUnit, spellname, filter)
+					if name and (filterNum == 1 or filterNum == 2) and unitCaster ~= "player" then -- fix 6.0 LimeAura:UnitAura bug.
 					elseif name and blockSpellID[name] then
 						for i = 1, 40 do
-							local name2, _, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i , filter)
+							local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i, filter)
 							if name2 and name2 == spellname and spellId2 ~= blockSpellID[name2] then
 								found = true
 								setIcon(self["spellTimer"..index], index, duration2, expirationTime2, icon2, count2)
@@ -163,7 +165,7 @@ function limeMember_UpdateSpellTimer(self)
 end
 
 local pos = { "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT", "LEFT", "RIGHT", "TOPLEFT", "TOP", "TOPRIGHT" }
-local filter = { "HELPFUL|PLAYER", "HARMFUL|PLAYER", "HELPFUL", "HARMFUL" }
+local filter = { "HELPFUL PLAYER", "HARMFUL PLAYER", "HELPFUL", "HARMFUL" }
 local SL = lime.GetSpellName
 
 function lime:BuildSpellTimerList()
@@ -198,21 +200,17 @@ function lime:SetupSpellTimer(reset)
 		limeCharDB.spellTimer[1].name = SL(57934)	-- 속임수 거래
 	elseif self.playerClass == "PRIEST" then
 		limeCharDB.spellTimer[1].use = 1
-		limeCharDB.spellTimer[1].name = SL(139)	-- 소생
+		limeCharDB.spellTimer[1].name = "139"	-- 소생 (8.0 Legit)
 		limeCharDB.spellTimer[1].pos = "BOTTOMLEFT"
 		limeCharDB.spellTimer[2].use = 1
-		limeCharDB.spellTimer[2].name = SL(33076)	-- 회복의 기원
+		limeCharDB.spellTimer[2].name = "41635"	-- 회복의 기원 (8.0 Legit)
 		limeCharDB.spellTimer[2].pos = "BOTTOMRIGHT"
 		limeCharDB.spellTimer[3].use = 1
-		limeCharDB.spellTimer[3].name = SL(81749)	-- 속죄
+		limeCharDB.spellTimer[3].name = "194384"-- 속죄 (8.0 Legit)
 		limeCharDB.spellTimer[3].pos = "BOTTOMRIGHT"
 		limeCharDB.spellTimer[4].use = 1
-		limeCharDB.spellTimer[4].name = SL(17)	-- 신의 권능: 보호막
+		limeCharDB.spellTimer[4].name = "17"	-- 신의 권능: 보호막 (8.0 Legit)
 		limeCharDB.spellTimer[4].pos = "BOTTOMLEFT"
-		-- [[8.0PH 의지의 명료함 삭제]]
-		-- limeCharDB.spellTimer[5].use = 0
-		-- limeCharDB.spellTimer[5].name = SL(152118)	-- 의지의 명료함
-		-- limeCharDB.spellTimer[5].pos = "BOTTOM"
 	elseif self.playerClass == "HUNTER" then
 		limeCharDB.spellTimer[1].use = 1
 		limeCharDB.spellTimer[1].name = SL(34477)	-- 눈속임

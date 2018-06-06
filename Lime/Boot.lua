@@ -1,5 +1,6 @@
 
 local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+local LimeAura = LibStub:GetLibrary("LibAuras")
 
 local _G = _G
 local type = _G.type

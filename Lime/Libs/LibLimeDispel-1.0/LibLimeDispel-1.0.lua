@@ -1,5 +1,4 @@
 local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 22
--- [[8.0PH]] local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 23
 
 local lib = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then return end
@@ -14,8 +13,6 @@ local IsSpellKnown = _G.IsSpellKnown
 local UnitDebuff = _G.UnitDebuff
 local UnitCanAttack = _G.UnitCanAttack
 local UnitCanAssist = _G.UnitCanAssist
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
--- [[8.0PH]] local UnitBuff = _G.UnitBuff
 
 local scanDispel
 local class = select(2, UnitClass("player"))
@@ -135,10 +132,10 @@ end
 
 function lib:IsDispelable(unit, index)
 	if UnitCanAttack("player", unit) then
-		local auraType, _, _, _, _, _, auraID = select(5, UnitBuff(unit, index))
+		local auraType, _, _, _, _, _, auraID = select(4, UnitBuff(unit, index))
 		return lib:CheckHarmDispel(auraType, auraID)
 	elseif UnitCanAssist("player", unit) then
-		return lib:CheckHelpDispel(select(5, UnitDebuff(unit, index)) or nil)
+		return lib:CheckHelpDispel(select(4, UnitDebuff(unit, index)) or nil)
 	end
 	return nil
 end
@@ -146,7 +143,7 @@ end
 function lib:DispelHelp(unit, usablefunc)
 	if next(lib.help) then
 		for i = 1, 40 do
-			local name, _, _, _, auraType, _, _, _, _, _, spellId = UnitDebuff(unit, i)
+			local name, _, _, auraType, _, _, _, _, _, spellId = UnitDebuff(unit, i)
 			if name then
 				if lib:CheckHelpDispel(auraType) then
 					if type(usablefunc) == "function" then
@@ -172,7 +169,7 @@ end
 function lib:DispelHarm(unit, usablefunc)
 	if lib.harm or lib.tranquilize then
 		for i = 1, 40 do
-			local name, _, _, _, auraType, _, _, _, _, _, auraID = UnitBuff(unit, i)
+			local name, _, _, auraType, _, _, _, _, _, auraID = UnitBuff(unit, i)
 			if name then
 				if lib:CheckHarmDispel(auraType, auraID) then
 					if type(usablefunc) == "function" then

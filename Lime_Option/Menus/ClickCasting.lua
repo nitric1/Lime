@@ -27,7 +27,7 @@ local LBO = LibStub("LibLimeOption-1.0")
 function Option:CreateClickCastingMenu(menu, parent)
 	Option.CreateClickCastingMenu = nil
 	local function buttonOnClick()
-		L_CloseDropDownMenus(1)
+		CloseDropDownMenus(1)
 		LBO:Refresh(menu.clickKeys)
 	end
 	local buttonNames = {}
@@ -160,7 +160,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 	end
 
 	local function dropDownOnClick(self)
-		L_CloseDropDownMenus(1)
+		CloseDropDownMenus(1)
 		if dropdown.arg1 ~= self.arg1 or dropdown.arg2 ~= self.arg2 then
 			if self.arg1 then
 				if self.arg2 then
@@ -188,7 +188,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 	local tradeMacro = "/run InitiateTrade('mouseover')"
 
 	local function dropDownInitialize(self, level)
-		if InCombatLockdown() then return L_CloseDropDownMenus(1) end
+		if InCombatLockdown() then return CloseDropDownMenus(1) end
 		if level then
 			local info = L_UIDropDownMenu_CreateInfo()
 			info.func = dropDownOnClick
@@ -269,7 +269,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 					L_UIDropDownMenu_AddButton(info, level)
 				end
 			elseif level == 2 then
-				if type(L_UIDROPDOWNMENU_MENU_VALUE) == "number" then
+				if type(L_UIDropDownMenu_MENU_VALUE) == "number" then
 					wipe(spellBooks)
 					name, _, start, last = GetSpellTabInfo(1)
 					if name then
@@ -290,8 +290,8 @@ function Option:CreateClickCastingMenu(menu, parent)
 						end
 					end
 					if spellBooks[1] then
-						start = (L_UIDROPDOWNMENU_MENU_VALUE - 1) * numSpells + 1
-						last = L_UIDROPDOWNMENU_MENU_VALUE * numSpells
+						start = (L_UIDropDownMenu_MENU_VALUE - 1) * numSpells + 1
+						last = L_UIDropDownMenu_MENU_VALUE * numSpells
 						for i = start, last do
 							if spellBooks[i] then
 								info.text = getSpellName(GetSpellBookItemName(spellBooks[i], BOOKTYPE_SPELL))
@@ -303,7 +303,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 						end
 						wipe(spellBooks)
 					end
-				elseif L_UIDROPDOWNMENU_MENU_VALUE == "pet" then
+				elseif L_UIDropDownMenu_MENU_VALUE == "pet" then
 					for i = 1, HasPetSpells() or 0 do
 						info.text = getSpellName(GetSpellBookItemName(i, BOOKTYPE_PET))
 						if checkSpell(info.text, i, BOOKTYPE_PET) then
@@ -313,16 +313,16 @@ function Option:CreateClickCastingMenu(menu, parent)
 							L_UIDropDownMenu_AddButton(info, level)
 						end
 					end
-				elseif L_UIDROPDOWNMENU_MENU_VALUE == "guild" then
+				elseif L_UIDropDownMenu_MENU_VALUE == "guild" then
 
-				elseif type(L_UIDROPDOWNMENU_MENU_VALUE) == "string" and L_UIDROPDOWNMENU_MENU_VALUE:find("^macro_") then
-					if L_UIDROPDOWNMENU_MENU_VALUE == "macro_general" then
+				elseif type(L_UIDropDownMenu_MENU_VALUE) == "string" and L_UIDropDownMenu_MENU_VALUE:find("^macro_") then
+					if L_UIDropDownMenu_MENU_VALUE == "macro_general" then
 						start, last = 1, GetNumMacros()
-					elseif L_UIDROPDOWNMENU_MENU_VALUE == "macro_character" then
+					elseif L_UIDropDownMenu_MENU_VALUE == "macro_character" then
 						start = (MAX_ACCOUNT_MACROS or 120) + 1
 						last = start + select(2, GetNumMacros()) - 1
-					elseif L_UIDROPDOWNMENU_MENU_VALUE:find("^macro_general%d+$") then
-						local n = (tonumber(L_UIDROPDOWNMENU_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
+					elseif L_UIDropDownMenu_MENU_VALUE:find("^macro_general%d+$") then
+						local n = (tonumber(L_UIDropDownMenu_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
 						start = n * 20 + 1
 						last = min(start + 19, (GetNumMacros()))
 					else
@@ -395,7 +395,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 			dropdown.arg1, dropdown.arg2 = nil
 		end
 		dropdown.parent = self:GetParent()
-		L_ToggleDropDownMenu(1, nil, dropdown, self, 0, 0)
+		ToggleDropDownMenu(1, nil, dropdown, self, 0, 0)
 	end
 
 	for i, name in ipairs(modifilterNames) do
@@ -417,7 +417,7 @@ function Option:UpdateClickCasting()
 	if Option.talentGroup and Option.clickKeys then
 		Option.talentGroup:SetFormattedText(L["특성: %s"], select(2, GetSpecializationInfo(GetSpecialization())))
 		if Option.clickKeys:IsVisible() then
-			L_CloseDropDownMenus(1)
+			CloseDropDownMenus(1)
 			LBO:Refresh(Option.clickKeys)
 		end
 	end

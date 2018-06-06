@@ -157,7 +157,7 @@ L["파티장 아이콘"] = "Leader Icon"
 L["Lime_Desc01"] = "Sets whether to use raid frames."
 L["Lime_Desc02"] = "Arrange the raid frame. The preview function makes setting up easier."
 L["Lime_Desc03"] = "Combines mouse button and CTRL, ALT, and SHIFT keys to easily cast specific skills."
-L["Lime_Desc04"] = "Track buffs or debuffs with icons and time remaining. Enter the Spell name or Spell ID for the buffs or debuffs, and press ENTER to apply the change."
+L["Lime_Desc04"] = "Track buffs or debuffs with icons and time remaining. Enter the Spell ID for the buffs or debuffs, and press ENTER to apply the change."
 L["Lime_Desc05"] = "You can manage profiles."
 L["Lime_Desc06"] = "If you are not sure of the function, never touch the setting."
 
@@ -439,11 +439,11 @@ L["lime_func_spelltimer_3"] = ": Sets whether to use it. It also sets its buff, 
 L["lime_func_spelltimer_4"] = ": Set the position."
 L["lime_func_spelltimer_5"] = ": Set the display format."
 L["lime_func_spelltimer_6"] = ": Set the size."
-L["lime_func_spelltimer_7"] = ": Enter the name or spell number of the buff or debuff to use as this timer. You must press the ENTER key after entering to make the change take effect."
+L["lime_func_spelltimer_7"] = ": Enter spell ID of the buff or debuff to use as this timer. You must press the ENTER key after entering to make the change take effect."
 
 L["위치"] = "Position"
 L["표시 방식"] = "Display format"
-L["효과 이름"] = "Spell Name"
+L["주문 ID"] = "Spell ID"
 L["크기"] = "Size"
 L["색상"] = "Color"
 

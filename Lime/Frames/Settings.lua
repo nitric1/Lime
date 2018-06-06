@@ -75,6 +75,7 @@ local default = {
 		},
 		debuffIcon = 5, debuffIconSize = 10, debuffIconPos = "TOPRIGHT", debuffIconType = 1,	-- 1:Icon+Color 2:Icon 3:Color
 		debuffIconFilter = { Magic = true, Curse = true, Disease = true, Poison = true, none = true },
+		buffIconSize = 12, buffIconPos = "LEFT",
 		useAggroArrow = true, aggroType = 1, -- 1:사용 안함 2:항상 3:파티/공격대 4:공격대
 		aggroGain = "None", aggroLost = "None",
 		useDispelColor = false,
