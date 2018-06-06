@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local lime = lime
 local Option = lime.optionFrame
 local LBO = LibStub("LibLimeOption-1.0")
@@ -24,8 +27,8 @@ function Option:CreateProfileMenu(menu, parent)
 	end
 	menu.current = parent:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 	menu.current:SetPoint("TOPLEFT", 5, -5)
-	menu.current:SetText("현재 설정: |cffffffff"..(limeDB.profileKeys[lime.profileName] or "Default"))
-	menu.list = LBO:CreateWidget("List", parent, "설정 목록", nil, nil, disable, nil,
+	menu.current:SetText(L["lime_profile_current"]..(limeDB.profileKeys[lime.profileName] or "Default"))
+	menu.list = LBO:CreateWidget("List", parent, L["설정 목록"], nil, nil, disable, nil,
 		function()
 			return Option:ConvertTable(limeDB.profiles, profiles), true
 		end,
@@ -41,7 +44,7 @@ function Option:CreateProfileMenu(menu, parent)
 		StaticPopup_Hide("lime_DELETE_PROFILE")
 		StaticPopup_Hide("lime_APPLY_PROFILE")
 	end)
-	menu.apply = LBO:CreateWidget("Button", parent, "현재 캐릭터에 설정 적용", "현재 캐릭터에 선택된 설정을 적용합니다.", nil,
+	menu.apply = LBO:CreateWidget("Button", parent, L["lime_profile_01"], L["lime_profile_desc_01"], nil,
 		function()
 			if disable() then
 				return true
@@ -61,7 +64,7 @@ function Option:CreateProfileMenu(menu, parent)
 	)
 	menu.apply:SetPoint("TOPLEFT", menu.list, "BOTTOMLEFT", 0, 12)
 	menu.apply:SetPoint("TOPRIGHT", menu.list, "BOTTOMRIGHT", 0, 12)
-	menu.create = LBO:CreateWidget("Button", parent, "새 설정 만들기", "현재 선택된 설정을 복사하여 새 설정을 생성하고 현재 캐릭터에 적용합니다. 설정을 선택하지 않았다면 초깃값 상태의 새 설정을 생성합니다.", nil, disable, true,
+	menu.create = LBO:CreateWidget("Button", parent, L["lime_profile_02"], L["lime_profile_desc_02"], nil, disable, true,
 		function()
 			getTargetProfile()
 			StaticPopup_Show("lime_NEW_PROFILE")
@@ -70,7 +73,7 @@ function Option:CreateProfileMenu(menu, parent)
 	menu.create:SetPoint("TOPLEFT", menu.apply, "BOTTOMLEFT", 0, 20)
 	menu.create:SetPoint("TOPRIGHT", menu.apply, "BOTTOMRIGHT", 0, 20)
 
-	menu.delete = LBO:CreateWidget("Button", parent, "설정 삭제", "현재 선택된 설정을 삭제합니다.", nil,
+	menu.delete = LBO:CreateWidget("Button", parent, L["lime_profile_03"], L["lime_profile_desc_03"], nil,
 		function()
 			if disable() then
 				return true
@@ -103,23 +106,23 @@ function Option:CreateProfileMenu(menu, parent)
 	end
 	StaticPopupDialogs["lime_NEW_PROFILE"] = {
 		preferredIndex = STATICPOPUP_NUMDIALOGS,
-		text = "새로운 설정을 작성합니다.\n새 설정 이름을 입력해주세요",
+		text = L["lime_profile_make"],
 		button1 = OKAY, button2 = CANCEL, hideOnEscape = 1, timeout = 0, exclusive = 1, whileDead = 1, hasEditBox = 1, maxLetters = 32, showAlert = 1,
 		OnUpdate = checkCombat, OnHide = togglePopup,
 		OnAccept = function(self)
 			local name = (self.editBox:GetText() or ""):trim()
 			if name ~= "" then
 				if limeDB.profiles[name] then
-					lime:Message(("[|cff8080ff%s|r] 이미 존재하는 설정입니다."):format(name))
+					lime:Message((L["lime_profile_make_message_01"]):format(name))
 				elseif Option:NewProfile(name, menu.targetProfile) then
 					if limeDB.profiles[name] then
-						menu.current:SetText("현재 프로필: |cffffffff"..name)
-						lime:Message(("[|cff8080ff%s|r] 새로운 설정이 생성되고 적용되었습니다."):format(name))
+						menu.current:SetText(L["lime_profile_current"]..name)
+						lime:Message((L["lime_profile_make_message_02"]):format(name))
 					else
-						lime:Message("설정 생성이 실패했습니다.")
+						lime:Message(L["lime_profile_make_message_03"])
 					end
 				else
-					lime:Message("설정 생성이 실패했습니다.")
+					lime:Message(L["lime_profile_make_message_03"])
 				end
 			end
 		end,
@@ -148,7 +151,7 @@ function Option:CreateProfileMenu(menu, parent)
 	}
 	StaticPopupDialogs["lime_DELETE_PROFILE"] = {
 		preferredIndex = STATICPOPUP_NUMDIALOGS,
-		text = "'%s' 설정을 삭제합니다.\n정말 삭제하시겠습니까?",
+		text = L["lime_profile_delete"],
 		button1 = YES, button2 = NO, hideOnEscape = 1, timeout = 0, exclusive = 1, whileDead = 1, showAlert = 1,
 		OnUpdate = checkCombat, OnShow = togglePopup, OnHide = togglePopup,
 		OnAccept = function(self)
@@ -158,19 +161,19 @@ function Option:CreateProfileMenu(menu, parent)
 					limeDB.profileKeys[p] = nil
 				end
 			end
-			lime:Message(("[|cff8080ff%s|r] 설정이 삭제되었습니다."):format(menu.targetProfile))
+			lime:Message((L["lime_profile_delete_message_01"]):format(menu.targetProfile))
 		end,
 	}
 	StaticPopupDialogs["lime_APPLY_PROFILE"] = {
 		preferredIndex = STATICPOPUP_NUMDIALOGS,
-		text = "현재 캐릭터에 '%s' 설정을 적용하시겠습니까?",
+		text = L["lime_profile_apply"],
 		button1 = YES, button2 = NO, hideOnEscape = 1, timeout = 0, exclusive = 1, whileDead = 1, showAlert = 1,
 		OnUpdate = checkCombat, OnShow = togglePopup, OnHide = togglePopup,
 		OnAccept = function(self)
-			menu.current:SetText("현재 설정: |cffffffff"..(menu.targetProfile or "Default"))
+			menu.current:SetText(L["lime_profile_current"]..(menu.targetProfile or "Default"))
 			lime:SetProfile(menu.targetProfile)
 			lime:ApplyProfile()
-			lime:Message(("[|cff8080ff%s|r] 설정이 현재 캐릭터에 적용되었습니다."):format(menu.targetProfile))
+			lime:Message((L["lime_profile_apply_message_01"]):format(menu.targetProfile))
 		end,
 	}
 end

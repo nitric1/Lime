@@ -172,6 +172,7 @@ function lime:InitDB()
 	if not limeCharDB then
 		limeCharDB = { class = self.playerClass }
 	end
+	self:SetupClassBuff()
 	self:SetupSpellTimer()
 end
 

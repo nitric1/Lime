@@ -3,7 +3,6 @@
 ## Notes: 구 양파 공격대 프레임 설정
 ## Dependencies: Lime
 ## LoadOnDemand: 1
-
 libs\LibLimeOption-1.0\LibLimeOption-1.0.xml
 menus.xml
 Preview.lua

@@ -39,7 +39,7 @@ function lime:PLAYER_LOGIN()
 	--- Broker 라이브러리
 	local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("Lime", {
 	type = "data source",
-	text = "lime",
+	text = "",
 	icon = "Interface\\AddOns\\Lime\\Shared\\Texture\\Icon.tga",
 	OnClick = function(_, button) lime:OnClick(button) end,
 	OnTooltipShow = function(tooltip)

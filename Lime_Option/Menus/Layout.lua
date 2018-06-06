@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local lime = lime
 local Option = lime.optionFrame
 local LBO = LibStub("LibLimeOption-1.0")
@@ -16,7 +19,7 @@ function Option:CreateFrameMenu(menu, parent)
 			limeMember_UpdatePowerColor(member)
 		end
 	end
-	menu.texture = LBO:CreateWidget("Media", parent, "바 텍스처", "바 텍스처를 설정합니다.", nil, nil, true,
+	menu.texture = LBO:CreateWidget("Media", parent, L["lime_layout_01"], L["lime_layout_desc_01"], nil, nil, true,
 		function() return lime.db.units.texture, "statusbar" end,
 		function(v)
 			lime.db.units.texture = v
@@ -25,7 +28,7 @@ function Option:CreateFrameMenu(menu, parent)
 		end
 	)
 	menu.texture:SetPoint("TOPLEFT", 5, -5)
-	menu.scale = LBO:CreateWidget("Slider", parent, "크기", "프레임의 전체적인 크기를 조절합니다.", nil, nil, true,
+	menu.scale = LBO:CreateWidget("Slider", parent, L["lime_layout_02"], L["lime_layout_desc_02"], nil, nil, true,
 		function()
 			return lime.db.scale * 100, 50, 150, 1, "%"
 		end,
@@ -39,9 +42,9 @@ function Option:CreateFrameMenu(menu, parent)
 	)
 	menu.scale:SetPoint("TOPRIGHT", -5, -5)
 
-	menu.width = LBO:CreateWidget("Slider", parent, "너비", "프레임의 너비를 조절합니다.", nil, nil, true,
+	menu.width = LBO:CreateWidget("Slider", parent, L["lime_layout_03"], L["lime_layout_desc_03"], nil, nil, true,
 		function()
-			return lime.db.width, 32, 256, 1, "픽셀"
+			return lime.db.width, 32, 256, 1, ""
 		end,
 		function(v)
 			lime.db.width = v
@@ -64,9 +67,9 @@ function Option:CreateFrameMenu(menu, parent)
 		end
 	)
 	menu.width:SetPoint("TOP", menu.texture, "BOTTOM", 0, -10)
-	menu.height = LBO:CreateWidget("Slider", parent, "높이", "프레임의 높이를 조절합니다.", nil, nil, true,
+	menu.height = LBO:CreateWidget("Slider", parent, L["lime_layout_04"], L["lime_layout_desc_04"], nil, nil, true,
 		function()
-			return lime.db.height, 25, 256, 1, "픽셀"
+			return lime.db.height, 25, 256, 1, ""
 		end,
 		function(v)
 			lime.db.height = v
@@ -88,9 +91,9 @@ function Option:CreateFrameMenu(menu, parent)
 		end
 	)
 	menu.height:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	menu.offset = LBO:CreateWidget("Slider", parent, "간격", "각 플레이어 간의 간격을 조절합니다.", nil, nil, true,
+	menu.offset = LBO:CreateWidget("Slider", parent, L["lime_layout_05"], L["lime_layout_desc_05"], nil, nil, true,
 		function()
-			return lime.db.offset, 0, 30, 1, "픽셀"
+			return lime.db.offset, 0, 30, 1, ""
 		end,
 		function(v)
 			lime.db.offset = v
@@ -99,7 +102,7 @@ function Option:CreateFrameMenu(menu, parent)
 		end
 	)
 	menu.offset:SetPoint("TOP", menu.width, "BOTTOM", 0, -10)
-	menu.highlightAlpha = LBO:CreateWidget("Slider", parent, "강조 투명도", "마우스를 올렸을 때 강조되는 텍스처의 투명도를 설정합니다. 0으로 설정하면 보이지 않습니다.", nil, nil, true,
+	menu.highlightAlpha = LBO:CreateWidget("Slider", parent, L["lime_layout_06"], L["lime_layout_desc_06"], nil, nil, true,
 		function()
 			return lime.db.highlightAlpha * 100, 0, 100, 1, "%"
 		end,
@@ -112,7 +115,7 @@ function Option:CreateFrameMenu(menu, parent)
 	local function updateBG(member)
 		member.background:SetColorTexture(lime.db.units.backgroundColor[1], lime.db.units.backgroundColor[2], lime.db.units.backgroundColor[3], lime.db.units.backgroundColor[4])
 	end
-	menu.color = LBO:CreateWidget("ColorPicker", parent, "배경 색상", "각 플레이어의 배경 색상 및 투명도를 설정합니다.", nil, nil, true,
+	menu.color = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_07"], L["lime_layout_desc_07"], nil, nil, true,
 		function()
 			return lime.db.units.backgroundColor[1], lime.db.units.backgroundColor[2], lime.db.units.backgroundColor[3], lime.db.units.backgroundColor[4]
 		end,
@@ -125,11 +128,11 @@ function Option:CreateFrameMenu(menu, parent)
 end
 
 function Option:CreateHealthBarMenu(menu, parent)
-	local orientationList = { "가로", "세로" }
+	local orientationList = { L["가로"], L["세로"] }
 	local function updateOrientation(member)
 
 	end
-	menu.orientation = LBO:CreateWidget("DropDown", parent, "생명력 바 방향", "생명력 바의 진행 방향을 설정합니다.", nil, nil, true,
+	menu.orientation = LBO:CreateWidget("DropDown", parent, L["lime_layout_08"], L["lime_layout_desc_08"], nil, nil, true,
 		function()
 			return lime.db.units.orientation, orientationList
 		end,
@@ -144,7 +147,7 @@ function Option:CreateHealthBarMenu(menu, parent)
 			limeMember_UpdateState(member)
 		end
 	end
-	menu.classColor = LBO:CreateWidget("CheckBox", parent, "직업별 생명력 바 색상", "직업별 색상에 따라 생명력 바 색상을 변경합니다.", nil, nil, true,
+	menu.classColor = LBO:CreateWidget("CheckBox", parent, L["lime_layout_09"], L["lime_layout_desc_09"], nil, nil, true,
 		function()
 			return lime.db.units.useClassColors
 		end,
@@ -155,7 +158,7 @@ function Option:CreateHealthBarMenu(menu, parent)
 		end
 	)
 	menu.classColor:SetPoint("TOPRIGHT", -5, -5)
-	menu.reset = LBO:CreateWidget("Button", parent, "색상 초기화", "설정한 색상을 초깃값으로 되돌립니다.", nil, nil, true,
+	menu.reset = LBO:CreateWidget("Button", parent, L["lime_layout_10"], L["lime_layout_desc_10"], nil, nil, true,
 		function()
 			lime.db.colors.help[1], lime.db.colors.help[2], lime.db.colors.help[3] = 0, 1, 0
 			lime.db.colors.harm[1], lime.db.colors.harm[2], lime.db.colors.harm[3] = 0.5, 0, 0
@@ -173,7 +176,7 @@ function Option:CreateHealthBarMenu(menu, parent)
 	)
 	menu.reset:SetPoint("TOP", menu.orientation, "BOTTOM", 0, -5)
 	local colorList = { "help", "harm", "vehicle", "offline", "WARRIOR", "ROGUE", "PRIEST", "MAGE", "WARLOCK", "HUNTER", "DRUID", "SHAMAN", "PALADIN", "DEATHKNIGHT", "MONK", "DEMONHUNTER" }
-	local colorLocale = { "우호적 대상", "적대적 대상", "탈것 탑승 시", "오프라인일 때", "전사", "도적", "사제", "마법사", "흑마법사", "사냥꾼", "드루이드", "주술사", "성기사", "죽음의 기사", "수도사", "악마사냥꾼" }
+	local colorLocale = { L["우호적 대상"], L["적대적 대상"], L["탈것 탑승 시"], L["오프라인일 때"], L["전사"], L["도적"], L["사제"], L["마법사"], L["흑마법사"], L["사냥꾼"], L["드루이드"], L["주술사"], L["성기사"], L["죽음의 기사"], L["수도사"], L["악마사냥꾼"] }
 	local function getColor(color)
 		return lime.db.colors[color][1], lime.db.colors[color][2], lime.db.colors[color][3]
 	end
@@ -183,7 +186,7 @@ function Option:CreateHealthBarMenu(menu, parent)
 		Option:UpdatePreview()
 	end
 	for i, color in ipairs(colorList) do
-		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, colorLocale[i], colorLocale[i].."의 색상을 변경합니다.", nil, nil, true, getColor, setColor, color)
+		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, colorLocale[i], colorLocale[i]..L["lime_layout_11"], nil, nil, true, getColor, setColor, color)
 		if i == 1 then
 			menu["color"..i]:SetPoint("TOP", menu.reset, "BOTTOM", 0, 15)
 		elseif i == 2 then
@@ -196,8 +199,8 @@ function Option:CreateHealthBarMenu(menu, parent)
 end
 
 function Option:CreateManaBarMenu(menu, parent)
-	local posList = { "상단", "하단", "좌측", "우측" }
-	menu.pos = LBO:CreateWidget("DropDown", parent, "자원 바 위치", "자원 바의 위치를 설정합니다.", nil, nil, true,
+	local posList = { L["상단"], L["하단"], L["좌측"], L["우측"] }
+	menu.pos = LBO:CreateWidget("DropDown", parent, L["lime_layout_12"], L["lime_layout_desc_12"], nil, nil, true,
 		function()
 			return lime.db.units.powerBarPos, posList
 		end,
@@ -208,7 +211,7 @@ function Option:CreateManaBarMenu(menu, parent)
 		end
 	)
 	menu.pos:SetPoint("TOPLEFT", 5, -5)
-	menu.height = LBO:CreateWidget("Slider", parent, "크기 비율", "자원 바의 크기 비율을 설정합니다. 0%로 설정하면 자원 바가 숨겨지며 100%로 설정하면 생명력 바가 숨겨집니다.", nil, nil, true,
+	menu.height = LBO:CreateWidget("Slider", parent, L["lime_layout_13"], L["lime_layout_desc_13"], nil, nil, true,
 		function()
 			return lime.db.units.powerBarHeight * 100, 0, 100, 1, "%"
 		end,
@@ -225,7 +228,7 @@ function Option:CreateManaBarMenu(menu, parent)
 			limeMember_UpdatePowerColor(member)
 		end
 	end
-	menu.reset = LBO:CreateWidget("Button", parent, "색상 초기화", "설정한 색상을 초깃값으로 되돌립니다.", nil, nil, true,
+	menu.reset = LBO:CreateWidget("Button", parent, L["lime_layout_14"], L["lime_layout_desc_14"], nil, nil, true,
 		function()
 			for _, color in pairs(colorList) do
 				lime.db.colors[color][1], lime.db.colors[color][2], lime.db.colors[color][3] = PowerBarColor[color].r, PowerBarColor[color].g, PowerBarColor[color].b
@@ -245,7 +248,7 @@ function Option:CreateManaBarMenu(menu, parent)
 		Option:UpdatePreview()
 	end
 	for i, color in ipairs(colorList) do
-		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, _G[color], _G[color].."의 색상을 변경합니다.", nil, nil, true, getColor, setColor, color)
+		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, _G[color], _G[color]..L["lime_layout_15"], nil, nil, true, getColor, setColor, color)
 		if i == 1 then
 			menu["color"..i]:SetPoint("TOP", menu.reset, "BOTTOM", 0, 15)
 		elseif i == 2 then
@@ -276,7 +279,7 @@ function Option:CreateNameMenu(menu, parent)
 			limeMember_SetAuraFont(member)
 		end
 	end
-	menu.file = LBO:CreateWidget("Font", parent, "이름 글꼴 설정", "이름 글꼴을 변경합니다.", nil, nil, true,
+	menu.file = LBO:CreateWidget("Font", parent, L["lime_layout_16"], L["lime_layout_desc_16"], nil, nil, true,
 		function()
 			return lime.db.font.file, lime.db.font.size, lime.db.font.attribute, lime.db.font.shadow
 		end,
@@ -297,7 +300,7 @@ function Option:CreateNameMenu(menu, parent)
 	local function getClassColorName()
 		return lime.db.units.className
 	end
-	menu.classColor = LBO:CreateWidget("CheckBox", parent, "직업별 이름 색상 사용", "이름 색상을 직업 색상으로 표시합니다.", nil, nil, true,
+	menu.classColor = LBO:CreateWidget("CheckBox", parent, L["lime_layout_17"], L["lime_layout_desc_17"], nil, nil, true,
 		function() return lime.db.units.className end,
 		function(v)
 			lime.db.units.className = v
@@ -307,7 +310,7 @@ function Option:CreateNameMenu(menu, parent)
 		end
 	)
 	menu.classColor:SetPoint("TOP", menu.file, "BOTTOM", 0, -10)
-	menu.color = LBO:CreateWidget("ColorPicker", parent, "이름 색상", "이름 색상을 설정합니다. 직업별 색상 사용시 적용되지 않습니다.", nil, nil, true,
+	menu.color = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_18"], L["lime_layout_desc_18"], nil, nil, true,
 		function()
 			return lime.db.colors.name[1], lime.db.colors.name[2], lime.db.colors.name[3]
 		end,
@@ -318,7 +321,7 @@ function Option:CreateNameMenu(menu, parent)
 		end
 	)
 	menu.color:SetPoint("TOPRIGHT", -5, -60)
-	menu.outRangeName = LBO:CreateWidget("CheckBox", parent, "먼 사정거리 직업별 이름 색상 사용", "사정거리가 벗어난 플레이어의 이름 색상을 직업 색상으로 표시합니다.", nil, nil, true,
+	menu.outRangeName = LBO:CreateWidget("CheckBox", parent, L["lime_layout_19"], L["lime_layout_desc_19"], nil, nil, true,
 		function()
 			return lime.db.units.outRangeName
 		end,
@@ -329,7 +332,7 @@ function Option:CreateNameMenu(menu, parent)
 		end
 	)
 	menu.outRangeName:SetPoint("TOP", menu.classColor, "BOTTOM", 0, 0)
-	menu.deathName = LBO:CreateWidget("CheckBox", parent, "죽은 플레이어 직업별 이름 색상 사용", "죽거나 유령인 플레이어의 이름 색상을 직업별 색상으로 표시합니다.", nil, nil, true,
+	menu.deathName = LBO:CreateWidget("CheckBox", parent, L["lime_layout_20"], L["lime_layout_desc_20"], nil, nil, true,
 		function()
 			return lime.db.units.deathName
 		end,
@@ -340,7 +343,7 @@ function Option:CreateNameMenu(menu, parent)
 		end
 	)
 	menu.deathName:SetPoint("TOP", menu.outRangeName, "BOTTOM", 0, 0)
-	menu.offlineName = LBO:CreateWidget("CheckBox", parent, "오프라인 플레이어 직업별 이름 색상 사용", "오프라인된 플레이어의 이름 색상을 직업별 색상으로 표시합니다.", nil, nil, true,
+	menu.offlineName = LBO:CreateWidget("CheckBox", parent, L["lime_layout_21"], L["lime_layout_desc_21"], nil, nil, true,
 		function()
 			return lime.db.units.offlineName
 		end,
@@ -354,7 +357,7 @@ function Option:CreateNameMenu(menu, parent)
 end
 
 function Option:CreatePartyTagMenu(menu, parent)
-	menu.use = LBO:CreateWidget("CheckBox", parent, "파티 이름표 보기", "공격대 파티의 이름표를 표시합니다.", nil, nil, true,
+	menu.use = LBO:CreateWidget("CheckBox", parent, L["lime_layout_22"], L["lime_layout_desc_22"], nil, nil, true,
 		function() return lime.db.partyTag end,
 		function(v)
 			lime.db.partyTag = v
@@ -366,7 +369,7 @@ function Option:CreatePartyTagMenu(menu, parent)
 		return not lime.db.partyTag
 	end
 	menu.use:SetPoint("TOPLEFT", 5, 5)
-	menu.myParty = LBO:CreateWidget("ColorPicker", parent, "내 파티 이름표 색상", "자기 자신이 속한 파티의 이름표 배경 색상을 설정합니다.", nil, disabled, true,
+	menu.myParty = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_23"], L["lime_layout_desc_23"], nil, disabled, true,
 		function() return lime.db.partyTagParty[1], lime.db.partyTagParty[2], lime.db.partyTagParty[3], lime.db.partyTagParty[4] end,
 		function(r, g, b, a)
 			lime.db.partyTagParty[1], lime.db.partyTagParty[2], lime.db.partyTagParty[3], lime.db.partyTagParty[4] = r, g, b, a
@@ -378,7 +381,7 @@ function Option:CreatePartyTagMenu(menu, parent)
 		end
 	)
 	menu.myParty:SetPoint("TOP", menu.use, "BOTTOM", 0, 0)
-	menu.otherParty = LBO:CreateWidget("ColorPicker", parent, "파티 이름표 색상", "파티의 이름표 배경 색상을 설정합니다.", nil, disabled, true,
+	menu.otherParty = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_24"], L["lime_layout_desc_24"], nil, disabled, true,
 		function() return lime.db.partyTagRaid[1], lime.db.partyTagRaid[2], lime.db.partyTagRaid[3], lime.db.partyTagRaid[4] end,
 		function(r, g, b, a)
 			lime.db.partyTagRaid[1], lime.db.partyTagRaid[2], lime.db.partyTagRaid[3], lime.db.partyTagRaid[4] = r, g, b, a
@@ -395,7 +398,7 @@ function Option:CreatePartyTagMenu(menu, parent)
 end
 
 function Option:CreateBorderMenu(menu, parent)
-	menu.use = LBO:CreateWidget("CheckBox", parent, "배경 테두리 보기", "공격대 창 전체를 둘러싸는 테두리를 보입니다.", nil, nil, true,
+	menu.use = LBO:CreateWidget("CheckBox", parent, L["lime_layout_25"], L["lime_layout_desc_25"], nil, nil, true,
 		function() return lime.db.border end,
 		function(v)
 			lime.db.border = v
@@ -418,7 +421,7 @@ function Option:CreateBorderMenu(menu, parent)
 			Option.preview.border:SetBackdropBorderColor(lime.db.borderBackdropBorder[1], lime.db.borderBackdropBorder[2], lime.db.borderBackdropBorder[3], lime.db.borderBackdropBorder[4])
 		end
 	end
-	menu.reset = LBO:CreateWidget("Button", parent, "색상 초기화", "설정한 색상을 초깃값으로 되돌립니다.", nil, disable, true,
+	menu.reset = LBO:CreateWidget("Button", parent, L["lime_layout_26"], L["lime_layout_26"], nil, disable, true,
 		function()
 			lime.db.borderBackdrop[1], lime.db.borderBackdrop[2], lime.db.borderBackdrop[3], lime.db.borderBackdrop[4] = 0, 0, 0, 0.58
 			lime.db.borderBackdropBorder[1], lime.db.borderBackdropBorder[2], lime.db.borderBackdropBorder[3], lime.db.borderBackdropBorder[4] = 0.58, 0.58, 0.58, 1
@@ -427,7 +430,7 @@ function Option:CreateBorderMenu(menu, parent)
 		end
 	)
 	menu.reset:SetPoint("TOPRIGHT", -5, 5)
-	menu.backdrop = LBO:CreateWidget("ColorPicker", parent, "공격대 내부 테두리 색상", "공격대 창 내부 테두리의 색상 및 투명도를 조절합니다.", nil, disable, true,
+	menu.backdrop = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_27"], L["lime_layout_desc_27"], nil, disable, true,
 		function()
 			return lime.db.borderBackdrop[1], lime.db.borderBackdrop[2], lime.db.borderBackdrop[3], lime.db.borderBackdrop[4]
 		end,
@@ -437,7 +440,7 @@ function Option:CreateBorderMenu(menu, parent)
 		end
 	)
 	menu.backdrop:SetPoint("TOP", menu.use, "BOTTOM", 0, 0)
-	menu.border = LBO:CreateWidget("ColorPicker", parent, "공격대 창 테두리 색상", "공격대 창 전체를 둘러싸는 테두리의 색상 및 투명도를 조절합니다.", nil, disable, true,
+	menu.border = LBO:CreateWidget("ColorPicker", parent, L["lime_layout_28"], L["lime_layout_desc_28"], nil, disable, true,
 		function()
 			return lime.db.borderBackdropBorder[1], lime.db.borderBackdropBorder[2], lime.db.borderBackdropBorder[3], lime.db.borderBackdropBorder[4]
 		end,
@@ -457,7 +460,7 @@ function Option:CreateDebuffColorMenu(menu, parent)
 			limeMember_UpdateOutline(member)
 		end
 	end
-	menu.reset = LBO:CreateWidget("Button", parent, "색상 초기화", "설정한 색상을 초깃값으로 되돌립니다.", nil, nil, true,
+	menu.reset = LBO:CreateWidget("Button", parent, L["lime_layout_29"], L["lime_layout_desc_29"], nil, nil, true,
 		function()
 			lime.db.colors.Magic[1], lime.db.colors.Magic[2], lime.db.colors.Magic[3] = DebuffTypeColor.Magic.r, DebuffTypeColor.Magic.g, DebuffTypeColor.Magic.b
 			lime.db.colors.Curse[1], lime.db.colors.Curse[2], lime.db.colors.Curse[3] = DebuffTypeColor.Curse.r, DebuffTypeColor.Curse.g, DebuffTypeColor.Curse.b
@@ -477,9 +480,9 @@ function Option:CreateDebuffColorMenu(menu, parent)
 		Option:UpdateMember(update)
 	end
 	local colorList = { "Magic", "Curse", "Disease", "Poison", "none" }
-	local colorLocale = { "마법", "저주", "질병", "독", "무속성" }
+	local colorLocale = { L["마법"], L["저주"], L["질병"], L["독"], L["무속성"] }
 	for i, color in ipairs(colorList) do
-		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, colorLocale[i], colorLocale[i].."약화 효과의 색상을 변경합니다.", nil, nil, true, getColor, setColor, color)
+		menu["color"..i] = LBO:CreateWidget("ColorPicker", parent, colorLocale[i], colorLocale[i]..L["lime_layout_30"], nil, nil, true, getColor, setColor, color)
 		if i == 1 then
 			menu["color"..i]:SetPoint("TOP", menu.reset, "BOTTOM", 0, 15)
 		elseif i == 2 then

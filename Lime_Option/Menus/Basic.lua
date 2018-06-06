@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local lime = lime
 local Option = lime.optionFrame
 local LBO = LibStub("LibLimeOption-1.0")
@@ -5,8 +8,8 @@ local icon = LibStub("LibDBIcon-1.0")
 
 function Option:CreateUseMenu(menu, parent)
 	self.CreateUseMenu = nil
-	local runList = { "사용하기", "사용 안함" }
-	menu.run = LBO:CreateWidget("DropDown", parent, "사용", "공격대 창 사용 여부를 설정합니다.", nil, nil, true,
+	local runList = { L["사용하기"], L["사용 안함"] }
+	menu.run = LBO:CreateWidget("DropDown", parent, L["lime_basic_01"], L["lime_basic_desc_01"], nil, nil, true,
 		function() return lime.db.run and 1 or 2, runList end,
 		function(v)
 			lime:SetAttribute("run", v == 1)
@@ -15,8 +18,8 @@ function Option:CreateUseMenu(menu, parent)
 	)
 	menu.run:SetPoint("TOPLEFT", 5, -5)
 	self.runMenu = menu.run
-	local useList = { "항상", "파티 및 공격대", "공격대" }
-	menu.use = LBO:CreateWidget("DropDown", parent, "사용 조건", "해당 조건일 때 공격대 창을 보여줍니다.", nil, nil, true,
+	local useList = { L["항상"], L["파티 및 공격대"], L["공격대"] }
+	menu.use = LBO:CreateWidget("DropDown", parent, L["lime_basic_02"], L["lime_basic_desc_02"], nil, nil, true,
 		function() return lime.db.use, useList end,
 		function(v)
 			if lime.db.use ~= v then
@@ -27,8 +30,8 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.use:SetPoint("TOPRIGHT", -5, -5)
-	local tooltipList = { "표시 안함", "항상 표시", "전투 중이 아닐 때만 표시", "전투 중일 때만 표시" }
-	menu.tooltip = LBO:CreateWidget("DropDown", parent, "툴팁 표시", "툴팁 표시 여부를 설정합니다.", nil, nil, true,
+	local tooltipList = { L["표시 안함"], L["항상 표시"], L["전투 중이 아닐 때만 표시"], L["전투 중일 때만 표시"] }
+	menu.tooltip = LBO:CreateWidget("DropDown", parent, L["lime_basic_03"], L["lime_basic_desc_03"], nil, nil, true,
 		function() return lime.db.units.tooltip + 1, tooltipList end,
 		function(v)
 			lime.db.units.tooltip = v - 1
@@ -36,7 +39,7 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.tooltip:SetPoint("TOP", menu.run, "BOTTOM", 0, -10)
-	menu.lock = LBO:CreateWidget("CheckBox", parent, "창 고정", "공격대 창을 잠가 이동하지 못하게 고정합니다.", nil, nil, true,
+	menu.lock = LBO:CreateWidget("CheckBox", parent, L["lime_basic_04"], L["lime_basic_desc_04"], nil, nil, true,
 		function() return lime.db.lock end,
 		function(v)
 			lime.db.lock = v
@@ -45,7 +48,7 @@ function Option:CreateUseMenu(menu, parent)
 	)
 	menu.lock:SetPoint("TOP", menu.use, "BOTTOM", 0, -10)
 	self.lockMenu = menu.lock
-	menu.mapButtonToggle = LBO:CreateWidget("CheckBox", parent, "미니맵 버튼 숨기기", "미니맵 버튼을 숨깁니다.", nil, nil, true,
+	menu.mapButtonToggle = LBO:CreateWidget("CheckBox", parent, L["lime_basic_05"], L["lime_basic_desc_05"], nil, nil, true,
 		function() return limeDB.minimapButton.hide end,
 		function(v)
 			limeDB.minimapButton.hide = v
@@ -58,7 +61,7 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.mapButtonToggle:SetPoint("TOP", menu.tooltip, "BOTTOM", 0, 0)
-	menu.mapButtonLock = LBO:CreateWidget("CheckBox", parent, "미니맵 버튼 고정", "미니맵 버튼을 고정합니다.", nil,
+	menu.mapButtonLock = LBO:CreateWidget("CheckBox", parent, L["lime_basic_06"] , L["lime_basic_desc_06"], nil,
 		function() return limeDB.minimapButton.hide end, nil,
 		function() return not limeDB.minimapButton.dragable end,
 		function(v)
@@ -71,14 +74,14 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.mapButtonLock:SetPoint("TOP", menu.lock, "BOTTOM", 0, 0)
-	menu.hideBlizzardParty = LBO:CreateWidget("CheckBox", parent, "기본 파티 창 숨기기", "월드 오브 워크래프트 파티 창의 표시 여부를 설정합니다.", nil, nil, true,
+	menu.hideBlizzardParty = LBO:CreateWidget("CheckBox", parent, L["lime_basic_07"], L["lime_basic_desc_07"], nil, nil, true,
 		function() return lime.db.hideBlizzardParty end,
 		function(v)
 			lime:HideBlizzardPartyFrame(v)
 		end
 	)
 	menu.hideBlizzardParty:SetPoint("TOP", menu.mapButtonToggle, "BOTTOM", 0, 0)
-	menu.clear = LBO:CreateWidget("Button", parent, "위치 초기화", "공격대 창의 위치를 초기화합니다.", nil, nil, true,
+	menu.clear = LBO:CreateWidget("Button", parent, L["lime_basic_08"],L["lime_basic_desc_08"] , nil, nil, true,
 		function()
 			lime.db.px, lime.db.py = nil
 			lime:SetUserPlaced(nil)
@@ -88,7 +91,7 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.clear:SetPoint("TOP", menu.mapButtonLock, "BOTTOM", 0, 0)
-	menu.manager = LBO:CreateWidget("CheckBox", parent, "공격대 관리자 사용하기", "화면 좌측 상단에 공격대 관리자 창의 사용 여부를 설정합니다.", nil, nil, true,
+	menu.manager = LBO:CreateWidget("CheckBox", parent, L["lime_basic_09"], L["lime_basic_09"], nil, nil, true,
 		function() return lime.db.useManager end,
 		function(v)
 			lime.db.useManager = v
@@ -97,8 +100,8 @@ function Option:CreateUseMenu(menu, parent)
 		end
 	)
 	menu.manager:SetPoint("TOP", menu.hideBlizzardParty, "BOTTOM", 0, -10)
-	menu.managerPos = LBO:CreateWidget("Slider", parent, "공격대 관리자 위치", "공격대 관리자 창의 위치를 설정합니다.", nil, function() return not lime.db.useManager end, nil,
-		function() return lime.db.managerPos, 0, 360, 0.1, "도" end,
+	menu.managerPos = LBO:CreateWidget("Slider", parent, L["lime_basic_10"], L["lime_basic_desc_10"], nil, function() return not lime.db.useManager end, nil,
+		function() return lime.db.managerPos, 0, 360, 0.1, L["도"] end,
 		function(v)
 			lime.db.managerPos = v
 			lime:SetManagerPosition()
@@ -106,8 +109,8 @@ function Option:CreateUseMenu(menu, parent)
 	)
 
 	menu.managerPos:SetPoint("TOP", menu.clear, "BOTTOM", 0, -10)
-	local castingSentList = { "표시 안함", "항상 표시", "마우스를 올릴 때 표시" }
-	menu.castingSent = LBO:CreateWidget("DropDown", parent, "시전 표시기", "주문이 시전 되었을 때 효과를 줍니다.", nil, nil, true,
+	local castingSentList = { L["표시 안함"], L["항상 표시"], L["마우스를 올릴 때 표시"] }
+	menu.castingSent = LBO:CreateWidget("DropDown", parent, L["lime_basic_11"], L["lime_basic_desc_11"], nil, nil, true,
 		function() return lime.db.castingSent + 1, castingSentList end,
 		function(v)
 			lime.db.castingSent = v - 1
@@ -118,8 +121,8 @@ end
 
 function Option:CreateGroupMenu(menu, parent)
 	Option.CreateGroupMenu = nil
-	local groupbyList = { "파티별", "직업별" }
-	menu.groupby = LBO:CreateWidget("DropDown", parent, "정렬 방식", "공격대 파티를 파티별 혹은 직업별로 정렬합니다.", nil, nil, true,
+	local groupbyList = { L["파티별"], L["직업별"] }
+	menu.groupby = LBO:CreateWidget("DropDown", parent, L["lime_basic_12"], L["lime_basic_desc_12"], nil, nil, true,
 		function() return lime.db.groupby == "GROUP" and 1 or 2, groupbyList end,
 		function(v)
 			lime.db.groupby = v == 1 and "GROUP" or "CLASS"
@@ -129,8 +132,8 @@ function Option:CreateGroupMenu(menu, parent)
 		end
 	)
 	menu.groupby:SetPoint("TOPLEFT", 5, -5)
-	local anchorList = { "좌측 상단", "우측 상단", "좌측 하단", "우측 하단" }
-	menu.anchor = LBO:CreateWidget("DropDown", parent, "기준점", "공격대 배치 기준점을 설정합니다.", nil, nil, true,
+	local anchorList = { L["좌측 상단"], L["우측 상단"], L["좌측 하단"], L["우측 하단"] }
+	menu.anchor = LBO:CreateWidget("DropDown", parent, L["lime_basic_13"], L["lime_basic_desc_13"], nil, nil, true,
 		function()
 			if lime.db.anchor == "TOPLEFT" then
 				return 1, anchorList
@@ -158,16 +161,16 @@ function Option:CreateGroupMenu(menu, parent)
 		end
 	)
 	menu.anchor:SetPoint("TOPRIGHT", -5, -5)
-	menu.column = LBO:CreateWidget("Slider", parent, "가로 방향 파티 수", "가로 방향으로 배치할 공격대 파티 수를 설정합니다.", nil, nil, true,
-		function() return lime.db.column, 1, 8, 1, "개 그룹" end,
+	menu.column = LBO:CreateWidget("Slider", parent, L["lime_basic_14"], L["lime_basic_desc_14"], nil, nil, true,
+		function() return lime.db.column, 1, 8, 1, L["개 그룹"] end,
 		function(v)
 			lime.db.column = v
 			lime:UpdateGroupFilter()
 		end
 	)
 	menu.column:SetPoint("TOP", menu.groupby, "BOTTOM", 0, -5)
-	local dirList = { "세로 방향", "가로 방향" }
-	menu.dir = LBO:CreateWidget("DropDown", parent, "파티원 배치 방향", "파티 내 구성원을 가로 혹은 세로로 배치합니다.", nil, nil, true,
+	local dirList = { L["세로 방향"], L["가로 방향"] }
+	menu.dir = LBO:CreateWidget("DropDown", parent, L["lime_basic_15"], L["lime_basic_desc_15"], nil, nil, true,
 		function() return lime.db.dir, dirList end,
 		function(v)
 			lime.db.dir = v
@@ -175,7 +178,7 @@ function Option:CreateGroupMenu(menu, parent)
 		end
 	)
 	menu.dir:SetPoint("TOP", menu.anchor, "BOTTOM", 0, -5)
-	menu.partyTag = LBO:CreateWidget("CheckBox", parent, "파티 이름표 보기", "공격대 파티의 이름표를 표시합니다. 직업별로 배치하면 이름표는 표시되지 않습니다.", nil, nil, true,
+	menu.partyTag = LBO:CreateWidget("CheckBox", parent, L["lime_basic_16"], L["lime_basic_desc_16"], nil, nil, true,
 		function() return lime.db.partyTag end,
 		function(v)
 			lime.db.partyTag = v
@@ -183,7 +186,7 @@ function Option:CreateGroupMenu(menu, parent)
 		end
 	)
 	menu.partyTag:SetPoint("TOP", menu.column, "BOTTOM", 0, -5)
-	menu.sortName = LBO:CreateWidget("CheckBox", parent, "이름 순 정렬", "공격대원을 이름 순으로 정렬합니다.", nil, nil, true,
+	menu.sortName = LBO:CreateWidget("CheckBox", parent, L["lime_basic_17"], L["lime_basic_desc_17"], nil, nil, true,
 		function() return lime.db.sortName end,
 		function(v)
 			lime.db.sortName = v
@@ -207,7 +210,7 @@ function Option:CreateGroupMenu(menu, parent)
 	menu.group.text:SetPoint("TOPRIGHT", -10, -5)
 	menu.group.text:SetHeight(30)
 	menu.group.text:SetJustifyH("LEFT")
-	menu.group.text:SetText("버튼을 클릭하여 해당 파티를 보이거나 숨기게 합니다. 버튼을 드래그하여 파티의 정렬 순서를 정할 수 있습니다.")
+	menu.group.text:SetText(L["lime_basic_18"])
 
 	Option.group = {}
 	Option.groupAnchor = {}

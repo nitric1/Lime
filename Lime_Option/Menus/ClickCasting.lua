@@ -1,3 +1,6 @@
+
+local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
 local _G = _G
 local lime = lime
 local Option = lime.optionFrame
@@ -190,10 +193,10 @@ function Option:CreateClickCastingMenu(menu, parent)
 			local info = L_UIDropDownMenu_CreateInfo()
 			info.func = dropDownOnClick
 			if level == 1 then
-				info.text, info.arg1, info.arg2 = "대상 선택", "target"
+				info.text, info.arg1, info.arg2 = L["대상 선택"], "target"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
 				L_UIDropDownMenu_AddButton(info, level)
-				info.text, info.arg1, info.arg2 = "메뉴", "menu"
+				info.text, info.arg1, info.arg2 = L["메뉴"], "menu"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
 				L_UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = INSPECT, "macrotext", inspectMacro
@@ -221,11 +224,11 @@ function Option:CreateClickCastingMenu(menu, parent)
 					if cnt > numSpells then
 						for i = 1, cnt, numSpells do
 							info.value = math.floor(i / numSpells) + 1
-							info.text = "마법책 - "..info.value
+							info.text = L["마법책 - "]..info.value
 							L_UIDropDownMenu_AddButton(info, level)
 						end
 					else
-						info.text = "마법책"
+						info.text = L["마법책"]
 						info.value = 1
 						L_UIDropDownMenu_AddButton(info, level)
 					end
@@ -344,13 +347,13 @@ function Option:CreateClickCastingMenu(menu, parent)
 	menu.clickKeys:SetPoint("TOPLEFT", menu.buttons, "TOPRIGHT", 0, 0)
 	menu.clickKeys:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -6, 6)
 	local modifilters = { "", "alt-", "ctrl-", "shift-", "alt-ctrl-", "alt-shift-", "ctrl-shift-" }
-	local modifilterNames = { "클릭", "Alt + 클릭", "Ctrl + 클릭", "Shift + 클릭", "Alt + Ctrl + 클릭", "Alt + Shift + 클릭", "Ctrl + Shift + 클릭" }
+	local modifilterNames = { "click", "Alt + click", "Ctrl + click", "Shift + click", "Alt + Ctrl + click", "Alt + Shift + click", "Ctrl + Shift + click" }
 	local function getKeyValue(modifilter)
 		modifilter = modifilter..buttonNames[menu.buttons:GetValue()].id
 		if lime.ccdb[modifilter] == "target" then
-			modifilter = "대상 선택"
+			modifilter = L["대상 선택"]
 		elseif lime.ccdb[modifilter] == "menu" then
-			modifilter = "메뉴"
+			modifilter = L["메뉴"]
 		elseif lime.ccdb[modifilter] and lime.ccdb[modifilter]:find("(.+)__(.+)") then
 			modifilter = select(2, lime.ccdb[modifilter]:match("(.+)__(.+)"))
 			if modifilter == inspectMacro then
@@ -367,12 +370,12 @@ function Option:CreateClickCastingMenu(menu, parent)
 				modifilter = TRADE
 			end
 		elseif buttonNames[menu.buttons:GetValue()].id == 1 then
-			modifilter = "대상 선택"
-			return "대상 선택", buttonNames
+			modifilter = L["대상 선택"]
+			return L["대상 선택"], buttonNames
 		elseif buttonNames[menu.buttons:GetValue()].id == 2 then
-			modifilter = "메뉴"
+			modifilter = L["메뉴"]
 		else
-			modifilter = "없음"
+			modifilter = L["없음"]
 		end
 		return modifilter, buttonNames
 	end
@@ -412,7 +415,7 @@ end
 
 function Option:UpdateClickCasting()
 	if Option.talentGroup and Option.clickKeys then
-		Option.talentGroup:SetFormattedText("특성: %s", select(2, GetSpecializationInfo(GetSpecialization())))
+		Option.talentGroup:SetFormattedText(L["특성: %s"], select(2, GetSpecializationInfo(GetSpecialization())))
 		if Option.clickKeys:IsVisible() then
 			L_CloseDropDownMenus(1)
 			LBO:Refresh(Option.clickKeys)

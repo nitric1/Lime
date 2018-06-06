@@ -153,7 +153,7 @@ function Option:SetPreview(show)
 						preview.headers[i].partyTag:SetPoint(p2.."LEFT", preview.headers[i], p1.."LEFT", 0, 0)
 						preview.headers[i].partyTag:SetPoint(p2.."RIGHT", preview.headers[i], p1.."RIGHT", 0, 0)
 						preview.headers[i].partyTag:SetHeight(12)
-						preview.headers[i].partyTag.text:SetFormattedText("%d 파티", i)
+						preview.headers[i].partyTag.text:SetFormattedText("Group %d", i)
 					else
 						preview.headers[i].partyTag:SetPoint("TOP"..p2, preview.headers[i], "TOP"..p1, 0, 0)
 						preview.headers[i].partyTag:SetPoint("BOTTOM"..p2, preview.headers[i], "BOTTOM"..p1, 0, 0)
