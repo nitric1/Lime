@@ -248,12 +248,12 @@ function Option:CreateClickCastingMenu(menu, parent)
 				if start > 20 then
 					local n = ceil(start / 20)
 					for i = 1, n do
-						info.text = GENERAMACROS.." - "..i
+						info.text = GENERAL_MACROS.." - "..i
 						info.value = "macro_general"..i
 						UIDropDownMenu_AddButton(info, level)
 					end
 				elseif start > 0 then
-					info.text = GENERAMACROS
+					info.text = GENERAL_MACROS
 					info.value = "macro_general"
 					UIDropDownMenu_AddButton(info, level)
 				end
@@ -269,7 +269,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 					UIDropDownMenu_AddButton(info, level)
 				end
 			elseif level == 2 then
-				if type(UIDropDownMenu_MENU_VALUE) == "number" then
+				if type(UIDROPDOWNMENU_MENU_VALUE) == "number" then
 					wipe(spellBooks)
 					name, _, start, last = GetSpellTabInfo(1)
 					if name then
@@ -290,8 +290,8 @@ function Option:CreateClickCastingMenu(menu, parent)
 						end
 					end
 					if spellBooks[1] then
-						start = (UIDropDownMenu_MENU_VALUE - 1) * numSpells + 1
-						last = UIDropDownMenu_MENU_VALUE * numSpells
+						start = (UIDROPDOWNMENU_MENU_VALUE - 1) * numSpells + 1
+						last = UIDROPDOWNMENU_MENU_VALUE * numSpells
 						for i = start, last do
 							if spellBooks[i] then
 								info.text = getSpellName(GetSpellBookItemName(spellBooks[i], BOOKTYPE_SPELL))
@@ -303,7 +303,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 						end
 						wipe(spellBooks)
 					end
-				elseif UIDropDownMenu_MENU_VALUE == "pet" then
+				elseif UIDROPDOWNMENU_MENU_VALUE == "pet" then
 					for i = 1, HasPetSpells() or 0 do
 						info.text = getSpellName(GetSpellBookItemName(i, BOOKTYPE_PET))
 						if checkSpell(info.text, i, BOOKTYPE_PET) then
@@ -313,16 +313,16 @@ function Option:CreateClickCastingMenu(menu, parent)
 							UIDropDownMenu_AddButton(info, level)
 						end
 					end
-				elseif UIDropDownMenu_MENU_VALUE == "guild" then
+				elseif UIDROPDOWNMENU_MENU_VALUE == "guild" then
 
-				elseif type(UIDropDownMenu_MENU_VALUE) == "string" and UIDropDownMenu_MENU_VALUE:find("^macro_") then
-					if UIDropDownMenu_MENU_VALUE == "macro_general" then
+				elseif type(UIDROPDOWNMENU_MENU_VALUE) == "string" and UIDROPDOWNMENU_MENU_VALUE:find("^macro_") then
+					if UIDROPDOWNMENU_MENU_VALUE == "macro_general" then
 						start, last = 1, GetNumMacros()
-					elseif UIDropDownMenu_MENU_VALUE == "macro_character" then
+					elseif UIDROPDOWNMENU_MENU_VALUE == "macro_character" then
 						start = (MAX_ACCOUNT_MACROS or 120) + 1
 						last = start + select(2, GetNumMacros()) - 1
-					elseif UIDropDownMenu_MENU_VALUE:find("^macro_general%d+$") then
-						local n = (tonumber(UIDropDownMenu_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
+					elseif UIDROPDOWNMENU_MENU_VALUE:find("^macro_general%d+$") then
+						local n = (tonumber(UIDROPDOWNMENU_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
 						start = n * 20 + 1
 						last = min(start + 19, (GetNumMacros()))
 					else
