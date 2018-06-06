@@ -44,7 +44,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 	menu.talentGroup =  parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	menu.talentGroup:SetPoint("BOTTOM", menu.buttons, "TOP", -2, 4)
 
-	local dropdown = CreateFrame("Frame", "limeClickCastingDropDown", UIParent, "L_UIDropDownMenuTemplate")
+	local dropdown = CreateFrame("Frame", "limeClickCastingDropDown", UIParent, "UIDropDownMenuTemplate")
 	local name, start, last, spell, rank, spellId, _
 	local spellBooks, numSpells = {}, 20
 	local overrideSpells = {}
@@ -190,33 +190,33 @@ function Option:CreateClickCastingMenu(menu, parent)
 	local function dropDownInitialize(self, level)
 		if InCombatLockdown() then return CloseDropDownMenus(1) end
 		if level then
-			local info = L_UIDropDownMenu_CreateInfo()
+			local info = UIDropDownMenu_CreateInfo()
 			info.func = dropDownOnClick
 			if level == 1 then
 				info.text, info.arg1, info.arg2 = L["대상 선택"], "target"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = L["메뉴"], "menu"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = INSPECT, "macrotext", inspectMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = FOLLOW, "macrotext", followMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = BINDING_NAME_ASSISTTARGET, "macrotext", assistMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = SET_FOCUS, "macrotext", focusMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = WHISPER, "macrotext", whisperMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = TRADE, "macrotext", tradeMacro
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-				L_UIDropDownMenu_AddButton(info, level)
+				UIDropDownMenu_AddButton(info, level)
 				info.hasArrow, info.func, info.arg1, info.arg2, info.checked = true
 
 				local cnt = hasSpellTab(1) + hasSpellTab(2)
@@ -225,51 +225,51 @@ function Option:CreateClickCastingMenu(menu, parent)
 						for i = 1, cnt, numSpells do
 							info.value = math.floor(i / numSpells) + 1
 							info.text = L["마법책 - "]..info.value
-							L_UIDropDownMenu_AddButton(info, level)
+							UIDropDownMenu_AddButton(info, level)
 						end
 					else
 						info.text = L["마법책"]
 						info.value = 1
-						L_UIDropDownMenu_AddButton(info, level)
+						UIDropDownMenu_AddButton(info, level)
 					end
 				end
 
 				info.text = hasPetSpell()
 				if info.text then
 					info.value = "pet"
-					L_UIDropDownMenu_AddButton(info, level)
+					UIDropDownMenu_AddButton(info, level)
 				end
 				info.text = hasGuildSpell()
 				if info.text then
 					info.value = "guild"
-					L_UIDropDownMenu_AddButton(info, level)
+					UIDropDownMenu_AddButton(info, level)
 				end
 				start, last = GetNumMacros()
 				if start > 20 then
 					local n = ceil(start / 20)
 					for i = 1, n do
-						info.text = GENERAL_MACROS.." - "..i
+						info.text = GENERAMACROS.." - "..i
 						info.value = "macro_general"..i
-						L_UIDropDownMenu_AddButton(info, level)
+						UIDropDownMenu_AddButton(info, level)
 					end
 				elseif start > 0 then
-					info.text = GENERAL_MACROS
+					info.text = GENERAMACROS
 					info.value = "macro_general"
-					L_UIDropDownMenu_AddButton(info, level)
+					UIDropDownMenu_AddButton(info, level)
 				end
 				if last > 0 then
 					info.text = CHARACTER_SPECIFIC_MACROS:format(CHARACTER)
 					info.value = "macro_character"
-					L_UIDropDownMenu_AddButton(info, level)
+					UIDropDownMenu_AddButton(info, level)
 				end
 				if self.button ~= 1 and self.button ~= 2 then
 					info.func, info.hasArrow = dropDownOnClick
 					info.text, info.arg1, info.arg2 = NONE
 					info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-					L_UIDropDownMenu_AddButton(info, level)
+					UIDropDownMenu_AddButton(info, level)
 				end
 			elseif level == 2 then
-				if type(L_UIDropDownMenu_MENU_VALUE) == "number" then
+				if type(UIDropDownMenu_MENU_VALUE) == "number" then
 					wipe(spellBooks)
 					name, _, start, last = GetSpellTabInfo(1)
 					if name then
@@ -290,39 +290,39 @@ function Option:CreateClickCastingMenu(menu, parent)
 						end
 					end
 					if spellBooks[1] then
-						start = (L_UIDropDownMenu_MENU_VALUE - 1) * numSpells + 1
-						last = L_UIDropDownMenu_MENU_VALUE * numSpells
+						start = (UIDropDownMenu_MENU_VALUE - 1) * numSpells + 1
+						last = UIDropDownMenu_MENU_VALUE * numSpells
 						for i = start, last do
 							if spellBooks[i] then
 								info.text = getSpellName(GetSpellBookItemName(spellBooks[i], BOOKTYPE_SPELL))
 								info.arg1, info.arg2 = "spell", info.text
 								info.checked = self.arg1 == info.arg1 and (self.arg2 == info.arg2 or self.arg2 == getOverriddenSpell(info.arg2) or checkOverride(info.arg2, self.arg2))
 								info.icon = GetSpellBookItemTexture(spellBooks[i], BOOKTYPE_SPELL)
-								L_UIDropDownMenu_AddButton(info, level)
+								UIDropDownMenu_AddButton(info, level)
 							end
 						end
 						wipe(spellBooks)
 					end
-				elseif L_UIDropDownMenu_MENU_VALUE == "pet" then
+				elseif UIDropDownMenu_MENU_VALUE == "pet" then
 					for i = 1, HasPetSpells() or 0 do
 						info.text = getSpellName(GetSpellBookItemName(i, BOOKTYPE_PET))
 						if checkSpell(info.text, i, BOOKTYPE_PET) then
 							info.arg1, info.arg2 = "spell", info.text
 							info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
 							info.icon = GetSpellBookItemTexture(i, BOOKTYPE_PET)
-							L_UIDropDownMenu_AddButton(info, level)
+							UIDropDownMenu_AddButton(info, level)
 						end
 					end
-				elseif L_UIDropDownMenu_MENU_VALUE == "guild" then
+				elseif UIDropDownMenu_MENU_VALUE == "guild" then
 
-				elseif type(L_UIDropDownMenu_MENU_VALUE) == "string" and L_UIDropDownMenu_MENU_VALUE:find("^macro_") then
-					if L_UIDropDownMenu_MENU_VALUE == "macro_general" then
+				elseif type(UIDropDownMenu_MENU_VALUE) == "string" and UIDropDownMenu_MENU_VALUE:find("^macro_") then
+					if UIDropDownMenu_MENU_VALUE == "macro_general" then
 						start, last = 1, GetNumMacros()
-					elseif L_UIDropDownMenu_MENU_VALUE == "macro_character" then
+					elseif UIDropDownMenu_MENU_VALUE == "macro_character" then
 						start = (MAX_ACCOUNT_MACROS or 120) + 1
 						last = start + select(2, GetNumMacros()) - 1
-					elseif L_UIDropDownMenu_MENU_VALUE:find("^macro_general%d+$") then
-						local n = (tonumber(L_UIDropDownMenu_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
+					elseif UIDropDownMenu_MENU_VALUE:find("^macro_general%d+$") then
+						local n = (tonumber(UIDropDownMenu_MENU_VALUE:match("^macro_general(%d+)$")) or 0) - 1
 						start = n * 20 + 1
 						last = min(start + 19, (GetNumMacros()))
 					else
@@ -332,14 +332,14 @@ function Option:CreateClickCastingMenu(menu, parent)
 						info.text, info.icon = GetMacroInfo(i)
 						info.arg1, info.arg2 = "macro", info.text
 						info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
-						L_UIDropDownMenu_AddButton(info, level)
+						UIDropDownMenu_AddButton(info, level)
 					end
 				end
 			end
 		end
 	end
 
-	L_UIDropDownMenu_Initialize(dropdown, dropDownInitialize)
+	UIDropDownMenu_Initialize(dropdown, dropDownInitialize)
 
 	menu.clickKeys = CreateFrame("Frame", nil, parent)
 	menu.clickKeys:SetBackdrop(menu.buttons:GetBackdrop())
