@@ -1,4 +1,4 @@
-local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 23
+local MAJOR_VERSION, MINOR_VERSION = "LibLimeDispel-1.0", 24
 
 local lib = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then return end
@@ -48,6 +48,7 @@ elseif class == "MAGE" then
 	function scanDispel()
 		lib.tranquilize = nil
 		lib.harm = IsSpellKnown(30449) and true or nil
+		lib.help.Curse = IsSpellKnown(475) and true or nil
 		wipe(lib.help)
 	end
 elseif class == "WARLOCK" then
