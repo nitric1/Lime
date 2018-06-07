@@ -29,14 +29,15 @@ local playerClass = select(2, UnitClass("player"))
 
 local classRaidBuffs = ({
 	WARRIOR = {
+		[1459] = { 1 }
 	},
 	ROGUE = {
 	},
 	PRIEST = {
-		--[21562] = { 2 },		-- 신의 권능: 인내
+		[21562] = { 2 },	-- 신의 권능: 인내 (Legit 8.0)
 	},
 	MAGE = {
-		--[1459] = { 5 },		-- 신비한 총명함
+		[1459] = { 3 },		-- 신비한 총명함 (Legit 8.0)
 	},
 	WARLOCK = {
 	},
@@ -59,104 +60,18 @@ local classRaidBuffs = ({
 if not classRaidBuffs then return end
 
 local raidBuffs = {
-	-- 능력치
+	-- 전투력
 	[1] = {
-		--1126,		-- [드루이드] 야생의 징표
-		--20217,	-- [성기사] 왕의 축복
-		--116781,	-- [수도사] 백호의 유산
-		--115921,	-- [수도사] 황제의 유산
-		--160206,	-- [사냥꾼] 고독한 늑대: 야생의 힘
-		--90363,	-- [Pet] Embrace of the Shale Spider
-		--159988,	-- [Pet] Bark of the Wild
-		--160017,	-- [Pet] Blessing of Kongs
-		--160077,	-- [Pet] Strength of the Earth
+		6673,		-- [잔사] 전투의 외침  (Legit 8.0)
 	},
 	-- 체력
 	[2] = {
-		--21562,	-- [사제] 신의 권능: 인내
-		--469,		-- [전사] 지휘의 외침
-		--166928,	-- [흑마법사] 피의 서약
-		--160199,	-- [사냥꾼] 고독한 늑대: 곰의 인내력
-		--50256,	-- [Pet] Invigorating Roar
-		--90364,	-- [Pet] Qiraji Fortitude
+		21562,		-- [사제] 신의 권능: 인내 (Legit 8.0)
 	},
-	-- 전투력
+	-- 지능
 	[3] = {
-		--19506,	-- [사냥꾼] 정조준 오라
-		--6673,		-- [전사] 전투의 외침
-		--57330,	-- [죽음의 기사] 겨울의 뿔피리
+		1459,		-- [마법사] 신비한 총명함 (Legit 8.0)
 	},
-	-- 가속
-	[4] = {
-		--113742,	-- [도적] 스위프트블레이드의 간교함
-		--49868,	-- [사제] 사고 촉진
-		--160203,	-- [사냥꾼] 고독한 늑대: 하이에나의 날렵함
-		--116956,	-- [주술사] 바람의 은총
-		--55610,	-- [죽음의 기사] 부정의 오라
-		--128432,	-- [Pet] Cackling Howl
-		--135678,	-- [Pet] Energizing Spores
-		--160074,	-- [Pet] Speed of the Swarm
-	},
-	-- 주문력
-	[5] = {
-		--1459,		-- [마법사] 신비한 총명함
-		--61316,	-- [마법사] 달라란의 총명함
-		--109773,	-- [흑마법사] 검은 의도
-		--160205,	-- [사냥꾼] 고독한 늑대: 독사의 지혜
-		--90309,	-- [Pet] Terrifying Roar
-		--90364,	-- [Pet] Qiraji Fortitude
-		--128433,	-- [Pet] Serpent's Cunning
-		--126309,	-- [Pet] Still Water
-	},
-	-- 치명타 및 극대화
-	[6] = {
-		--1459,		-- [마법사] 신비한 총명함
-		--61316,	-- [마법사] 달라란의 총명함
-		--160200,	-- [사냥꾼] 고독한 늑대: 랩터의 흉포함
-		--17007,	-- [드루이드] 무리의 우두머리
-		--116781,	-- [수도사] 백호의 유산
-		--24604,	-- [Pet] Furious Howl
-		--90363,	-- [Pet] Embrace of the Shale Spider
-		--126309,	-- [Pet] Still Water
-		--126373,	-- [Pet] Fearless Roar
-		--160052,	-- [Pet] Strength of the Pack
-	},
-	-- 특화
-	[7] = {
-		--160198,	-- [사냥꾼] 고독한 늑대: 표범의 은총
-		--116956,	-- [주술사] 바람의 은총
-		--19740,	-- [성기사] 힘의 축복
-		--93435,	-- [Pet] Roar of Courage
-		--128997,	-- [Pet] Spirit Beast Blessing
-		--160073,	-- [Pet] Plainswalking
-	},
-	-- 연속타격
-	[8] = {
-		--113742,	-- [도적] 스위프트블레이드의 간교함
-		--49868,	-- [사제] 사고 촉진
-		--109773,	-- [흑마법사] 검은 의도
-		--166916,	-- [수도사] 성난바람
-		--24844,	-- [Pet] Breath of the Winds
-		--34889,	-- [Pet] Spry Attacks
-		--57386,	-- [Pet] Wild Strength
-		--58604,	-- [Pet] Double Bite
-	},
-	-- 유연성
-	[9] = {
-		--1126,		-- [드루이드] 야생의 징표
-		--167187,	-- [성기사] 선성한 오라
-		--55610,	-- [죽음의 기사] 부정의 오라
-		--35290,	-- [Pet] Indomitable
-		--50518,	-- [Pet] Chitinous Armor
-		--57386,	-- [Pet] Wild Strength
-		--159735,	-- [Pet] Tenacity
-		--160077,	-- [Pet] Strength of the Earth
-	},
-	--[[8.0PH -- 체력/마나 회복
-	[10] = {
-		--203539	-- [성기사] Greater Blessing of Wisdom 
-	},
-	]]
 }
 
 local sameBuffs = {
