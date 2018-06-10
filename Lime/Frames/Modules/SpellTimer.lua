@@ -223,44 +223,41 @@ function lime:SetupSpellTimer(reset)
 		limeCharDB.spellTimer[1].name = "34477"	-- 눈속임
 	elseif self.playerClass == "DRUID" then
 		limeCharDB.spellTimer[1].use = 1
-		limeCharDB.spellTimer[1].name = "33763"	-- 피어나는 생명
+		limeCharDB.spellTimer[1].name = "33763"	-- 피어나는 생명 (8.0 Legit)
 		limeCharDB.spellTimer[1].pos = "BOTTOMLEFT"
 		limeCharDB.spellTimer[2].use = 1
-		limeCharDB.spellTimer[2].name = "774"	-- 회복
+		limeCharDB.spellTimer[2].name = "774"	-- 회복 (8.0 Legit)
 		limeCharDB.spellTimer[2].pos = "BOTTOMRIGHT"
 		limeCharDB.spellTimer[3].use = 0
-		limeCharDB.spellTimer[3].name = "8936"	-- 재생
+		limeCharDB.spellTimer[3].name = "8936"	-- 재생 (8.0 Legit)
 		limeCharDB.spellTimer[4].use = 0
-		limeCharDB.spellTimer[4].name = "48438"	-- 급속 성장
+		limeCharDB.spellTimer[4].name = "48438"	-- 급속 성장 (8.0 Legit)
 		limeCharDB.spellTimer[5].use = 1
-		limeCharDB.spellTimer[5].name = "155777"	-- 회복 (싹틔우기)
+		limeCharDB.spellTimer[5].name = "155777"	-- 회복 (싹틔우기) (8.0 Legit)
 		limeCharDB.spellTimer[5].pos = "BOTTOM"
 	elseif self.playerClass == "SHAMAN" then
 		limeCharDB.spellTimer[1].use = 1
-		limeCharDB.spellTimer[1].name = "61295"	-- 성난 해일
+		limeCharDB.spellTimer[1].name = "61295"	-- 성난 해일 (8.0 Legit)
 		limeCharDB.spellTimer[1].pos = "BOTTOMLEFT"
 		limeCharDB.spellTimer[2].use = 1
-		limeCharDB.spellTimer[2].name = "52127"..",".."324"	-- 물의 보호막, 번개 보호막
+		limeCharDB.spellTimer[2].name = "974"	-- 대지의 보호막 (8.0 Legit)
 		limeCharDB.spellTimer[2].pos = "BOTTOMRIGHT"
-		limeCharDB.spellTimer[3].use = 1
-		limeCharDB.spellTimer[3].name = "974"	-- 대지의 보호막
-		limeCharDB.spellTimer[3].pos = "BOTTOM"
 	elseif self.playerClass == "PALADIN" then
 		limeCharDB.spellTimer[1].use = 3
-		limeCharDB.spellTimer[1].name = "53563"..",".."156910"	-- 빛의 봉화, 신념의 봉화
+		limeCharDB.spellTimer[1].name = "53563"..",".."156910"	-- 빛의 봉화, 신념의 봉화 (8.0 Legit)
 		limeCharDB.spellTimer[1].pos = "BOTTOMLEFT"
 		limeCharDB.spellTimer[2].use = 1
-		limeCharDB.spellTimer[2].name = "1022"..",".."1044"..",".."6940"..",".."1038"	-- 보호의 손길, 자유의 손길, 희생의 손길, 구원의 손길
+		limeCharDB.spellTimer[2].name = "1022"..",".."1044"..",".."6940"..",".."1038"	-- 보호의 손길, 자유의 손길, 희생의 손길, 구원의 손길 (8.0 Legit)
 		limeCharDB.spellTimer[2].pos = "BOTTOMRIGHT"
 	elseif self.playerClass == "MONK" then
 		limeCharDB.spellTimer[1].use = 1
-		limeCharDB.spellTimer[1].name = "124682"	-- 포용의 안개
+		limeCharDB.spellTimer[1].name = "124682"	-- 포용의 안개 (8.0 Legit)
 		limeCharDB.spellTimer[1].pos = "BOTTOMLEFT"
 		limeCharDB.spellTimer[2].use = 1
-		limeCharDB.spellTimer[2].name = "115151"	-- 소생의 안개
+		limeCharDB.spellTimer[2].name = "119611"	-- 소생의 안개 (8.0 Legit)
 		limeCharDB.spellTimer[2].pos = "BOTTOMRIGHT"
 		limeCharDB.spellTimer[3].use = 1
-		limeCharDB.spellTimer[3].name = "191840"	-- 정수의 샘
+		limeCharDB.spellTimer[3].name = "191840"	-- 정수의 샘 (8.0 Legit)
 		limeCharDB.spellTimer[3].pos = "BOTTOM"
 	end
 end

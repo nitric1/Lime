@@ -29,7 +29,7 @@ local playerClass = select(2, UnitClass("player"))
 
 local classRaidBuffs = ({
 	WARRIOR = {
-		[1459] = { 1 }
+		[6673] = { 1 },
 	},
 	ROGUE = {
 	},
