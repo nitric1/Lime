@@ -29,7 +29,7 @@ local playerClass = select(2, UnitClass("player"))
 
 local classRaidBuffs = ({
 	WARRIOR = {
-		[6673] = { 1 },
+		[6673] = { 1 },		-- [전사] 전투의 외침 (Legit 8.0)
 	},
 	ROGUE = {
 	},
@@ -62,7 +62,7 @@ if not classRaidBuffs then return end
 local raidBuffs = {
 	-- 전투력
 	[1] = {
-		6673,		-- [잔사] 전투의 외침  (Legit 8.0)
+		6673,		-- [전사] 전투의 외침 (Legit 8.0)
 	},
 	-- 체력
 	[2] = {

@@ -32,88 +32,76 @@ L["Lime_offline"] = "Off"
 L["Lime_ghost"] = "Ghost"
 L["Lime_dead"] = "Dead"
 L["Lime_afk"] = "AFK"
---[[
-L["방벽"] = true 
-L["최저"] = true 
-L["사기"] = true 
-L["투혼"] = true 
-L["주반"] = true 
-L["격재"] = true 
-L["넬타"] = true 
 
-L["회피"] = true 
-L["그망"] = true 
-L["교란"] = true 
-L["소멸"] = true 
-L["반격"] = true 
+-- Survival Skills
+L["lime_survival_얼인"] = "Icebound" -- "Icebound Fortitude"
+L["lime_survival_흡혈"] = "Blood" -- "Vampiric Blood"
+L["lime_survival_춤룬"] = "Dancing" -- "Dancing Rune Weapon"
+L["lime_survival_대보"] = "Anti" -- "Anti-Magic Shell"
+L["lime_survival_룬전"] = "Tap" -- "Rune Tap"
+L["lime_survival_탈태"] = "Meta" -- "Metamorphosis"
+L["lime_survival_황천"] = "Nether" -- "Netherwalk"
+L["lime_survival_흐릿"] = "Blur" -- "Blur"
+L["lime_survival_생본"] = "Survival" -- "Survival Instincts"
+L["lime_survival_껍질"] = "Bark" -- "Barkskin"
+L["lime_survival_죽척"] = "Feign" -- "Feign Death"
+L["lime_survival_위장"] = "Camou" -- "Camouflage" 
+L["lime_survival_거북"] = "Turtle" -- "Aspect of the Turtle"
+L["lime_survival_얼방"] = "Ice" -- "Ice Block"
+L["lime_survival_투명"] = "Invi" -- "Invisibility"
+L["lime_survival_상투"] = "GInvi" -- "Greater Invisibility"
+L["lime_survival_강화"] = "Fortify" -- "Fortifying Brew"
+L["lime_survival_마해"] = "Diffuse" -- "Diffuse Magic"
+L["lime_survival_업보"] = "Karma" -- "Touch of Karma"
+L["lime_survival_민활"] = "Nimble" -- "Nimble Brew"
+L["lime_survival_해악"] = "Dampen" -- "Dampen Harm"
+L["lime_survival_무적"] = "Shield" -- "Divine Shield"
+L["lime_survival_가호"] = "Protect" -- "Divine Protection"
+L["lime_survival_헌수"] = "Ardent" -- "Ardent Defender"
+L["lime_survival_고대"] = "Kings" -- "Guardian of Ancient Kings"
+L["lime_survival_오숙"] = "Aura" -- "Aura Mastery"
+L["lime_survival_눈"] = "Eye" -- "Eye for an Eye"
 
-L["무적"] = true 
-L["가호"] = true
-L["헌수"] = true 
-L["고대"] = true 
-L["오라"] = true 
-L["눈"] = true 
+L["lime_survival_구원"] = "Spirit" -- "Spirit of Redemption"
+L["lime_survival_분산"] = "Dispersion" -- "Dispersion"
+L["lime_survival_흡선"] = "Vampiric" -- "Vampiric Embrace"
+L["lime_survival_소실"] = "Fade" -- "Fade"
+L["lime_survival_희망"] = "Hope" -- "Symbol of Hope"
+L["lime_survival_회피"] = "Evasion" -- "Evasion"
+L["lime_survival_그망"] = "Cloak" -- "Cloak of Shadows"
+L["lime_survival_소멸"] = "Vanish" -- "Vanish"
+L["lime_survival_반격"] = "Riposte" -- "Riposte"
+L["lime_survival_영혼"] = "Astral" -- "Astral Shift"
+L["lime_survival_고인"] = "Ancestral" -- "Ancestral Guidance"
+L["lime_survival_에테"] = "Ethereal" -- "Ethereal Form"
+L["lime_survival_결의"] = "Resolve" -- "Unending Resolve"
+L["lime_survival_방벽"] = "Wall" -- "Shield Wall"
+L["lime_survival_최저"] = "Stand" -- "Last Stand"
+L["lime_survival_투혼"] = "Sword" -- "Die by the Sword"
+L["lime_survival_주반"] = "Reflect" -- "Spell Reflection"
+L["lime_survival_격재"] = "Enrage" -- "Enraged Regeneration"
+L["lime_survival_쇠날"] = "Ravager" -- "Ravager"
+L["lime_survival_보축"] = "BlessPro" -- "Blessing of Protection"
+L["lime_survival_수호"] = "Guardian" -- "Guardian Spirit"
+L["lime_survival_고억"] = "Pain" -- "Pain Suppression"
+L["lime_survival_희축"] = "Sacrifice" -- "Blessing of Sacrifice"
+L["lime_survival_무껍"] = "Ironbark" -- "Ironbark"
+L["lime_survival_고치"] = "Cocoon" -- "Life Cocoon"
+L["lime_survival_자극"] = "Innervate" -- "Innervate"
+L["lime_survival_여왕"] = "Queen" -- "Guardian of the Forgotten Queen"
+L["lime_survival_주축"] = "Spellward" -- "Blessing of Spellwarding"
+L["lime_survival_민첩"] = "Agi" -- "Potion of agility"
+L["lime_survival_힘"] = "Str" -- "Potion of Strength"
+L["lime_survival_체력"] = "Sta" -- "Potion of Stamina"
+L["lime_survival_지능"] = "Int" -- "Potion of Intellect"
+L["lime_survival_죽음"] = "Att" -- "Potion of Rising Death"
+L["lime_survival_방어도"] = "Def" -- "Steelskin Potion"
+L["lime_survival_피"] = "Burst" -- "Potion of Bursting Blood"
+L["lime_survival_마나"] = "Mana" -- "Potion of Replenishment"
+L["lime_survival_쐐기"] = "Spike" -- "Demon Spikes"
+L["lime_survival_교란"] = "Feint" -- "Feint"
+L["lime_survival_약병"] = "Vial" -- "Crimson Vial"
 
-L["얼방"] = true 
-L["투명"] = true 
-L["상투"] = true 
-
-L["죽척"] = true 
-L["위장"] = true 
-L["거북"] = true 
-
-L["구원"] = true 
-L["분산"] = true 
-L["흡선"] = true 
-L["소실"] = "Fade" 
-
-L["생본"] = true 
-L["껍질"] = true 
-L["분노"] = true 
-
-L["얼인"] = true 
-L["흡혈"] = true 
-L["춤룬"] = true 
-L["대보"] = true 
-L["룬전"] = true 
-L["망령"] = true 
-L["시체"] = true 
-
-L["영혼"] = true 
-L["고인"] = true 
-L["에테"] = true 
-
-L["결의"] = true 
-L["서약"] = true 
-
-L["강화"] = true 
-L["마해"] = true 
-L["해악"] = true 
-L["업보"] = true 
-L["민활"] = true 
-
-L["탈태"] = true 
-L["강화"] = true 
-L["황천"] = "Neth" 
-L["흐릿"] = true 
-
-L["보축"] = "bob" 
-L["수호"] = "Gua"
-L["고억"] = "Pain" 
-L["희축"] = "sac"
-L["무껍"] = "iron"
-L["고치"] = "Coco"
-L["자극"] = "Innervate"
-L["여왕"] = true 
-L["주축"] = true 
-
-L["힘"] = true 
-L["방어도"] = true 
-L["은총"] = true 
-L["전쟁"] = true 
-
-L["쐐기"] = true 
-]]
 -- Lime Option
 L["lime_a"] = "Core"
 L["lime_b"] = "View"
@@ -302,7 +290,7 @@ L["lime_profile_delete"] = "'%s' Delete this profile.\nAre you sure you want to 
 L["lime_profile_delete_message_01"] = "[|cff8080ff%s|r] profile has been deleted."
 L["lime_profile_apply"] = "Do you want to apply the '%s' profile to the current character?"
 L["lime_profile_apply_message_01"] = "[|cff8080ff%s|r] profile has been applied to the current character."
-
+L["Lime_profile_info"] = "Please specify a Profile name. How to use the command: /lime [Profile name]"
 
 L["lime_layout_01"] = "Bar texture"
 L["lime_layout_desc_01"] = "Set the bar texture."
@@ -566,12 +554,12 @@ L["lime_func_button_15"] = "Inside"
 L["lime_func_button_16"] = "Outside"
 
 L["lime_func_buff_1"] = "No buffs can be set."
---L["lime_func_buff_2"] = "버프 확인 아이콘을 표시할 위치를 설정합니다."
---L["lime_func_buff_3"] = "버프 확인 아이콘의 크기를 설정합니다."
+L["lime_func_buff_2"] = "Set the position to display the buff icon."
+L["lime_func_buff_3"] = "Sets the size of the buff icon."
 L["lime_func_buff_4"] = "Do not show"
---L["lime_func_buff_5"] = "버프가 없을 때 표시"
---L["lime_func_buff_6"] = "버프가 있을 때 표시"
---L["lime_func_buff_6"] = "버프의 표시 여부를 설정합니다."
+L["lime_func_buff_5"] = "Indicates when no buff"
+L["lime_func_buff_6"] = "Indicates when buff"
+L["lime_func_buff_6"] = "Set the buff indicator."
 
 L["lime_func_button_17"] = "Disable"
 L["lime_func_button_18"] = "My Buffs"

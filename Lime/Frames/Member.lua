@@ -423,8 +423,7 @@ function limeMember_OnShow(self)
 	if lime.db then
 	self:SetScript("OnEvent", limeMember_OnEvent)
 		if not self.ticker then
-			--self.ticker = C_Timer.NewTicker(lime.db.globaltimer, function() limeMember_OnUpdate(self) end) --전역 타이머 설정
-			self.ticker = C_Timer.NewTicker(1.0, function() limeMember_OnUpdate(self) end) --전역 타이머 설정
+			self.ticker = C_Timer.NewTicker(lime.db.globaltimer, function() limeMember_OnUpdate(self) end) --전역 타이머 설정
 		end
 		self:GetParent().visible = self:GetParent().visible + 1
 		limeMember_UpdateAll(self)

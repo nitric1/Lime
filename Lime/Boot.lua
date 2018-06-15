@@ -400,7 +400,7 @@ end
 
 local function runFunc()
 	if InCombatLockdown() then
-		lime:Message("전투 중에는 환경을 설정할 수 없습니다.")
+		lime:Message(L["Lime_profile_error1"])
 	else
 		lime:SetAttribute("run", not lime:GetAttribute("run"))
 		overlord:GetScript("PostClick")(overlord)

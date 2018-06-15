@@ -1,6 +1,6 @@
 ## Interface: 80000
 ## Title: |cffa2e665Lime|r Options
-## Notes: 구 양파 공격대 프레임 설정
+## Notes: Lime Raid Frames Options
 ## Dependencies: Lime
 ## LoadOnDemand: 1
 libs\LibLimeOption-1.0\LibLimeOption-1.0.xml

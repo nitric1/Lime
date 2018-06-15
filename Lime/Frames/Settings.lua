@@ -28,7 +28,7 @@ local default = {
 	vflag = false, cflag = true, cwarning = true, cpass = false,
 	-- globaltimer = Lime의 반응 속도
 	-- 반응 속도를 0.5초 이상 설정하면 레이드 프레임이 너무 느리게 정보가 반영되며, 반응 속도를 0.25초 이하로 하면 CPU 사용량이 폭증합니다. 
-	globaltimer = 0.5, 
+	globaltimer = 1.0, 
 	-- 환경 설정
 	anchor = "TOPLEFT", dir = 1, width = 80, height = 50, offset = 1, highlightAlpha = 0.5,
 	border = true, borderBackdrop = { 0, 0, 0, 0 }, borderBackdropBorder = { 0.58, 0.58, 0.58, 1 },

@@ -29,86 +29,73 @@ L["Lime_ghost"] = "유령"
 L["Lime_dead"] = "죽음"
 L["Lime_afk"] = "자리"
 
-L["방벽"] = true 
-L["최저"] = true 
-L["사기"] = true 
-L["투혼"] = true 
-L["주반"] = true 
-L["격재"] = true 
-L["넬타"] = true 
-
-L["회피"] = true 
-L["그망"] = true 
-L["교란"] = true 
-L["소멸"] = true 
-L["반격"] = true 
-
-L["무적"] = true 
-L["가호"] = true
-L["헌수"] = true 
-L["고대"] = true 
-L["오라"] = true 
-L["눈"] = true 
-
-L["얼방"] = true 
-L["투명"] = true 
-L["상투"] = true 
-
-L["죽척"] = true 
-L["위장"] = true 
-L["거북"] = true 
-
-L["구원"] = true 
-L["분산"] = true 
-L["흡선"] = true 
-L["소실"] = true 
-
-L["생본"] = true 
-L["껍질"] = true 
-L["분노"] = true 
-
-L["얼인"] = true 
-L["흡혈"] = true 
-L["춤룬"] = true 
-L["대보"] = true 
-L["룬전"] = true 
-L["망령"] = true 
-L["시체"] = true 
-
-L["영혼"] = true 
-L["고인"] = true 
-L["에테"] = true 
-
-L["결의"] = true 
-L["서약"] = true 
-
-L["강화"] = true 
-L["마해"] = true 
-L["해악"] = true 
-L["업보"] = true 
-L["민활"] = true 
-
-L["탈태"] = true 
-L["강화"] = true 
-L["황천"] = true 
-L["흐릿"] = true 
-
-L["보축"] = true 
-L["수호"] = true 
-L["고억"] = true 
-L["희축"] = true 
-L["무껍"] = true 
-L["고치"] = true 
-L["자극"] = true 
-L["여왕"] = true 
-L["주축"] = true 
-
-L["힘"] = true 
-L["방어도"] = true 
-L["은총"] = true 
-L["전쟁"] = true 
-
-L["쐐기"] = true 
+L["lime_survival_얼인"] = "얼인"
+L["lime_survival_흡혈"] = "흡혈" 
+L["lime_survival_춤룬"] = "춤룬"
+L["lime_survival_대보"] = "대보"
+L["lime_survival_룬전"] = "룬전"
+L["lime_survival_탈태"] = "탈태" 
+L["lime_survival_황천"] = "황천" 
+L["lime_survival_흐릿"] = "흐릿" 
+L["lime_survival_생본"] = "생본" 
+L["lime_survival_껍질"] = "껍질" 
+L["lime_survival_죽척"] = "죽척" 
+L["lime_survival_위장"] = "위장" 
+L["lime_survival_거북"] = "거북"
+L["lime_survival_얼방"] = "얼방"
+L["lime_survival_투명"] = "투명" 
+L["lime_survival_상투"] = "상투" 
+L["lime_survival_강화"] = "강화"
+L["lime_survival_마해"] = "마해"
+L["lime_survival_업보"] = "업보"
+L["lime_survival_민활"] = "민활"
+L["lime_survival_강화"] = "강화"
+L["lime_survival_해악"] = "해악"
+L["lime_survival_무적"] = "무적"
+L["lime_survival_가호"] = "가호" 
+L["lime_survival_헌수"] = "헌수"
+L["lime_survival_고대"] = "고대"
+L["lime_survival_오숙"] = "오숙"
+L["lime_survival_눈"] = "눈"
+L["lime_survival_구원"] = "구원"
+L["lime_survival_분산"] = "분산"
+L["lime_survival_흡선"] = "흡선"
+L["lime_survival_소실"] = "소실"
+L["lime_survival_희망"] = "희망"
+L["lime_survival_회피"] = "회피"
+L["lime_survival_그망"] = "그망"
+L["lime_survival_소멸"] = "소멸"
+L["lime_survival_반격"] = "반격"
+L["lime_survival_영혼"] = "영혼"
+L["lime_survival_고인"] = "고인"
+L["lime_survival_에테"] = "에테"
+L["lime_survival_결의"] = "결의" 
+L["lime_survival_방벽"] = "방벽"
+L["lime_survival_최저"] = "최저"
+L["lime_survival_투혼"] = "투혼"
+L["lime_survival_주반"] = "주반"
+L["lime_survival_격재"] = "격재"
+L["lime_survival_쇠날"] = "쇠날"
+L["lime_survival_보축"] = "보축"
+L["lime_survival_수호"] = "수호"
+L["lime_survival_고억"] = "고억"
+L["lime_survival_희축"] = "희축"
+L["lime_survival_무껍"] = "무껍"
+L["lime_survival_고치"] = "고치"
+L["lime_survival_자극"] = "자극"
+L["lime_survival_여왕"] = "여왕"
+L["lime_survival_주축"] = "주축"
+L["lime_survival_민첩"] = "민첩"
+L["lime_survival_힘"] = "힘"
+L["lime_survival_체력"] = "체력"
+L["lime_survival_지능"] = "지능"
+L["lime_survival_죽음"] = "죽음"
+L["lime_survival_방어도"] = "방어도"
+L["lime_survival_피"] = "피"
+L["lime_survival_마나"] = "마나"
+L["lime_survival_쐐기"] = "쐐기"
+L["lime_survival_교란"] = "교란"
+L["lime_survival_약병"] = "약병"
 
 -- Lime Option
 L["lime_a"] = "기본"

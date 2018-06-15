@@ -1,8 +1,8 @@
 ## Interface: 80000
 ## Title: |cffa2e665Lime|r
-## Notes: 구 양파 레이드 프레임
+## Notes: Lime Raid Frames
 ## Author: Yangpa
-## Version: r16
+## Version: r17
 ## SavedVariables: limeDB
 ## SavedVariablesPerCharacter: limeCharDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0.lua
