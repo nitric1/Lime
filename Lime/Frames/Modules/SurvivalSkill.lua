@@ -20,7 +20,7 @@ local skills = {
 	["PRIEST"] = { [SL(27827)] = L["lime_survival_구원"], [SL(47585)] = L["lime_survival_분산"], [SL(15286)] = L["lime_survival_흡선"], [SL(586)] = L["lime_survival_소실"], [SL(64901)] = L["lime_survival_희망"] },
 	["ROGUE"] = { [SL(5277)] = L["lime_survival_회피"], [SL(31224)] = L["lime_survival_그망"], [SL(11327)] = L["lime_survival_소멸"], [SL(199754)] = L["lime_survival_반격"] }, 
 	["SHAMAN"] = { [SL(108271)] = L["lime_survival_영혼"], [SL(108281)] = L["lime_survival_고인"], [SL(210918)] = L["lime_survival_에테"] },
-	["WARLOCK"] = { [SL(104773)] = L["lime_survival_결의"},
+	["WARLOCK"] = { [SL(104773)] = L["lime_survival_결의"] },
 	["WARRIOR"] = { [SL(871)] = L["lime_survival_방벽"], [SL(12975)] = L["lime_survival_최저"], [SL(118038)] = L["lime_survival_투혼"], [SL(23920)] = L["lime_survival_주반"], [SL(184364)] = L["lime_survival_격재"], [SL(227744)] = L["lime_survival_쇠날"] },
 	["*"] = { [SL(1022)] = L["lime_survival_보축"], [SL(47788)] = L["lime_survival_수호"], [SL(33206)] = L["lime_survival_고억"], [SL(6940)] = L["lime_survival_희축"], [SL(102342)] = L["lime_survival_무껍"], [SL(116849)] = L["lime_survival_고치"], [SL(29166)] = L["lime_survival_자극"], [SL(228049)] = L["lime_survival_여왕"], [SL(204018)] = L["lime_survival_주축"] },
 	["POTION"] = {[SL(279152)] = L["lime_survival_민첩"], [SL(279153)] = L["lime_survival_힘"], [SL(279154)] = L["lime_survival_체력"], [SL(279151)] = L["lime_survival_지능"], [SL(269853)] = L["lime_survival_죽음"], [SL(251231)] = L["lime_survival_방어도"], [SL(251316)] = L["lime_survival_피"], [SL(252753)] = L["lime_survival_마나"] },
