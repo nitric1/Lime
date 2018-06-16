@@ -1,7 +1,7 @@
 -- translated by gaspy10. Thank you for translating this add-on.
 -- gaspy10: https://wow.curseforge.com/members/gaspy10
 
-local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "enUS", false)
+local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "zhTW", false)
 if not L then return end
 L = L or {}
 
