@@ -377,7 +377,7 @@ function Option:CreateBuffCheckMenu(menu, parent)
 				end
 			end
 		end
-		menu["buff"..i] = LBO:CreateWidget("DropDown", parent, text, text.. L["lime_func_buff_7"], nil, nil, nil, getBuff, setBuff, spellId)
+		menu["buff"..i] = LBO:CreateWidget("DropDown", parent, text, text..": "..L["lime_func_buff_7"], nil, nil, nil, getBuff, setBuff, spellId)
 		if i == 1 then
 			menu["buff"..i]:SetPoint("TOP", menu.pos, "BOTTOM", 0, -10)
 		elseif i == 2 then

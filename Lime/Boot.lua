@@ -6,23 +6,23 @@ Version 8.0.1
 CREDIT
 **********************************************************************
 
-현 관리자
-	* 김소연 (Team Yangpa)
+The current manager
+* Kim So-yeon (Rural Development Administration)
 
-전 관리자
-	* 꿀하니 (인벤 - 양파 레이드 프레임 팬픽스)
-	* 꿀꿀찡 (전속 테스터)
+A former manager
+* 꿀하니 (Ministry of Science and ICT, Wow@WindRunner Da Capo, Inven Raid Frame Fan Fix a.k.a 양파)
+* 꿀꿀찡 (Wow@WindRunner Da Capo, Full tester)
 
-레이드 테스트에 도움을 주시고, Lime 애드온을 장기간 사용해주셔서 감사합니다.
-	* 곡쟁이 (wow#윈드러너 헨델과그레텔 길드)
-	* 양파링과새우깡 (discord#핫도그)
+Thank you for helping us with the Raid Test and for using the Lime add-on for a long time.
+* 곡쟁이 (Wow@WindRunner 헨델과그레텔)
+* 양파링과새우깡 (Wow@WindRunner 아니 왜 욕을, Discord@핫도그)
 
-지속적인 버그 리포트 감사합니다.
-	* 어제본 (naver#ykbong)
-	* 안채연 (instagram#laki28)
+Thank you for your continuous bug report.
+* 어제본 (naver@ykbong)
+* Shin Mi-rae (Lezhin)
 
-베타 키를 제공해주셔서 감사합니다.
-	* 운구차 (루리웹)
+Thank you for providing your beta key.
+* 운구차 (Ruliweb)
 
 *********************************************************************]]
 

@@ -1,10 +1,15 @@
 
+Lime r21 [2018.7.8.]
+- Update locale files.
+- Highlight some dangerous functions in red color.
+
+
 Lime r20 [2018.7.8.]
 
 - Support BfA 8.0.1.27026 client.
 - Change the default language to English.
 - With the frames locked, you can drag the raid frames using the ALT key.
-- Updates locale files for Traditional Chinese (zhTW).
+- Updates locale file for Traditional Chinese (zhTW).
 - Change the global timer for test purpose.
 
 

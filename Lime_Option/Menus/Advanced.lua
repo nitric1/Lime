@@ -47,7 +47,9 @@ function Option:CreateAdvancedMenu(menu, parent)
 
 	menu.advanced = parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	menu.advanced:SetText(L["lime_advanced_06"])
-	menu.advanced:SetPoint("TOP", 5, -160)
+	menu.advanced:SetPoint("TOP", 3, -150)
+	menu.advanced:SetSize(380, 50)
+	menu.advanced:SetJustifyV("TOP")
 	menu.advanced:SetJustifyH("LEFT")
 
 	menu.lockmasterkey = LBO:CreateWidget("CheckBox", parent, L["lime_advanced_07"], L["lime_advanced_desc_07"], nil, nil, true,
@@ -56,6 +58,6 @@ function Option:CreateAdvancedMenu(menu, parent)
 			lime.db.lockmasterkey = v
 		end
 	)
-	menu.lockmasterkey:SetPoint("TOP", menu.cpass, "BOTTOM", 0, -90)
+	menu.lockmasterkey:SetPoint("TOP", menu.cpass, "BOTTOM", 0, -50)
 
 end
