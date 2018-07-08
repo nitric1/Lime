@@ -343,7 +343,7 @@ function Option:CreateBuffCheckMenu(menu, parent)
 	end
 	]==]
 
-	local buffTypeList = { "표시 안함", "버프가 없을 때 표시", "버프가 있을 때 표시" }
+	local buffTypeList = { L["lime_func_buff_4"], L["lime_func_buff_5"], L["lime_func_buff_6"] }
 
 	local function getBuff(spellId)
 		return (limeCharDB.classBuff2[spellId] or 0) + 1, buffTypeList
@@ -377,7 +377,7 @@ function Option:CreateBuffCheckMenu(menu, parent)
 				end
 			end
 		end
-		menu["buff"..i] = LBO:CreateWidget("DropDown", parent, text, text.." 버프의 표시 여부를 설정합니다.", nil, nil, nil, getBuff, setBuff, spellId)
+		menu["buff"..i] = LBO:CreateWidget("DropDown", parent, text, text.. L["lime_func_buff_7"], nil, nil, nil, getBuff, setBuff, spellId)
 		if i == 1 then
 			menu["buff"..i]:SetPoint("TOP", menu.pos, "BOTTOM", 0, -10)
 		elseif i == 2 then
