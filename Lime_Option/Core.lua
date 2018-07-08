@@ -29,7 +29,7 @@ local menuList = {
 		{ name = L["사용"], desc = L["Lime_Desc01"], func = menuOnClick, create = "Use" },
 		{ name = L["정렬 및 배치"], desc = L["Lime_Desc02"], func = menuOnClick, create = "Group" },
 		{ name = L["클릭 시전"], desc = L["Lime_Desc03"], func = menuOnClick, create = "ClickCasting", disableScroll = true },
-		{ name = L["주문 타이머"], desc = L["Lime_Desc04"], func = menuOnClick, create = "SpellTimer" },	
+		{ name = L["주문 타이머"], desc = L["Lime_Desc04"], func = menuOnClick, create = "SpellTimer" },
 		{ name = L["설정 관리"], desc = L["Lime_Desc05"], func = menuOnClick, create = "Profile", disableScroll = true },
 		{ name = L["호환성"], desc = L["Lime_Desc06"], func = menuOnClick, create = "Advanced"},
 	},
@@ -79,7 +79,7 @@ if not Option.title then
 	Option.version:SetText(lime.version)
 	Option.version:SetPoint("LEFT", Option.title, "RIGHT", 4, 0)
 	Option.Author = Option:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-	Option.Author:SetText("|cff777777버그 제보: 페어리@윈드러너|r")
+	Option.Author:SetText("|cff777777GitHub: Yangparing|r")
 	Option.Author:SetPoint("TOPRIGHT", -13, -13)
 end
 if Option.combatWarn then

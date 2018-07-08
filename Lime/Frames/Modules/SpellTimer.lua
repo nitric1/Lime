@@ -96,13 +96,13 @@ local function setIcon(self, index, duration, expirationTime, icon, count)
 			self.startTime = expirationTime - duration
 			self.expirationTime = expirationTime
 			if not self.spellticker then
-				self.spellticker = C_Timer.NewTicker(1.0, function() onUpdateIconTimer(self, limeCharDB.spellTimer[index].display) end)
+				self.spellticker = C_Timer.NewTicker(0.5, function() onUpdateIconTimer(self, limeCharDB.spellTimer[index].display) end)
 			end
 			onUpdateIconTimer(self, limeCharDB.spellTimer[index].display)
 		else
 			if self.spellticker then --정상적으로 주문 타이머 만료 시 타이머 삭제
 				self.spellticker:Cancel()
-				self.spellticker = nil		
+				self.spellticker = nil
 			end
 			self.expirationTime, self.timeLeft = nil, nil
 			if self.noIcon then
@@ -155,7 +155,7 @@ function limeMember_UpdateSpellTimer(self)
 								lime:Message("e2-----."..i..name2)
 							break
 							end
-						end					
+						end
 					end
 				elseif name then
 					found = true

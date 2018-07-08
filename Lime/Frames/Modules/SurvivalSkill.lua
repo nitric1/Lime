@@ -18,7 +18,7 @@ local skills = {
 	["MONK"] = { [SL(115203)] = L["lime_survival_강화"]--[[양조]], [SL(122783)] = L["lime_survival_마해"], [SL(122470)] = L["lime_survival_업보"], [SL(213664)] = L["lime_survival_민활"], [SL(243435)] = L["lime_survival_강화"]--[[운무]], [SL(201318)] = L["lime_survival_강화"]--[[풍운 명예]], [SL(122278)] = L["lime_survival_해악"] },
 	["PALADIN"] = { [SL(642)] = L["lime_survival_무적"], [SL(498)] = L["lime_survival_가호"], [SL(31850)] = L["lime_survival_헌수"], [SL(86659)] = L["lime_survival_고대"], [SL(31821)] = L["lime_survival_오숙"], [SL(205191)] = L["lime_survival_눈"] },
 	["PRIEST"] = { [SL(27827)] = L["lime_survival_구원"], [SL(47585)] = L["lime_survival_분산"], [SL(15286)] = L["lime_survival_흡선"], [SL(586)] = L["lime_survival_소실"], [SL(64901)] = L["lime_survival_희망"] },
-	["ROGUE"] = { [SL(5277)] = L["lime_survival_회피"], [SL(31224)] = L["lime_survival_그망"], [SL(11327)] = L["lime_survival_소멸"], [SL(199754)] = L["lime_survival_반격"] }, 
+	["ROGUE"] = { [SL(5277)] = L["lime_survival_회피"], [SL(31224)] = L["lime_survival_그망"], [SL(11327)] = L["lime_survival_소멸"], [SL(199754)] = L["lime_survival_반격"] },
 	["SHAMAN"] = { [SL(108271)] = L["lime_survival_영혼"], [SL(108281)] = L["lime_survival_고인"], [SL(210918)] = L["lime_survival_에테"] },
 	["WARLOCK"] = { [SL(104773)] = L["lime_survival_결의"] },
 	["WARRIOR"] = { [SL(871)] = L["lime_survival_방벽"], [SL(12975)] = L["lime_survival_최저"], [SL(118038)] = L["lime_survival_투혼"], [SL(23920)] = L["lime_survival_주반"], [SL(184364)] = L["lime_survival_격재"], [SL(227744)] = L["lime_survival_쇠날"] },
@@ -53,7 +53,7 @@ end
 
 local function checkSkill(unit, class)
 	-- 타인에게 걸 수 있는 생존기 체크 및 표시 우선 순위 조정
-	local name, endTime = findSkill(unit, skills["*"])	-- 우선 순위 1등 (외생기) 
+	local name, endTime = findSkill(unit, skills["*"])	-- 우선 순위 1등 (외생기)
 	if not name and skills[class] then  				-- 우선 순위 2등 (본인 생존기)
 		name, endTime = findSkill(unit, skills[class])
 	end
@@ -78,7 +78,7 @@ function limeMember_UpdateSurvivalSkill(self)
 		self.survivalSkill, self.survivalSkillEndTime = checkSkill(self.displayedUnit, self.class)
 		self.survivalSkillTimeLeft = self.survivalSkillEndTime and (self.survivalSkillEndTime - GetTime()) or ""
 		if not self.survivalticker then
-			self.survivalticker = C_Timer.NewTicker(1.0, function() survivalSkillOnUpdate(self) end)
+			self.survivalticker = C_Timer.NewTicker(0.5, function() survivalSkillOnUpdate(self) end)
 		end
 		survivalSkillOnUpdate(self)
 	else

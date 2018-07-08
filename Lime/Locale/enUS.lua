@@ -1,5 +1,4 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "enUS", false)
-if not L then return end
+local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "enUS", true)
 
 L["Lime_leftclick"] = "Left Click: Preference"
 L["Lime_rightclick"] = "Right Click: Menus"
@@ -45,7 +44,7 @@ L["lime_survival_흐릿"] = "Blur" -- "Blur"
 L["lime_survival_생본"] = "Survival" -- "Survival Instincts"
 L["lime_survival_껍질"] = "Bark" -- "Barkskin"
 L["lime_survival_죽척"] = "Feign" -- "Feign Death"
-L["lime_survival_위장"] = "Camou" -- "Camouflage" 
+L["lime_survival_위장"] = "Camou" -- "Camouflage"
 L["lime_survival_거북"] = "Turtle" -- "Aspect of the Turtle"
 L["lime_survival_얼방"] = "Ice" -- "Ice Block"
 L["lime_survival_투명"] = "Invi" -- "Invisibility"
@@ -208,9 +207,11 @@ L["lime_advanced_03"] = "Timer"
 L["lime_advanced_desc_03"] = "A cycle in which the raid frame is repeatedly refreshed. To modify the cycle, you must manually edit the Lua."
 L["lime_advanced_04"] = "Vehicle Tracking"
 L["lime_advanced_desc_04"] = "To modify vehicle tracking, you must manually edit the Lua."
-L["lime_advanced_05"] = "Ignore all warnings"
+L["lime_advanced_05"] = "|cffff6600Ignore all warnings|r"
 L["lime_advanced_desc_05"] = "Ignore the compatibility warning and force the limited functionality to work. This is a very dangerous feature, so do not check if you do not know the feature."
-L["lime_advanced_06"] = "Displaying a friendly nameplate will disable Lime's tooltip display.\n\nIf you set all warnings to be ignored, \nyou can reuse the tooltip functionality,\nbut there is a high probability of a serious crash."
+L["lime_advanced_06"] = "|cffff6600Displaying a friendly nameplate will disable Lime's tooltip display.\n\nIf you set all warnings to be ignored, \nyou can reuse the tooltip functionality,\nbut there is a high probability of a serious crash.|r"
+L["lime_advanced_07"] = "Allow ALT Dragging"
+L["lime_advanced_desc_07"] = "When locked, you can use drag the raid frames while pressing the ALT key."
 
 L["사용하기"] = "Enable"
 L["사용 안함"] = "Disable"
@@ -502,7 +503,7 @@ L["lime_func_aura_36"] = "Set the size of the important effect icons."
 L["lime_func_aura_37"] = "transparency"
 L["lime_func_aura_38"] = "Set the transparency of the important effect icons."
 L["lime_func_aura_39"] = "Show clock texture"
-L["lime_func_aura_40"] = "Displays the time remaining for important effects in clock format." 
+L["lime_func_aura_40"] = "Displays the time remaining for important effects in clock format."
 L["lime_func_aura_41"] = "Time display format"
 L["lime_func_aura_42"] = "Sets the time display for important effects."
 

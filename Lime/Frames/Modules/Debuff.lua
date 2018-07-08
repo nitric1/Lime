@@ -106,7 +106,7 @@ function limeMember_UpdateAura(self)
 				if isBossAura and not bossAuraId[spellId] and not bossAuraName[name] and lime.db.userAura[spellId] ~= false and lime.db.userAura[name] ~= false then
 					lime.db.userAura[spellId] = true
 					bossAuraId[spellId] = true
-					lime:Message("|cffff6600"..name.."|r"..L["Lime_register_BossAura"]) 
+					lime:Message("|cffff6600"..name.."|r"..L["Lime_register_BossAura"])
 				end
 				if self.optionTable.useBossAura and (not baIndex or bsIsBuff) and (bossAuraId[spellId] or bossAuraName[name]) then--약화 효과는 항상 강화 효과에 우선합니다.
 					-- 중요 효과 내용 임시 테이블에 저장
@@ -145,7 +145,7 @@ function limeMember_UpdateAura(self)
 			if isBossAuraB and not bossAuraId[spellIdB] and not bossAuraName[nameB] and lime.db.userAura[spellIdB] ~= false and lime.db.userAura[nameB] ~= false then
 				lime.db.userAura[spellIdB] = true
 				bossAuraId[spellIdB] = true
-				lime:Message("|cffff6600"..nameB.."|r"..L["Lime_register_BossAura"]) 
+				lime:Message("|cffff6600"..nameB.."|r"..L["Lime_register_BossAura"])
 			end
 			if bossAuraId[spellIdB] or bossAuraName[nameB] then
 				-- 중요 효과 내용 임시 테이블에 저장
@@ -178,7 +178,7 @@ function limeMember_UpdateAura(self)
 			self.bossAura.endTime = baExpirationTime
 			self.bossAura.startTime = baExpirationTime - baDuration
 			if not self.bossAura.ticker then
-				self.bossAura.ticker = C_Timer.NewTicker(1.0, function() bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt) end)
+				self.bossAura.ticker = C_Timer.NewTicker(0.5, function() bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt) end)
 			end
 			bossAuraOnUpdate(self.bossAura, self.optionTable.bossAuraOpt)
 		else
