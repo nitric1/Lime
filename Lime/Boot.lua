@@ -1,5 +1,62 @@
+--[[
 
+Lime Raid Frames
+Version 8.0.1
+
+CREDIT
+**********************************************************************
+	현 관리자
+	* 김소연 님				Team Yangpa
+
+	전 관리자
+	* 꿀하니 (양파) 		(인벤 - 양파 레이드 프레임 팬픽스)
+	* 꿀꿀찡 				(전속 테스터)
+
+	레이드 테스트에 도움을 주시고 Lime 애드온을 직접 사용해주셔서 감사합니다.
+	* 곡쟁이  				(wow#윈드러너 헨델과그레텔 길드)
+	* 양파링과새우깡  		(discord#핫도그)
+
+	지속적인 버그 리포트 감사합니다.
+	* 어제본 				(naver#ykbong)
+	* 안채연				(instagram#laki28)
+
+	베타 키를 제공해주셔서 감사합니다.
+	* 운구차				(Ruliweb)
+
+*********************************************************************
+World of Warcraft User Interface Add-On Development Policy
+
+With the continuing popularity of World of Warcraft user interface add-ons (referred to hereafter as "add-ons") created by the community of players, Blizzard Entertainment has formalized design and distribution guidelines for add-ons. These guidelines have been put in place to ensure the integrity of World of Warcraft and to help promote an enjoyable gaming environment for all of our players - failure to abide by them may result in measures up to and including taking formal legal action.
+
+1) Add-ons must be free of charge.
+All add-ons must be distributed free of charge. Developers may not create "premium" versions of add-ons with additional for-pay features, charge money to download an add-on, charge for services related to the add-on, or otherwise require some form of monetary compensation to download or access an add-on.
+
+2) Add-on code must be completely visible.
+The programming code of an add-on must in no way be hidden or obfuscated, and must be freely accessible to and viewable by the general public.
+
+3) Add-ons must not negatively impact World of Warcraft realms or other players.
+Add-ons will perform no function which, in Blizzard Entertainment's sole discretion, negatively impacts the performance of the World of Warcraft realms or otherwise negatively affects the game for other players. For example, this includes but is not limited to excessive use of the chat system, unnecessary loading from the hard disk, and slow frame rates.
+
+4) Add-ons may not include advertisements.
+Add-ons may not be used to advertise any goods or services.
+
+5) Add-ons may not solicit donations.
+Add-ons may not include requests for donations. We recognize the immense amount of effort and resources that go into developing an add-on; however, such requests should be limited to the add-on website or distribution site and should not appear in the game.
+
+6) Add-ons must not contain offensive or objectionable material.
+World of Warcraft has been given a "T" by the ESRB, and similar ratings from other ratings boards around the world. Blizzard Entertainment requires that add-ons not include any material that would not be allowed under these ratings.
+
+7) Add-ons must abide by World of Warcraft ToU and EULA.
+All add-ons must follow the World of Warcraft Terms of Use and the World of Warcraft End User License Agreement.
+
+8) Blizzard Entertainment has the right to disable add-on functionality as it sees fit.
+To maintain the integrity World of Warcraft and ensure the best possible gaming experience for our players, Blizzard Entertainment reserves the right to disable any add-on functionality within World of Warcraft at its sole discretion. For more information...
+
+*********************************************************************]]
+
+-- Booting Addon
 local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+--local LimeAura = LibStub:GetLibrary("LibAuras")
 
 local _G = _G
 local type = _G.type
@@ -62,7 +119,7 @@ function lime:PLAYER_LOGIN()
 	    lime_mapicon:Lock("Lime")
 	end
 	self:SetScript("OnHide", limeMember_OnDragStop)
-	
+
 	--- 주문 해제 라이브러리
 	LibStub("LibLimeDispel-1.0").RegisterCallback(self, "Update", function()
 		for member in pairs(lime.visibleMembers) do
@@ -337,12 +394,12 @@ local command, arg1 = strsplit(" ",msg)
 				lime:SetProfile(arg1)
 				lime:ApplyProfile()
 				lime:Message(L[("Lime_applyprofile")]:format(arg1))
-			else 
+			else
 				lime:Message(L[("Lime_profile_error1")])
 			end
-		else 	
+		else
 			lime:Message(L[("Lime_profile_error2")]:format(arg1))
-		end 
+		end
 	elseif command == "s" then
 			lime:Message(L["Lime_profile_info"])
 	else
@@ -371,7 +428,7 @@ overlord:SetScript("PostClick", function()
 	end
 end)
 
--- 단축키 설정 
+-- 단축키 설정
 BINDING_HEADER_lime = "Lime"
 BINDING_NAME_lime_OPTION = L["Lime_Preference"]
 BINDING_NAME_lime_DOREADYCHECK = L["Lime_ReadyCheck"]
@@ -399,7 +456,7 @@ end
 
 local function runFunc()
 	if InCombatLockdown() then
-		lime:Message("전투 중에는 환경을 설정할 수 없습니다.")
+		lime:Message(L["Lime_profile_error1"])
 	else
 		lime:SetAttribute("run", not lime:GetAttribute("run"))
 		overlord:GetScript("PostClick")(overlord)
@@ -451,7 +508,7 @@ L_UIDropDownMenu_Initialize(lime.mapButtonMenu, initializeDropDown)
 function lime:CheckIncompatible()
 	if GetCVar("nameplateShowFriends")=="1" then
 		self.db.cflag = false
-	else 
+	else
 		self.db.cflag = true
 	end
 	-- 경고문 표시 설정

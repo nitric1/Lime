@@ -31,7 +31,7 @@ for i = 0, 9 do
 	btn = CreateFrame("Button", "limeWorldMarker"..i, nil, "SecureActionButtonTemplate")
 	btn:SetID(i)
 	if i == 0 then
-		L_UIDropDownMenu_GetCurrentDropDown().displayMode = nil
+		UIDropDownMenu_GetCurrentDropDown().displayMode = nil
 		btn:SetScript("PreClick", preClick)
 		btn:SetAttribute("*type*", "macro")
 		btn:SetAttribute("*macrotext*", "/click CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton")

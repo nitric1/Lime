@@ -245,7 +245,7 @@ local function setupMemberAll(self)
 	limeMember_SetupCastingBarPos(self)
 	limeMember_SetupIconPos(self)
 	limeMember_SetAuraFont(self)
-	
+
 	self.name:SetFont(SM:Fetch("font", lime.db.font.file), lime.db.font.size, lime.db.font.attribute)
 	self.name:SetShadowColor(0, 0, 0)
 	if lime.db.font.shadow then
@@ -299,7 +299,7 @@ local function baseOnAttributeChanged(self, key, value)
 			self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", value, key)
 			self:RegisterUnitEvent("UNIT_HEAL_PREDICTION", value, key)
 			self:RegisterUnitEvent("UNIT_ABSORB_AMOUNT_CHANGED", value, key)
-			self:RegisterUnitEvent("UNIT_POWER", value, key)
+			self:RegisterUnitEvent("UNIT_POWER_UPDATE", value, key)
 			self:RegisterUnitEvent("UNIT_MAXPOWER", value, key)
 			self:RegisterUnitEvent("UNIT_DISPLAYPOWER", value, key)
 			self:RegisterUnitEvent("UNIT_POWER_BAR_SHOW", value, key)
@@ -313,7 +313,7 @@ local function baseOnAttributeChanged(self, key, value)
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 			self:UnregisterEvent("UNIT_HEAL_PREDICTION")
 			self:UnregisterEvent("UNIT_ABSORB_AMOUNT_CHANGED")
-			self:UnregisterEvent("UNIT_POWER")
+			self:UnregisterEvent("UNIT_POWER_UPDATE")
 			self:UnregisterEvent("UNIT_MAXPOWER")
 			self:UnregisterEvent("UNIT_DISPLAYPOWER")
 			self:UnregisterEvent("UNIT_POWER_BAR_SHOW")
@@ -388,7 +388,7 @@ function limeMember_OnLoad(self)
 	self.SetupDebuffIcon = setupMemberDebuffIcon
 	self:SetID(tonumber(self:GetName():match("UnitButton(%d+)$")))
 	self:GetParent().members[self:GetID()] = self
-	tinsert(UnitPopupFrames, self.dropDown:GetName())
+	--tinsert(UnitPopupFrames, self.dropDown:GetName())
 	self.nameTable = {}
 	self.name:SetDrawLayer("OVERLAY", 2)
 	self.name:Show()
@@ -429,29 +429,29 @@ function limeMember_OnShow(self)
 		limeMember_UpdateAll(self)
 		lime:BorderUpdate()
 	end
-	
+
 	lime.visibleMembers[self] = true
 end
 
 function limeMember_OnHide(self)
 	if lime.db then
 		self:SetScript("OnEvent", nil)
-		if self.ticker then  -- 레이드 프레임이 보이지 않을 때 타이머 변수 삭제  
+		if self.ticker then  -- 레이드 프레임이 보이지 않을 때 타이머 변수 삭제
 			self.ticker:Cancel()
 			self.ticker = nil
 		end
-		if self.survivalticker then -- 플레이어가 보이지 않을 때 타이머 변수 삭제  
+		if self.survivalticker then -- 플레이어가 보이지 않을 때 타이머 변수 삭제
 			self.survivalticker:Cancel()
 			self.survivalticker = nil
-		end		
-		if self.castingBar.ticker then  --캐스팅 바 타이머 작동 중 파탈 또는 파티 해체 시 타이머 변수 삭제 
+		end
+		if self.castingBar.ticker then  --캐스팅 바 타이머 작동 중 파탈 또는 파티 해체 시 타이머 변수 삭제
 			self.castingBar.ticker:Cancel()
 			self.castingBar.ticker = nil
-		end	
+		end
 		if self.bossAura.ticker then --  대상 플레이어가 보이지 않을 때 효과 타이머 삭제
 			self.bossAura.ticker:Cancel()
 			self.bossAura.ticker = nil
-		end	
+		end
 		if self.spellticker then
 			self.spellticker:Cancel()
 			self.spellticker = nil
@@ -467,7 +467,7 @@ function limeMember_OnHide(self)
 	lime:CallbackClearObject(self)
 end
 
--- 파티 탈퇴 또는 파티 해체 시 각 플레이어에게 할당된 주문 타이머 삭제 
+-- 파티 탈퇴 또는 파티 해체 시 각 플레이어에게 할당된 주문 타이머 삭제
 -- 전투 중에 파티 탈퇴 시 CPU 사용량을 낭비하는 문제 수정
 function limeMember_OnSpellTimerHide(self)
 	if self.spellticker then
@@ -503,6 +503,9 @@ function limeMember_OnDragStart(self)
 	if not lime.db.lock then
 		lime.dragging = self
 		lime:StartMoving()
+	elseif lime.db.lock and lime.db.lockmasterkey and IsAltKeyDown() then
+		lime.dragging = self
+		lime:StartMoving()
 	end
 end
 
@@ -513,7 +516,7 @@ function limeMember_OnDragStop(self)
 		lime:StopMovingOrSizing()
 		lime:SavePosition()
 	end
-end 
+end
 
 function limeMember_UpdateHealth(self)
 	local health = UnitHealth(self.displayedUnit)
@@ -681,18 +684,18 @@ function limeMember_UpdateRoleIcon(self)
 	if self.optionTable.displayRaidRoleIcon then
 		roleType = UnitGroupRolesAssigned(self.unit)
 		if roleType ~= "NONE" then
-			if self.optionTable.roleIcontype == 1 then 
-				if roleType == "DAMAGER" then 
+			if self.optionTable.roleIcontype == 1 then
+				if roleType == "DAMAGER" then
 					self.roleIcon:SetTexture("Interface\\AddOns\\Lime\\Shared\\Texture\\dps")
 					self.roleIcon:SetTexCoord(0, 1, 0, 1)
 				else
 					self.roleIcon:SetTexture("Interface\\AddOns\\Lime\\Shared\\Texture\\RoleIcon_MiirGui")
 					self.roleIcon:SetTexCoord(GetTexCoordsForRoleSmallCircle(roleType))
 				end
-			else 
-				self.roleIcon:SetTexture("Interface\\LFGFRAME\\UI-LFG-ICON-PORTRAITROLES") 
+			else
+				self.roleIcon:SetTexture("Interface\\LFGFRAME\\UI-LFG-ICON-PORTRAITROLES")
 				self.roleIcon:SetTexCoord(GetTexCoordsForRoleSmallCircle(roleType))
-			end		
+			end
 			self.roleIcon:SetSize(self.optionTable.roleIconSize, self.optionTable.roleIconSize)
 			return self.roleIcon:Show()
 		end
@@ -706,9 +709,9 @@ local LeaderFlag
 function limeMember_UpdateLeaderIcon(self)
 	if self.optionTable.useLeaderIcon then
 		LeaderFlag = UnitIsGroupLeader(self.unit)
-		if LeaderFlag then 
+		if LeaderFlag then
 			self.leaderIcon:SetTexCoord(0, 1, 0, 1)
-			self.leaderIcon:SetSize(self.optionTable.leaderIconSize, self.optionTable.leaderIconSize)	
+			self.leaderIcon:SetSize(self.optionTable.leaderIconSize, self.optionTable.leaderIconSize)
 			return self.leaderIcon:Show()
 		end
 	end
@@ -805,7 +808,7 @@ function limeMember_UpdateOutline(self)
 	self.outline:Hide()
 end
 
---- 타이머에서 지속적으로 체크하는 거리 측정 함수 
+--- 타이머에서 지속적으로 체크하는 거리 측정 함수
 function limeMember_OnUpdate(self)
 	-- 거리 측정 로직
 	local prevRange = self.outRange
@@ -817,7 +820,7 @@ function limeMember_OnUpdate(self)
 	end
 	-- 거리 측정을 해보니 거리가 바뀌었다면
 	if prevRange ~= self.outRange then
-		if self.outRange then  -- 시야 바깥일때는 체력바 업데이트 중지 
+		if self.outRange then  -- 시야 바깥일때는 체력바 업데이트 중지
 			self.healthBar:SetAlpha(self.optionTable.fadeOutOfRangeHealth and self.optionTable.fadeOutAlpha or 1)
 			self.powerBar:SetAlpha(self.optionTable.fadeOutOfRangePower and self.optionTable.fadeOutAlpha or 1)
 			self.myHealPredictionBar:SetAlpha(0)
@@ -838,6 +841,7 @@ function limeMember_OnUpdate(self)
 		limeMember_UpdateAura(self)
  		limeMember_UpdateSpellTimer(self)
  		limeMember_UpdateSurvivalSkill(self)
+ 		limeMember_UpdateBuffs(self)
  		limeMember_UpdateHealPrediction(self)
  		limeMember_UpdateState(self)
  		limeMember_UpdateNameColor(self)
@@ -858,7 +862,7 @@ function limeMember_OnUpdate(self)
 	end
 end
 
---- 타이머에서 지속적으로 체크하지 않는 거리 측정 함수 
+--- 타이머에서 지속적으로 체크하지 않는 거리 측정 함수
 function limeMember_OnUpdate2(self)
 	if self.isOffline then
 		self.outRange = false
@@ -909,6 +913,7 @@ function limeMember_UpdateAll(self)
 			limeMember_UpdateSurvivalSkill(self)
 			limeMember_UpdateOutline(self)
 			limeMember_OnUpdate2(self)
+			limeMember_UpdateBuffs(self)
 			limeMember_UpdateRaidIconTarget(self)
 			limeMember_UpdateDisplayText(self)
 			limeMember_UpdateCenterStatusIcon(self)
@@ -993,7 +998,7 @@ eventHandler.UNIT_MAXPOWER = function(self, unit, powerType)
 		end
 	end
 end
-eventHandler.UNIT_POWER = function(self, unit, powerType)
+eventHandler.UNIT_POWER_UPDATE = function(self, unit, powerType)
 	if unit == self.displayedUnit then
 		if powerType == "ALTERNATE" then
 			limeMember_UpdatePowerBarAlt(self)
@@ -1024,6 +1029,7 @@ eventHandler.UNIT_AURA = function(self, unit)
 		limeMember_UpdateAura(self) --taint error
 		limeMember_UpdateSpellTimer(self)
 		limeMember_UpdateSurvivalSkill(self)
+		limeMember_UpdateBuffs(self)
 		if self.optionTable.outline.type == 1 then
 			limeMember_UpdateOutline(self)
 		end

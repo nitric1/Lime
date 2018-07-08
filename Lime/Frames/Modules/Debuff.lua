@@ -4,12 +4,11 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 local _G = _G
 local lime = _G[...]
 local GetTime = _G.GetTime
+local PlaySoundFile = _G.PlaySoundFile
 local UnitBuff = _G.UnitBuff
 local UnitDebuff = _G.UnitDebuff
-local PlaySoundFile = _G.PlaySoundFile
 local SM = LibStub("LibSharedMedia-3.0")
 local LRD = LibStub("LibLimeDispel-1.0")
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 local ignoreAuraId = {}
 local ignoreAuraName = {}
@@ -99,7 +98,7 @@ function limeMember_UpdateAura(self)
 	local baIndex, baIsBuff, baIcon, baCount, baDuration, baExpirationTime
 	local dispelable, dispelType
 	for i = 1, 40 do
-		local name, _, icon, count, debuffType, duration, expirationTime, _, _, _, spellId, _, isBossAura = UnitDebuff(self.displayedUnit, i)
+		local name, icon, count, debuffType, duration, expirationTime, _, _, _, spellId, _, isBossAura = UnitDebuff(self.displayedUnit, i)
 		-- 약화 효과 체크
 		if name then
 			if not ignoreAuraId[spellId] and not ignoreAuraName[name] then
@@ -107,7 +106,7 @@ function limeMember_UpdateAura(self)
 				if isBossAura and not bossAuraId[spellId] and not bossAuraName[name] and lime.db.userAura[spellId] ~= false and lime.db.userAura[name] ~= false then
 					lime.db.userAura[spellId] = true
 					bossAuraId[spellId] = true
-					lime:Message("|cffff6600"..name.."|r"..L["Lime_register_BossAura"]) 
+					lime:Message("|cffff6600"..name.."|r"..L["Lime_register_BossAura"])
 				end
 				if self.optionTable.useBossAura and (not baIndex or bsIsBuff) and (bossAuraId[spellId] or bossAuraName[name]) then--약화 효과는 항상 강화 효과에 우선합니다.
 					-- 중요 효과 내용 임시 테이블에 저장
@@ -141,12 +140,12 @@ function limeMember_UpdateAura(self)
 			end
 		end
 		-- 강화 효과 체크
-		local nameB, _, iconB, countB, _, durationB, expirationTimeB, _, _, _, spellIdB, _, isBossAuraB = UnitBuff(self.displayedUnit, i)
+		local nameB, iconB, countB, _, durationB, expirationTimeB, _, _, _, spellIdB, _, isBossAuraB = UnitBuff(self.displayedUnit, i)
 		if isBossAuraB and self.optionTable.useBossAura and not ignoreAuraId[spellIdB] and not ignoreAuraName[nameB] and not baIndex then--보스효과로 지정된 경우만 체크합니다. (cpu 사용량 문제)
 			if isBossAuraB and not bossAuraId[spellIdB] and not bossAuraName[nameB] and lime.db.userAura[spellIdB] ~= false and lime.db.userAura[nameB] ~= false then
 				lime.db.userAura[spellIdB] = true
 				bossAuraId[spellIdB] = true
-				lime:Message("|cffff6600"..nameB.."|r"..L["Lime_register_BossAura"]) 
+				lime:Message("|cffff6600"..nameB.."|r"..L["Lime_register_BossAura"])
 			end
 			if bossAuraId[spellIdB] or bossAuraName[nameB] then
 				-- 중요 효과 내용 임시 테이블에 저장
@@ -252,10 +251,5 @@ lime.ignoreAura = {
 }
 
 lime.bossAura = {
------------------------- 8.0 PH
-
-
-
------------------------- WoW Legion Debuff
 
 }

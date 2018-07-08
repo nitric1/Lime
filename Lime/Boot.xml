@@ -8,6 +8,8 @@
 <Script file="Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua"/>
 <Script file="Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua"/>
 <Script file="Libs\LibLimeDispel-1.0\LibLimeDispel-1.0.lua"/>
+<Script file="Libs\LibAuras\LibAuras.lua"/>
+
 <Include file="Libs\LibUIDropDownMenu\LibUIDropDownMenu.xml"/>
 <Script file="Shared\Shared.lua"/>
 </Ui>

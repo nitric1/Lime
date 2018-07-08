@@ -53,7 +53,7 @@ function limeMember_UpdateResurrection(self)
 					self.resurrectionBar.startTime = castStart
 					self.resurrectionBar.endTime = castEnd
 					self.resurrectionBar.caster = GetUnitName(member.displayedUnit, true)
-					self.resurrectionBar.ticker = self.resurrectionBar.ticker or C_Timer.NewTicker(0.04, function() limeMember_OnUpdateResurrectionBar(self) end)
+					self.resurrectionBar.ticker = self.resurrectionBar.ticker or C_Timer.NewTicker(0.05, function() limeMember_OnUpdateResurrectionBar(self) end)
 					self.resurrectionBar:SetMinMaxValues(castStart, castEnd)
 					self.resurrectionBar:SetValue(GetTime() * 1000)
 					self.resurrectionBar:Show()

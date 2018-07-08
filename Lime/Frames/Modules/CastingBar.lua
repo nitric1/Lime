@@ -33,22 +33,22 @@ end
 
 function limeMember_UpdateCastingBar(self)
 	if lime.db.units.useCastingBar then
-		self.castingBar.startTime, self.castingBar.endTime = select(5, UnitCastingInfo(self.displayedUnit))
+		self.castingBar.startTime, self.castingBar.endTime = select(4, UnitCastingInfo(self.displayedUnit))
 		if self.castingBar.startTime then
 			self.castingBar.startTime, self.castingBar.endTime, self.castingBar.isChannel = self.castingBar.startTime / 1000, self.castingBar.endTime / 1000
 			self.castingBar:SetMinMaxValues(self.castingBar.startTime, self.castingBar.endTime)
 			if not self.castingBar.ticker then
-				self.castingBar.ticker = C_Timer.NewTicker(0.04, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
+				self.castingBar.ticker = C_Timer.NewTicker(0.05, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
 			end
 			limeMember_CastingBarOnUpdate(self.castingBar)
 			return self.castingBar:Show()
 		else
-			self.castingBar.startTime, self.castingBar.endTime = select(5, UnitChannelInfo(self.displayedUnit))
+			self.castingBar.startTime, self.castingBar.endTime = select(4, UnitChannelInfo(self.displayedUnit))
 			if self.castingBar.startTime then
 				self.castingBar.startTime, self.castingBar.endTime, self.castingBar.isChannel = self.castingBar.startTime / 1000, self.castingBar.endTime / 1000, true
 				self.castingBar:SetMinMaxValues(self.castingBar.startTime, self.castingBar.endTime)
 				if not self.castingBar.ticker then
-					self.castingBar.ticker = C_Timer.NewTicker(0.04, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
+					self.castingBar.ticker = C_Timer.NewTicker(0.05, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
 				end
 				limeMember_CastingBarOnUpdate(self.castingBar)
 				return self.castingBar:Show()

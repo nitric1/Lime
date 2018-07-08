@@ -1,4 +1,5 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "koKR", true)
+local L = LibStub("AceLocale-3.0"):NewLocale("Lime", "koKR", false)
+if not L then return end
 
 L["Lime_leftclick"] = "좌클릭: 환경 설정"
 L["Lime_rightclick"] = "우클릭: 메뉴"
@@ -29,133 +30,120 @@ L["Lime_ghost"] = "유령"
 L["Lime_dead"] = "죽음"
 L["Lime_afk"] = "자리"
 
-L["방벽"] = true 
-L["최저"] = true 
-L["사기"] = true 
-L["투혼"] = true 
-L["주반"] = true 
-L["격재"] = true 
-L["넬타"] = true 
-
-L["회피"] = true 
-L["그망"] = true 
-L["교란"] = true 
-L["소멸"] = true 
-L["반격"] = true 
-
-L["무적"] = true 
-L["가호"] = true
-L["헌수"] = true 
-L["고대"] = true 
-L["오라"] = true 
-L["눈"] = true 
-
-L["얼방"] = true 
-L["투명"] = true 
-L["상투"] = true 
-
-L["죽척"] = true 
-L["위장"] = true 
-L["거북"] = true 
-
-L["구원"] = true 
-L["분산"] = true 
-L["흡선"] = true 
-L["소실"] = true 
-
-L["생본"] = true 
-L["껍질"] = true 
-L["분노"] = true 
-
-L["얼인"] = true 
-L["흡혈"] = true 
-L["춤룬"] = true 
-L["대보"] = true 
-L["룬전"] = true 
-L["망령"] = true 
-L["시체"] = true 
-
-L["영혼"] = true 
-L["고인"] = true 
-L["에테"] = true 
-
-L["결의"] = true 
-L["서약"] = true 
-
-L["강화"] = true 
-L["마해"] = true 
-L["해악"] = true 
-L["업보"] = true 
-L["민활"] = true 
-
-L["탈태"] = true 
-L["강화"] = true 
-L["황천"] = true 
-L["흐릿"] = true 
-
-L["보축"] = true 
-L["수호"] = true 
-L["고억"] = true 
-L["희축"] = true 
-L["무껍"] = true 
-L["고치"] = true 
-L["자극"] = true 
-L["여왕"] = true 
-L["주축"] = true 
-
-L["힘"] = true 
-L["방어도"] = true 
-L["은총"] = true 
-L["전쟁"] = true 
-
-L["쐐기"] = true 
+L["lime_survival_얼인"] = "얼인"
+L["lime_survival_흡혈"] = "흡혈"
+L["lime_survival_춤룬"] = "춤룬"
+L["lime_survival_대보"] = "대보"
+L["lime_survival_룬전"] = "룬전"
+L["lime_survival_탈태"] = "탈태"
+L["lime_survival_황천"] = "황천"
+L["lime_survival_흐릿"] = "흐릿"
+L["lime_survival_생본"] = "생본"
+L["lime_survival_껍질"] = "껍질"
+L["lime_survival_죽척"] = "죽척"
+L["lime_survival_위장"] = "위장"
+L["lime_survival_거북"] = "거북"
+L["lime_survival_얼방"] = "얼방"
+L["lime_survival_투명"] = "투명"
+L["lime_survival_상투"] = "상투"
+L["lime_survival_강화"] = "강화"
+L["lime_survival_마해"] = "마해"
+L["lime_survival_업보"] = "업보"
+L["lime_survival_민활"] = "민활"
+L["lime_survival_강화"] = "강화"
+L["lime_survival_해악"] = "해악"
+L["lime_survival_무적"] = "무적"
+L["lime_survival_가호"] = "가호"
+L["lime_survival_헌수"] = "헌수"
+L["lime_survival_고대"] = "고대"
+L["lime_survival_오숙"] = "오숙"
+L["lime_survival_눈"] = "눈"
+L["lime_survival_구원"] = "구원"
+L["lime_survival_분산"] = "분산"
+L["lime_survival_흡선"] = "흡선"
+L["lime_survival_소실"] = "소실"
+L["lime_survival_희망"] = "희망"
+L["lime_survival_회피"] = "회피"
+L["lime_survival_그망"] = "그망"
+L["lime_survival_소멸"] = "소멸"
+L["lime_survival_반격"] = "반격"
+L["lime_survival_영혼"] = "영혼"
+L["lime_survival_고인"] = "고인"
+L["lime_survival_에테"] = "에테"
+L["lime_survival_결의"] = "결의"
+L["lime_survival_방벽"] = "방벽"
+L["lime_survival_최저"] = "최저"
+L["lime_survival_투혼"] = "투혼"
+L["lime_survival_주반"] = "주반"
+L["lime_survival_격재"] = "격재"
+L["lime_survival_쇠날"] = "쇠날"
+L["lime_survival_보축"] = "보축"
+L["lime_survival_수호"] = "수호"
+L["lime_survival_고억"] = "고억"
+L["lime_survival_희축"] = "희축"
+L["lime_survival_무껍"] = "무껍"
+L["lime_survival_고치"] = "고치"
+L["lime_survival_자극"] = "자극"
+L["lime_survival_여왕"] = "여왕"
+L["lime_survival_주축"] = "주축"
+L["lime_survival_민첩"] = "민첩"
+L["lime_survival_힘"] = "힘"
+L["lime_survival_체력"] = "체력"
+L["lime_survival_지능"] = "지능"
+L["lime_survival_죽음"] = "죽음"
+L["lime_survival_방어도"] = "방어도"
+L["lime_survival_피"] = "피"
+L["lime_survival_마나"] = "마나"
+L["lime_survival_쐐기"] = "쐐기"
+L["lime_survival_교란"] = "교란"
+L["lime_survival_약병"] = "약병"
 
 -- Lime Option
 L["lime_a"] = "기본"
 L["lime_b"] = "외형"
 L["lime_c"] = "기능"
 
-L["사용"] = true
-L["정렬 및 배치"] = true
-L["클릭 시전"] = true
-L["주문 타이머"] = true
-L["설정 관리"] = true
-L["호환성"] = true
+L["사용"] = "사용"
+L["정렬 및 배치"] = "정렬 및 배치"
+L["클릭 시전"] = "클릭 시전"
+L["주문 타이머"] = "주문 타이머"
+L["설정 관리"] = "설정 관리"
+L["호환성"] = "실험실"
 
-L["프레임"] = true
-L["생명력 바 및 직업 색상"] = true
-L["자원 바"] = true
-L["이름"] = true
-L["파티 이름표"] = true
-L["배경 테두리"] = true
-L["약화 효과 색상"] = true
+L["프레임"] = "프레임"
+L["생명력 바 및 직업 색상"] = "생명력 바 및 직업 색상"
+L["자원 바"] = "자원 바"
+L["이름"] = "이름"
+L["파티 이름표"] = "파티 이름표"
+L["배경 테두리"] = "배경 테두리"
+L["약화 효과 색상"] = "약화 효과 색상"
 
-L["위협 수준"] = true
-L["사정거리"] = true
-L["외곽선"] = true
-L["생명력 문자"] = true
-L["치유 및 흡수"] = true
-L["적대적 대상 표시"] = true
-L["생존기"] = true
-L["공격대 강화 효과"] = true
-L["약화 효과"] = true
-L["해제 가능 효과"] = true
-L["중요 효과"] = true
-L["무시할 효과"] = true
-L["시전 바"] = true
-L["상황 표시 바"] = true
-L["부활 바"] = true
-L["역할 아이콘"] = true
-L["전술 목표 아이콘"] = true
-L["중앙 상태 아이콘"] = true
-L["파티장 아이콘"] = true
+L["위협 수준"] = "위협 수준"
+L["사정거리"] = "사정거리"
+L["외곽선"] = "외곽선"
+L["생명력 문자"] = "생명력 문자"
+L["치유 및 흡수"] = "치유 및 흡수"
+L["적대적 대상 표시"] = "적대적 대상 표시"
+L["생존기"] = "생존기"
+L["공격대 강화 효과"] = "공격대 강화 효과"
+L["약화 효과"] = "약화 효과"
+L["해제 가능 효과"] = "해제 가능 효과"
+L["중요 효과"] = "중요 효과"
+L["무시할 효과"] = "무시할 효과"
+L["시전 바"] = "시전 바"
+L["상황 표시 바"] = "상황 표시 바"
+L["부활 바"] = "부활 바"
+L["역할 아이콘"] = "역할 아이콘"
+L["전술 목표 아이콘"] = "전술 목표 아이콘"
+L["중앙 상태 아이콘"] = "중앙 상태 아이콘"
+L["파티장 아이콘"] = "파티장 아이콘"
 
 L["Lime_Desc01"] = "공격대 창 사용 여부를 설정합니다."
 L["Lime_Desc02"] = "공격대를 정렬하고 배치합니다. 미리보기 기능으로 보다 쉽게 설정을 할 수 있습니다."
 L["Lime_Desc03"] = "마우스 버튼과 CTRL, ALT, SHIFT 키를 조합하여 간편하게 특정 기술을 시전할 수 있게 설정합니다."
-L["Lime_Desc04"] = "강화 및 약화 효과를 아이콘과 남은 시간으로 추적합니다. 강화 및 약화 효과의 주문 이름이나 주문 ID를 입력 후 ENTER 키를 눌러야 변경 사항이 적용됩니다."
+L["Lime_Desc04"] = "강화 및 약화 효과를 아이콘과 남은 시간으로 추적합니다. 강화 및 약화 효과의 주문 ID를 입력 후 ENTER 키를 눌러야 변경 사항이 적용됩니다."
 L["Lime_Desc05"] = "설정을 관리할 수 있습니다."
-L["Lime_Desc06"] = "호환성 설정을 할 수 있습니다. 해당 기능을 잘 모르면 절대 설정을 건들지 마세요."
+L["Lime_Desc06"] = "실험실은 lime의 고급 기능을 테스트할 수 있습니다."
 
 L["Lime_Desc07"] = "공격대원 창의 외형을 설정합니다."
 L["Lime_Desc08"] = "공격대원 창의 생명력 바 외형과 직업 색상을 설정합니다."
@@ -186,27 +174,27 @@ L["Lime_Desc30"] = "전술 목표 아이콘을 표시할 방법을 설정합니�
 L["Lime_Desc31"] = "인스턴스 아이콘, 위상 아이콘, 부활 아이콘을 표시합니다."
 L["Lime_Desc32"] = "파티장 또는 공격대장 아이콘을 표시합니다."
 
-L["미리 보기 끄기"] = true
-L["미리 보기 - 5인"] = true
-L["미리 보기 - 10인"] = true
-L["미리 보기 - 20인"] = true
-L["미리 보기 - 25인"] = true
-L["미리 보기 - 30인"] = true
-L["미리 보기 - 40인"] = true
+L["미리 보기 끄기"] = "미리 보기 끄기"
+L["미리 보기 - 5인"] = "미리 보기 - 5인"
+L["미리 보기 - 10인"] = "미리 보기 - 10인"
+L["미리 보기 - 20인"] = "미리 보기 - 20인"
+L["미리 보기 - 25인"] = "미리 보기 - 25인"
+L["미리 보기 - 30인"] = "미리 보기 - 30인"
+L["미리 보기 - 40인"] = "미리 보기 - 40인"
 L["lime_previewDropdown"] = "미리 보기를 활성화 또는 비활성화합니다."
 
-L["좌측 상단"] = true
-L["상단"] = true
-L["우측 상단"] = true
-L["좌측"] = true 
-L["중앙"] = true 
-L["우측"] = true 
-L["좌측 하단"] = true 
-L["하단"] = true
-L["우측 하단"] = true
+L["좌측 상단"] = "좌측 상단"
+L["상단"] = "상단"
+L["우측 상단"] = "우측 상단"
+L["좌측"] = "좌측"
+L["중앙"] = "중앙"
+L["우측"] = "우측"
+L["좌측 하단"] = "좌측 하단"
+L["하단"] = "하단"
+L["우측 하단"] = "우측 하단"
 
-L["초"] = true
-L["도"] = true
+L["초"] = "초"
+L["도"] = "도"
 
 L["lime_advanced_01"] = "호환성 경고 메시지 표시"
 L["lime_advanced_desc_01"] = "호환성에 문제가 있는 애드온이 감지되면 경고 메시지를 표시합니다."
@@ -216,12 +204,16 @@ L["lime_advanced_03"] = "타이머"
 L["lime_advanced_desc_03"] = "레이드 프레임을 반복적으로 새로 고치는 주기입니다. 주기를 수정하려면 LUA를 직접 편집해야 합니다."
 L["lime_advanced_04"] = "탑승물 추적 여부"
 L["lime_advanced_desc_04"] = "탑승물 추적 여부를 수정하려면 LUA를 직접 편집해야 합니다."
-L["lime_advanced_05"] = "모든 경고 무시"
+L["lime_advanced_05"] = "|cffff6600모든 경고 무시|r"
 L["lime_advanced_desc_05"] = "호환성 경고를 무시하고 제한된 기능을 강제로 작동하도록 합니다. 이 기능은 상당히 위험한 기능이오니, 해당 기능을 잘 모른다면 체크를 하지 마세요."
-L["lime_advanced_06"] = "아군 이름표를 표시하면 Lime의 툴팁 표시 기능이 비활성화됩니다.\n\n모든 경고를 무시하도록 설정하면 툴팁 기능을 다시 사용할 수 있으나\n심각한 충돌이 발생할 가능성이 높습니다."
+L["lime_advanced_06"] = "|cffff6600아군 이름표를 표시하면 Lime의 툴팁 표시 기능이 비활성화됩니다.\n\n모든 경고를 무시하도록 설정하면 툴팁 기능을 다시 사용할 수 있으나\n심각한 충돌이 발생할 가능성이 높습니다.|r"
+L["lime_advanced_07"] = "ALT 드래그 허용"
+L["lime_advanced_desc_07"] = "잠금 상태일 때 ALT를 이용하여 공격대 프레임을 드래그할 수 있습니다."
 
-L["사용하기"] = true 
-L["사용 안함"] = true
+
+
+L["사용하기"] = "사용하기"
+L["사용 안함"] = "사용 안함"
 
 L["lime_basic_01"] = "사용"
 L["lime_basic_desc_01"] = "공격대 창 사용 여부를 설정합니다."
@@ -259,30 +251,30 @@ L["lime_basic_17"] = "이름 순 정렬"
 L["lime_basic_desc_17"] = "공격대원을 이름 순으로 정렬합니다."
 L["lime_basic_18"] = "버튼을 클릭하여 해당 파티를 보이거나 숨기게 합니다. 버튼을 드래그하여 파티의 정렬 순서를 정할 수 있습니다."
 
-L["항상"] = true
-L["파티 및 공격대"] = true
-L["공격대"] = true
-L["표시 안함"] = true
-L["항상 표시"] = true
-L["전투 중이 아닐 때만 표시"] = true
-L["전투 중일 때만 표시"] = true
-L["마우스를 올릴 때 표시"] = true
+L["항상"] = "항상"
+L["파티 및 공격대"] = "파티 및 공격대"
+L["공격대"] = "공격대"
+L["표시 안함"] = "표시 안함"
+L["항상 표시"] = "항상 표시"
+L["전투 중이 아닐 때만 표시"] = "전투 중이 아닐 때만 표시"
+L["전투 중일 때만 표시"] = "전투 중일 때만 표시"
+L["마우스를 올릴 때 표시"] = "마우스를 올릴 때 표시"
 
-L["파티별"] = true
-L["직업별"] = true
-L["개 그룹"] = true
-L["세로 방향"] = true
-L["가로 방향"] = true
+L["파티별"] = "파티별"
+L["직업별"] = "직업별"
+L["개 그룹"] = "개 그룹"
+L["세로 방향"] = "세로 방향"
+L["가로 방향"] = "가로 방향"
 
-L["대상 선택"] = true
-L["메뉴"] = true
-L["마법책 - "] = true
-L["마법책"] = true
-L["없음"] = true
-L["특성: %s"] = true
+L["대상 선택"] = "대상 선택"
+L["메뉴"] = "메뉴"
+L["마법책 - "] = "마법책 - "
+L["마법책"] = "마법책"
+L["없음"] = "없음"
+L["특성: %s"] = "특성: %s"
 
 L["lime_profile_current"] = "현재 설정: |cffffffff"
-L["설정 목록"] = true
+L["설정 목록"] = "설정 목록"
 L["lime_profile_01"] = "현재 캐릭터에 설정 적용"
 L["lime_profile_desc_01"] = "현재 캐릭터에 선택된 설정을 적용합니다."
 L["lime_profile_02"] = "새 설정 만들기"
@@ -356,31 +348,31 @@ L["lime_layout_29"] = "색상 초기화"
 L["lime_layout_desc_29"] = "설정한 색상을 초깃값으로 되돌립니다."
 L["lime_layout_30"] = "약화 효과의 색상을 변경합니다."
 
-L["우호적 대상"] = true
-L["적대적 대상"] = true
-L["탈것 탑승 시"] = true
-L["오프라인일 때"] = true
-L["전사"] = true
-L["도적"] = true
-L["사제"] = true
-L["마법사"] = true
-L["흑마법사"] = true
-L["사냥꾼"] = true
-L["드루이드"] = true
-L["주술사"] = true
-L["성기사"] = true
-L["죽음의 기사"] = true
-L["수도사"] = true
-L["악마사냥꾼"] = true
+L["우호적 대상"] = "우호적 대상"
+L["적대적 대상"] = "적대적 대상"
+L["탈것 탑승 시"] = "탈것 탑승 시"
+L["오프라인일 때"] = "오프라인일 때"
+L["전사"] = "전사"
+L["도적"] = "도적"
+L["사제"] = "사제"
+L["마법사"] = "마법사"
+L["흑마법사"] = "흑마법사"
+L["사냥꾼"] = "사냥꾼"
+L["드루이드"] = "드루이드"
+L["주술사"] = "주술사"
+L["성기사"] = "성기사"
+L["죽음의 기사"] = "죽음의 기사"
+L["수도사"] = "수도사"
+L["악마사냥꾼"] = "악마사냥꾼"
 
-L["마법"] = true
-L["저주"] = true
-L["질병"] = true
-L["독"] = true
-L["무속성"] = true
+L["마법"] = "마법"
+L["저주"] = "저주"
+L["질병"] = "질병"
+L["독"] = "독"
+L["무속성"] = "무속성"
 
-L["가로"] = true
-L["세로"] = true
+L["가로"] = "가로"
+L["세로"] = "세로"
 
 L["lime_func_1"] = "위협 수준 화살표 보기"
 L["lime_func_2"] = "위협 수준 소리 재생 조건"
@@ -433,13 +425,13 @@ L["lime_func_spelltimer_3"] = "의 사용 여부 및 강화 및 약화 효과를
 L["lime_func_spelltimer_4"] = "의 위치를 설정합니다."
 L["lime_func_spelltimer_5"] = "의 표시 방식을 설정합니다."
 L["lime_func_spelltimer_6"] = "의 크기를 설정합니다."
-L["lime_func_spelltimer_7"] = "로 사용할 강화 효과 혹은 약화 효과의 이름이나 주문 번호를 입력하세요. 입력 후 꼭 ENTER 키를 눌러야 변경 사항이 적용됩니다."
+L["lime_func_spelltimer_7"] = "로 사용할 강화 효과 혹은 약화 효과의 주문 번호를 입력하세요. 입력 후 꼭 ENTER 키를 눌러야 변경 사항이 적용됩니다."
 
-L["위치"] = true
-L["표시 방식"] = true
-L["효과 이름"] = true
-L["크기"] = true
-L["색상"] = true
+L["위치"] = "위치"
+L["표시 방식"] = "표시 방식"
+L["주문 ID"] = "주문 ID"
+L["크기"] = "크기"
+L["색상"] = "색상"
 
 L["lime_func2_1"] = "생존기 보기"
 L["lime_func2_desc_1"] = "플레이어가 시전한 생존기를 표시합니다."
@@ -508,7 +500,7 @@ L["lime_func_aura_36"] = "중요 효과 아이콘의 크기를 설정합니다."
 L["lime_func_aura_37"] = "투명도"
 L["lime_func_aura_38"] = "중요 효과 아이콘의 투명도를 설정합니다."
 L["lime_func_aura_39"] = "시계 텍스처 표시"
-L["lime_func_aura_40"] = "중요 효과의 남은 시간을 시계 형식으로 표시합니다." 
+L["lime_func_aura_40"] = "중요 효과의 남은 시간을 시계 형식으로 표시합니다."
 L["lime_func_aura_41"] = "시간 표시 방식"
 L["lime_func_aura_42"] = "중요 효과의 시간 표시 방식을 설정합니다."
 

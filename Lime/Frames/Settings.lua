@@ -1,5 +1,5 @@
 --[[
- * * * * * * * 경고! * * * * * * * 
+ * * * * * * * 경고! * * * * * * *
 환경 변수를 임의로 수정하면 치명적인 오류가 발생합니다.
 애드온에 대해 잘 아는 사람만 아래 환경 변수를 수정하시기 바랍니다.
 ]]
@@ -23,12 +23,12 @@ local colorYellow = { 1, 1, 0 }
 local default = {
 	run = true,
 	use = 1,	-- 1:항상 2:파티 및 공격대 3:공격대
-	lock = false, scale = 1, 
+	lock = false, scale = 1, lockmasterkey = false,
 	-- vflag: 탑승물 추적, cflag: 호환성 플래그, cwarning = 호환성 오류 메시지 출력 여부
 	vflag = false, cflag = true, cwarning = true, cpass = false,
 	-- globaltimer = Lime의 반응 속도
-	-- 반응 속도를 0.5초 이상 설정하면 레이드 프레임이 너무 느리게 정보가 반영되며, 반응 속도를 0.25초 이하로 하면 CPU 사용량이 폭증합니다. 
-	globaltimer = 0.5, 
+	-- 반응 속도를 1.0초 이상 설정하면 레이드 프레임이 너무 느리게 정보가 반영되며, 반응 속도를 0.25초 이하로 하면 CPU 사용량이 폭증합니다.
+	globaltimer = 0.5,
 	-- 환경 설정
 	anchor = "TOPLEFT", dir = 1, width = 80, height = 50, offset = 1, highlightAlpha = 0.5,
 	border = true, borderBackdrop = { 0, 0, 0, 0 }, borderBackdropBorder = { 0.58, 0.58, 0.58, 1 },
@@ -75,6 +75,7 @@ local default = {
 		},
 		debuffIcon = 5, debuffIconSize = 10, debuffIconPos = "TOPRIGHT", debuffIconType = 1,	-- 1:Icon+Color 2:Icon 3:Color
 		debuffIconFilter = { Magic = true, Curse = true, Disease = true, Poison = true, none = true },
+		buffIconSize = 12, buffIconPos = "LEFT",
 		useAggroArrow = true, aggroType = 1, -- 1:사용 안함 2:항상 3:파티/공격대 4:공격대
 		aggroGain = "None", aggroLost = "None",
 		useDispelColor = false,
@@ -107,8 +108,8 @@ local default = {
 		FOCUS = { PowerBarColor.FOCUS.r, PowerBarColor.FOCUS.g, PowerBarColor.FOCUS.b },
 		ENERGY = { PowerBarColor.ENERGY.r, PowerBarColor.ENERGY.g, PowerBarColor.ENERGY.b },
 		RUNIC_POWER = { PowerBarColor.RUNIC_POWER.r, PowerBarColor.RUNIC_POWER.g, PowerBarColor.RUNIC_POWER.b },
-		LUNAR_POWER = { PowerBarColor.LUNAR_POWER.r, PowerBarColor.LUNAR_POWER.g, PowerBarColor.LUNAR_POWER.b }, --- Balance Druid 
-		INSANITY = { PowerBarColor.INSANITY.r, PowerBarColor.INSANITY.g, PowerBarColor.INSANITY.b }, ---Shadow Priest 
+		LUNAR_POWER = { PowerBarColor.LUNAR_POWER.r, PowerBarColor.LUNAR_POWER.g, PowerBarColor.LUNAR_POWER.b }, --- Balance Druid
+		INSANITY = { PowerBarColor.INSANITY.r, PowerBarColor.INSANITY.g, PowerBarColor.INSANITY.b }, ---Shadow Priest
 		FURY = { PowerBarColor.FURY.r, PowerBarColor.FURY.g, PowerBarColor.FURY.b }, --- Demon Hunter
 		PAIN = { PowerBarColor.PAIN.r, PowerBarColor.PAIN.g, PowerBarColor.PAIN.b }, --- Demon Hunter
 		MAELSTROM = { PowerBarColor.MAELSTROM.r, PowerBarColor.MAELSTROM.g, PowerBarColor.MAELSTROM.b }, --- Enhancement Shaman
