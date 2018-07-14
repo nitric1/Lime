@@ -326,7 +326,7 @@ function Option:CreateBuffCheckMenu(menu, parent)
 	end
 	menu.size = LBO:CreateWidget("Slider", parent, L["크기"], L["lime_func_buff_3"], nil, nil, nil,
 		function()
-			return lime.db.units.buffIconSize, 8, 20, 1, "픽셀"
+			return lime.db.units.buffIconSize, 8, 20, 1, "px"
 		end,
 		function(v)
 			lime.db.units.buffIconSize = v
