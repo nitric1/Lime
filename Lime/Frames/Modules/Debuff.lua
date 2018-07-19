@@ -248,6 +248,7 @@ lime.ignoreAura = {
 	[160455] = true, -- Fatigued
 	[206151] = true, -- 도전자의 짐(쐐기 신화)
 	[234143] = true, -- 무너지는 미래의 반지
+	[264689] = true,
 }
 
 lime.bossAura = {

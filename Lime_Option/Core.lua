@@ -66,7 +66,8 @@ local menuList = {
 }
 Option.dropdownTable = {
 	["아이콘"] = { L["좌측 상단"], L["상단"], L["우측 상단"], L["좌측"], L["중앙"], L["우측"], L["좌측 하단"], L["하단"], L["우측 하단"] },
-	["아이콘변환"] = { [L["좌측 상단"]] = "TOPLEFT", [L["상단"]] = "TOP", [L["우측 상단"]] = "TOPRIGHT", [L["좌측"]] = "LEFT", [L["중앙"]] = "CENTER", [L["우측"]] = "RIGHT", [L["좌측 하단"]] = "BOTTOMLEFT", [L["하단"]] = "BOTTOM", [L["우측 하단"]] = "BOTTOMRIGHT", TOPLEFT = L["좌측 상단"], TOP = L["상단"], TOPRIGHT = L["우측 상단"], LEFT = L["좌측"], CENTER = L["중앙"], RIGHT = L["우측"], BOTTOMLEFT = L["좌측 하단"], BOTTOM = L["하단"], BOTTOMRIGHT = L["우측 하단"] }, ["징표"] = {},
+	["아이콘변환"] = { [L["좌측 상단"]] = "TOPLEFT", [L["상단"]] = "TOP", [L["우측 상단"]] = "TOPRIGHT", [L["좌측"]] = "LEFT", [L["중앙"]] = "CENTER", [L["우측"]] = "RIGHT", [L["좌측 하단"]] = "BOTTOMLEFT", [L["하단"]] = "BOTTOM", [L["우측 하단"]] = "BOTTOMRIGHT", TOPLEFT = L["좌측 상단"], TOP = L["상단"], TOPRIGHT = L["우측 상단"], LEFT = L["좌측"], CENTER = L["중앙"], RIGHT = L["우측"], BOTTOMLEFT = L["좌측 하단"], BOTTOM = L["하단"], BOTTOMRIGHT = L["우측 하단"] }, 
+	["징표"] = {},
 }
 for i = 1, 8 do
 	Option.dropdownTable["징표"][i] = ("|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_%d:0:0:0:-1|t %s"..L["lime_func_button_9"]):format(i, _G["RAID_TARGET_"..i])

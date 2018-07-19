@@ -1,3 +1,17 @@
+Lime r26 [2018.7.19.]
+- Remove Debug code
+
+
+Lime r25 [2018.7.19.]
+- You can register an Spelltimer with the Spell name. This consumes significant CPU resources.
+- Minor bug fixed.
+
+
+Lime r24 [2018.7.19.]
+- CPU usage has been reduced by about 10%.
+- Updates LibAura.
+
+
 Lime r23 [2018.7.14.]
 - Support the Battle for Azeroth Pre-Patch.
 

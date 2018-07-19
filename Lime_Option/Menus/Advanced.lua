@@ -60,4 +60,12 @@ function Option:CreateAdvancedMenu(menu, parent)
 	)
 	menu.lockmasterkey:SetPoint("TOP", menu.cpass, "BOTTOM", 0, -50)
 
+	menu.LimeAuraSoName = LBO:CreateWidget("CheckBox", parent, L["lime_advanced_08"], L["lime_advanced_desc_08"], nil, nil, true,
+		function() return lime.db.LimeAuraSoName end,
+		function(v)
+			lime.db.LimeAuraSoName = v
+		end
+	)
+	menu.LimeAuraSoName:SetPoint("TOP", menu.lockmasterkey, "BOTTOM", 0, -10)
+
 end

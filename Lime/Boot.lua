@@ -27,9 +27,13 @@ Thank you for providing your beta key.
 *********************************************************************]]
 
 -- Booting Addon
+-- AceLocale 언어 라이브러리 로딩
 local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
+
+-- LibAuras - Old UnitAura 호출 라이브러리
 --local LimeAura = LibStub:GetLibrary("LibAuras")
 
+-- 전역 함수 로딩
 local _G = _G
 local type = _G.type
 local pairs = _G.pairs
@@ -102,6 +106,7 @@ function lime:PLAYER_LOGIN()
 	end)
 end
 
+-- 공격대 프레임 위치 불러오기 함수
 function lime:LoadPosition()
 	self:SetUserPlaced(nil)
 	self:SetScale(self.db.scale)
@@ -113,6 +118,7 @@ function lime:LoadPosition()
 	end
 end
 
+-- 공격대 프레임 위치 저장 함수
 function lime:SavePosition()
 	if self.db.anchor == "TOPLEFT" then
 		self.db.px = self:GetLeft() * self.db.scale
@@ -129,10 +135,11 @@ function lime:SavePosition()
 	end
 end
 
+-- 공격대 프레임 툴팁 설정
 function lime:UpdateTooltipState()
-	if self.db.units.tooltip == 0 then
+	if self.db.units.tooltip == 0 then	
 		self.tootipState = nil
-	elseif self.db.units.tooltip == 1 then
+	elseif self.db.units.tooltip == 1 then	
 		self.tootipState = true
 	elseif InCombatLockdown() or UnitAffectingCombat("player") then
 		self.tootipState = self.db.units.tooltip == 3
@@ -146,6 +153,7 @@ function lime:UpdateTooltipState()
 	end
 end
 
+-- 공격대 프레임 테두리 업데이트
 function lime:BorderUpdate(fast)
 	if self.db.border then
 		if fast then
@@ -159,14 +167,17 @@ function lime:BorderUpdate(fast)
 	end
 end
 
+-- 전역 메시지 출력 함수
 function lime:Message(msg)
 	ChatFrame1:AddMessage("|cffa2e665<Lime> |r"..msg, 1, 1, 1)
 end
 
+-- 전역 파티장 처리 함수
 function lime:IsLeader()
 	return IsInGroup() and (UnitIsGroupLeader("player") or UnitIsGroupAssistant("player"))
 end
 
+-- 전역 공격대장 처리 함수
 function lime:IsLeader2()
 	if IsInRaid() then
 		return UnitIsGroupLeader("player") or UnitIsGroupAssistant("player")
@@ -176,6 +187,7 @@ function lime:IsLeader2()
 	return nil
 end
 
+-- 전역 오브젝트 초기화 로직
 local clearObjectFuncs = {}
 
 function lime:RegisterClearObject(func)
@@ -188,12 +200,15 @@ function lime:CallbackClearObject(object)
 	end
 end
 
+-- 기본 파티 창 숨기기
+--- 상속 인자 변경
 local function changeParent(frame, prevParent, newParent)
 	if frame and frame:GetParent() == prevParent then
 		frame:SetParent(newParent)
 	end
 end
 
+--- 기본 파티 창 숨기기 코드
 function lime:HideBlizzardPartyFrame(hide)
 	self.db.hideBlizzardParty = hide
 	if hide then
@@ -209,6 +224,7 @@ function lime:HideBlizzardPartyFrame(hide)
 	end
 end
 
+-- 헤더 높이 조정
 function lime:GetHeaderHeight(member)
 	if member then
 		if member > 0 then
@@ -225,6 +241,7 @@ function lime.GetSpellName(id)
 	return GetSpellInfo(id) or ""
 end
 
+-- 애완동물 대전 시에는 공격대 프레임을 숨겨줌
 local savedStatus = true
 
 function lime:PET_BATTLE_OPENING_START()
@@ -235,9 +252,11 @@ function lime:PET_BATTLE_CLOSE()
 	self:SetAttribute("run", savedStatus)
 end
 
+-- 테스트용 더미 프레임
 lime.dummyParent = CreateFrame("Frame")
 lime.dummyParent:Hide()
 
+-- 테두리 프레임 초기 설정
 lime.border = CreateFrame("Frame", nil, lime)
 lime.border:SetFrameLevel(1)
 lime.border:SetBackdrop({
@@ -249,10 +268,12 @@ lime.border:SetBackdrop({
 lime.border.updater = CreateFrame("Frame", nil, lime.border)
 lime.border.updater:Hide()
 
+-- 테두리 프레임 포인트 반환
 local function hasAllPoints(frame)
 	return frame:GetLeft() and frame:GetRight() and frame:GetTop() and frame:GetBottom()
 end
 
+-- 테두리 프레임 스크립트
 lime.border.updater:SetScript("OnUpdate", function(self)
 	self:Hide()
 	self = self:GetParent()
@@ -312,12 +333,13 @@ lime.border.updater:SetScript("OnUpdate", function(self)
 	self.headers, self.count, self.left, self.right, self.top, self.bottom, self.anchor = nil
 end)
 
+-- 환경 설정 프레임 초기설정
 lime.optionFrame = CreateFrame("Frame", lime:GetName().."OptionFrame", InterfaceOptionsFramePanelContainer)
 lime.optionFrame:Hide()
 lime.optionFrame.name = "lime"
 lime.optionFrame.addon = lime:GetName()
 lime.optionFrame:SetScript("OnShow", function(self)
-	if InCombatLockdown() then
+	if InCombatLockdown() then -- 전투 중에는 사용하지 못하도록 잠금 처리
 		if not self.title then
 			self.title = self:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 			self.title:SetText(self.name)
@@ -332,7 +354,7 @@ lime.optionFrame:SetScript("OnShow", function(self)
 		if not self:IsEventRegistered("PLAYER_REGEN_ENABLED") then
 			self:RegisterEvent("PLAYER_REGEN_ENABLED")
 		end
-	else
+	else -- 전투 중이 아니라면 환경 설정 애드온을 로딩
 		self:UnregisterEvent("PLAYER_REGEN_ENABLED")
 		self:SetScript("OnEvent", nil)
 		self:SetScript("OnShow", nil)
@@ -358,23 +380,24 @@ SLASH_lime5 = "/ㅛㅁ"
 SLASH_lime6 = "/ㅇㅍ"
 SLASH_lime7 = "/ㄹㅇ"
 
+-- 슬래시 명령어 스크립트
 local function handler(msg)
 local command, arg1 = strsplit(" ",msg)
-	if command == "s" and arg1 then
+	if command == "s" and arg1 then  -- /lime s sample (프로필 환경 설정의 인자를 제대로 넣음)
 		if limeDB.profiles[arg1] then
-			if not InCombatLockdown() then
+			if not InCombatLockdown() then  -- 전투 중이 아닐 때에만 프로필 교체를 허용
 				lime:SetProfile(arg1)
 				lime:ApplyProfile()
 				lime:Message(L[("Lime_applyprofile")]:format(arg1))
 			else
-				lime:Message(L[("Lime_profile_error1")])
+				lime:Message(L[("Lime_profile_error1")]) -- 전투 중일 때에는 프로필을 바꿀 수 없다고 경고
 			end
 		else
-			lime:Message(L[("Lime_profile_error2")]:format(arg1))
+			lime:Message(L[("Lime_profile_error2")]:format(arg1))  -- 해당되는 프로필이 없다고 알려줌
 		end
-	elseif command == "s" then
+	elseif command == "s" then		-- /lime s (프로필 환경 설정을 쳤으나 인자를 입력하지 않음)
 			lime:Message(L["Lime_profile_info"])
-	else
+	else -- 그 외의 명령어는 무조건 환경 설정을 열도록 함
 		InterfaceOptionsFrame_Show()
 		InterfaceOptionsFrame_OpenToCategory(lime.optionFrame)
 	end
@@ -407,6 +430,7 @@ BINDING_NAME_lime_DOREADYCHECK = L["Lime_ReadyCheck"]
 BINDING_NAME_lime_INITIATEROLEPOLL = L["Lime_RoleCheck"]
 _G["BINDING_NAME_CLICK limeOverlord:LeftButton"] = L["Lime_Toggle"]
 
+--- Broker and Map Button click Function
 function lime:OnClick(button)
 	if button == "RightButton" then
 		L_ToggleDropDownMenu(1, nil, lime.mapButtonMenu, "cursor")
@@ -418,7 +442,6 @@ function lime:OnClick(button)
 	end
 end
 
---- Broker and Map Button Function
 function lime:OnTooltip(tooltip)
 	tooltip = tooltip or GameTooltip
 	tooltip:AddLine("Lime".." "..lime.version)

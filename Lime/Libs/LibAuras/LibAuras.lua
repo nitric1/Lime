@@ -34,11 +34,11 @@ function lib:UnitAura(unitId, spellIdOrName, filter)
     local guid = getGuidAndCheckAuras(unitId)
     if not guid then return end
 
-    local result = getBuff(guid, spellIdOrName, filter or "")
-    if not result then
+    local result = {getBuff(guid, spellIdOrName, filter or "")}
+    if #result < 2 then
         return getDebuff(guid, spellIdOrName, filter or "")
     end
-    return result
+    return unpack(result)
 end
 
 local FILTERS = {
@@ -158,3 +158,38 @@ addAura = function(unitId, guid, index, type)
     end
     return true
 end
+
+-- DEBUG stuff
+--[[
+function libAurasTest()
+    print("Starting Tests")
+    LA = LibStub:GetLibrary("LibAuras")
+    print(":UnitAura(\"player\", 186406) (Sign of the Critter)")
+    print(LA:UnitAura("player", 186406))
+    print(":UnitBuff(\"pet\", \"Dire Frenzy\"")
+    print(LA:UnitBuff("pet", "Dire Frenzy"))
+    print(":UnitDeuff(\"target\", \"Growl\"")
+    print(LA:UnitDebuff("target", "Growl"))
+    LA:printAurasTable()
+end
+
+function lib:printAurasTable()
+    print(".AURAS")
+    for k in pairs(self.AURAS) do
+        print(k)
+        lib:printTable(self.AURAS[k], "  ")
+    end
+end
+
+function lib:printTable(table, prefix)
+    if not table then return end
+    for k in pairs(table) do
+        if type(table[k]) ~= "table" then
+            print(prefix .. k .. " = " .. tostring(table[k]))
+        else
+            print(prefix .. tostring(k))
+            lib:printTable(table[k], prefix .. "  ")
+        end
+    end
+end
+]]

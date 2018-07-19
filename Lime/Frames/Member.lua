@@ -1,3 +1,5 @@
+
+-- 전역 변수 및 지역 변수 초기화
 local _G = _G
 local lime, noOption = ...
 local pairs = _G.pairs
@@ -935,6 +937,7 @@ function limeMember_OnAttributeChanged(self, name, value)
 	end
 end
 
+-- 이벤트가 발생하면 해당 함수를 실행하도록 함
 eventHandler.PLAYER_ENTERING_WORLD = limeMember_UpdateAll
 eventHandler.GROUP_ROSTER_UPDATE = limeMember_UpdateAll
 eventHandler.PLAYER_ROLES_ASSIGNED = limeMember_UpdateRoleIcon

@@ -1,16 +1,21 @@
+-- 배열 초기화
 local lime = _G[...]
 lime.headers = {}
-lime:Execute("HEADERS = newtable(); LIST = newtable();")
+lime:Execute("HEADERS = newtable(); LIST = newtable();") 
 lime:SetAttribute("state-group", "solo")
 lime:SetAttribute("state-grouptype", "1")
 lime:SetAttribute("state-combat", "no")
+
+-- 감시 드라이버 작동
 RegisterStateDriver(lime, "group", "[group:raid]raid;[group:party]party;solo")
 RegisterStateDriver(lime, "grouptype", "[@raid36]8;[@raid31]7;[@raid26]6;[@raid21]5;[@raid16]4;[@raid11]3;[@raid6]2;1")
 RegisterStateDriver(lime, "combat", "[combat]yes;no")
 
+-- 전역 변수 초기화
 local _G = _G
 local select = _G.select
 
+-- 그룹 배열 스크립트
 for i = 0, 8 do
 	lime.headers[i] = CreateFrame("Frame", lime:GetName().."Group"..i, lime, "limeGroupHeaderTemplate")
 	lime:SetFrameRef("header", lime.headers[i])

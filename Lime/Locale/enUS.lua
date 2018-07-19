@@ -212,6 +212,9 @@ L["lime_advanced_desc_05"] = "Ignore the compatibility warning and force the lim
 L["lime_advanced_06"] = "|cffff6600Displaying the friendly nameplate disables the tooltip in Lime. If all alerts are ignored, the tooltip function can be reused but there is a high probability of a serious conflict.|r"
 L["lime_advanced_07"] = "Allow ALT Dragging"
 L["lime_advanced_desc_07"] = "When the raid frame is locked, you can drag it while pressing the ALT key."
+L["lime_advanced_08"] = "|cffff6600Allow Spelltimer Names|r"
+L["lime_advanced_desc_08"] = "Once checked, the Spelltimer can be entered by name. This consumes significant CPU resources."
+
 
 L["사용하기"] = "Enable"
 L["사용 안함"] = "Disable"
