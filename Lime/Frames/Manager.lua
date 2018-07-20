@@ -50,8 +50,10 @@ for i = 1, 8 do
 end
 _G["BINDING_NAME_CLICK limeWorldMarker9:LeftButton"] = WORLD_MARKER:gsub("%%d", ""):trim().." "..REMOVE_WORLD_MARKERS
 
+-- 공격대 관리자
 lime.manager = limeManager
 
+-- 공격대 관리자 유형 함수 (솔플/파티/공격대)
 local function checkMode()
 	if IsInRaid() then
 		if lime.manager.mode ~= "raid" then
@@ -70,6 +72,7 @@ local function checkMode()
 	return nil
 end
 
+-- 파티원이나 공격대원이 참여할 시 인원을 업데이트합니다.
 local function updateCount()
 	CRF_CountStuff()
 	if IsInGroup() then
@@ -80,6 +83,7 @@ local function updateCount()
 	lime.manager.content.memberCountLabel:SetFormattedText("%d/%d", RaidInfoCounts.totalAlive, RaidInfoCounts.totalCount)
 end
 
+-- 이벤트 발생 시 스크립트 실행
 lime.manager:SetScript("OnEvent", function(self, event, ...)
 	if event == "PLAYER_ENTERING_WORLD" then
 		checkMode()
@@ -110,6 +114,7 @@ lime.manager:SetScript("OnEvent", function(self, event, ...)
 	end
 end)
 
+-- ToggleButton 스크립트 
 lime.manager.toggleButton:RegisterForClicks("LeftButtonUp")
 lime.manager.toggleButton:SetScript("OnClick", function(self)
 	self = self:GetParent()
@@ -117,6 +122,7 @@ lime.manager.toggleButton:SetScript("OnClick", function(self)
 	lime:SetManagerMode()
 end)
 
+-- 잠금 버튼 스크립트 
 lime.manager.content.lockButton:SetScript("OnClick", function(self)
 	lime.db.lock = not lime.db.lock
 	self:SetText(lime.db.lock and UNLOCK or LOCK)
@@ -125,11 +131,13 @@ lime.manager.content.lockButton:SetScript("OnClick", function(self)
 	end
 end)
 
+-- 공격대 창 ON/OFF 버튼 스크립트 
 lime.manager.content.hideButton:SetScript("OnClick", function(self)
 	lime:SetAttribute("run", not lime.db.run)
 	LimeOverlord:GetScript("PostClick")(LimeOverlord)
 end)
 
+-- 다음 이벤트가 발생하면 공격대 관리자를 로딩
 function lime:ToggleManager()
 	if self.db.useManager then
 		self.manager:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -155,6 +163,7 @@ end
 
 local inCombat
 
+-- 공격대 관리자 유형 스크립트
 function lime:SetManagerMode()
 	if (self.db.use == 1 or (self.db.use == 2 and self.manager.mode ~= "solo") or (self.db.use == 3 and self.manager.mode == "raid")) and not onPetBattle then
 		self.manager.run = true
@@ -213,18 +222,21 @@ function lime:SetManagerMode()
 	end
 end
 
+-- 공격대 관리자 위치
+-- 공격대 관리자의 크기를 고려하여, 스크린에서 일정 범위를 벗어나면 위치를 이동합니다.
+-- 공격대 관리자를 펼칠 경우에, 계산 방식을 다르게 합니다.
 function lime:SetManagerPosition()
 	if not self.manager.run then return end
 	self.manager:ClearAllPoints()
 	self.manager.toggleButton:ClearAllPoints()
-	if self.db.managerPos < 45 or self.db.managerPos > 315 then
+	if self.db.managerPos < 45 or self.db.managerPos > 315 then  
 		self.manager.pos = "LEFT"
 		self.manager:SetSize(186, self.manager.mode == "raid" and 221 or 147)
 		self.manager.toggleButton:SetSize(15, 64)
 		self.manager.toggleButton:SetPoint("RIGHT", -2, 0)
 		self.manager.toggleButton:SetHitRectInsets(5, 0, 6, 6)
 		self.manager.toggleButton.normal:SetTexture("Interface\\RaidFrame\\RaidPanel-Toggle")
-		if self.manager.isExpand then
+		if self.manager.isExpand then  
 			self.manager:SetPoint("LEFT", UIParent, -5, -(self.manager:GetHeight() / 2 - select(2, UIParent:GetCenter())) * ((self.db.managerPos - (self.db.managerPos >= 315 and 360 or 0)) / 44))
 			self.manager.toggleButton.normal:SetTexCoord(0.53125, 1, 0, 1)
 			self.manager.content:ClearAllPoints()
@@ -292,6 +304,9 @@ function lime:SetManagerPosition()
 	end
 end
 
+
+-- 공격대 관리자 파티 조정
+-- 테이블 설정
 local partyGroupPosTable = {
 	{ "TOPLEFT", 1, 0 },
 	{ "TOP", -21, 0 },
@@ -312,6 +327,7 @@ local function groupSetPos(self)
 	self:SetFrameLevel(14)
 end
 
+-- 파티 조정 버튼의 동작을 설정
 local function groupOnClick(self)
 	lime.db.groupshown[self:GetID()] = not lime.db.groupshown[self:GetID()]
 	if lime.db.groupshown[self:GetID()] then
@@ -354,6 +370,7 @@ local function groupOnDragStop(self)
 	end
 end
 
+-- 파티 조정 버튼 생성
 lime.manager.group = {}
 for i = 1, 8 do
 	lime.manager.group[i] = lime.manager.content.partyGroup["group"..i]
@@ -364,6 +381,7 @@ for i = 1, 8 do
 	lime.manager.group[i]:SetScript("OnHide", groupOnHide)
 end
 
+-- 직업별 정렬 시 파티 조정 버튼을 변경
 local function classOnClick(self)
 	lime.db.classshown[self.class] = not lime.db.classshown[self.class]
 	if lime.db.classshown[self.class] then
@@ -383,6 +401,7 @@ local function lookupTable(tbl, value)
 	return nil
 end
 
+-- 직업별 정렬 시 테이블 설정
 local classGroupPosTable = {
 	{ "TOPLEFT", 3, 0 },
 	{ "TOPLEFT", 31, 0 },
@@ -408,6 +427,7 @@ local function classSetPos(self, index)
 	self:SetFrameLevel(14)
 end
 
+-- 직업별 정렬 버튼의 동작을 설정
 local function classOnDragStart(self)
 	lime.manager.group.drag = self
 	self:SetFrameLevel(15)
@@ -441,6 +461,7 @@ local function classOnDragStop(self)
 	end
 end
 
+-- 직업별 정렬 버튼을 초기화
 for i, class in ipairs(lime.classes) do
 	lime.manager.group[class] = lime.manager.content.classGroup[class]
 	lime.manager.group[class]:GetHighlightTexture():SetAlpha(0.25)
@@ -458,6 +479,7 @@ for i, class in ipairs(lime.classes) do
 	lime.manager.group[class]:SetScript("OnHide", classOnHide)
 end
 
+-- 정렬 창 통합 업데이트 스크립트
 function lime:UpdateManagerGroupFilter()
 	if self.manager.group.drag then
 		self.manager.group.drag:StopMovingOrSizing()

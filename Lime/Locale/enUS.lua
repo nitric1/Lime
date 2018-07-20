@@ -57,7 +57,7 @@ L["lime_survival_해악"] = "Dampen" -- "Dampen Harm"
 L["lime_survival_무적"] = "Shield" -- "Divine Shield"
 L["lime_survival_가호"] = "Protect" -- "Divine Protection"
 L["lime_survival_헌수"] = "Ardent" -- "Ardent Defender"
-L["lime_survival_고대"] = "Kings" -- "Guardian of Ancient Kings"
+L["lime_survival_고대"] = "King" -- "Guardian of Ancient Kings"
 L["lime_survival_오숙"] = "Aura" -- "Aura Mastery"
 L["lime_survival_눈"] = "Eye" -- "Eye for an Eye"
 

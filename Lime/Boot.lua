@@ -4,27 +4,28 @@ Lime Raid Frames
 Version 8.0.1
 
 CREDIT
-**********************************************************************
+*************************************
+Team Lime
 
-The current manager
+Current developer
 * Kim So-yeon (Rural Development Administration)
 
-A former manager
-* 꿀하니 (Ministry of Science and ICT, Wow@WindRunner Da Capo, Inven Raid Frame Fan Fix a.k.a 양파)
+Former developer
+* 양파 (Ministry of Science and ICT, Wow@WindRunner Da Capo)
 * 꿀꿀찡 (Wow@WindRunner Da Capo, Full tester)
 
+*************************************
 Thank you for helping us with the Raid Test and for using the Lime add-on for a long time.
 * 곡쟁이 (Wow@WindRunner 헨델과그레텔)
 * 양파링과새우깡 (Wow@WindRunner 아니 왜 욕을, Discord@핫도그)
 
 Thank you for your continuous bug report.
 * 어제본 (naver@ykbong)
-* Shin Mi-rae (Lezhin)
 
 Thank you for providing your beta key.
 * 운구차 (Ruliweb)
 
-*********************************************************************]]
+*************************************]]
 
 -- Booting Addon
 -- AceLocale 언어 라이브러리 로딩
@@ -447,6 +448,7 @@ function lime:OnClick(button)
 	end
 end
 
+--- broker 내용 함수
 function lime:OnTooltip(tooltip)
 	tooltip = tooltip or GameTooltip
 	tooltip:AddLine("Lime".." "..lime.version)
@@ -454,6 +456,7 @@ function lime:OnTooltip(tooltip)
 	tooltip:AddLine(L["Lime_rightclick"], 1, 1, 0)
 end
 
+--- 공격대 창 on/off 전역 함수
 local function runFunc()
 	if InCombatLockdown() then
 		lime:Message(L["Lime_profile_error1"])
@@ -463,10 +466,12 @@ local function runFunc()
 	end
 end
 
+--- 공격대 잠금 on/off 전역 함수
 local function lockFunc()
 	lime.db.lock = not lime.db.lock
 end
 
+--- 툴팁 / broker 우클릭 메뉴
 local function initializeDropDown()
 	local info = L_UIDropDownMenu_CreateInfo()
 	info.notCheckable = true
@@ -497,16 +502,16 @@ local function initializeDropDown()
 	info.text = CLOSE
 	L_UIDropDownMenu_AddButton(info)
 end
-
+--- 툴팁 / broker 우클릭 메뉴 프레임
 lime.mapButtonMenu = CreateFrame("Frame", "LimeMenu", lime, "L_UIDropDownMenuTemplate")
 lime.mapButtonMenu:SetID(1)
 lime.mapButtonMenu:SetWidth(10)
 lime.mapButtonMenu:SetHeight(10)
 L_UIDropDownMenu_Initialize(lime.mapButtonMenu, initializeDropDown)
 
--- 미호환 애드온 리스트 (Obsoleted)
+-- 미호환 기능 제한 함수
 function lime:CheckIncompatible()
-	if GetCVar("nameplateShowFriends")=="1" then
+	if GetCVar("nameplateShowFriends")=="1" then  --아군 이름표 작동 시 플래그를 변경
 		self.db.cflag = false
 	else
 		self.db.cflag = true

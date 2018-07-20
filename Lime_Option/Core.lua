@@ -80,7 +80,7 @@ if not Option.title then
 	Option.version:SetText(lime.version)
 	Option.version:SetPoint("LEFT", Option.title, "RIGHT", 4, 0)
 	Option.Author = Option:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-	Option.Author:SetText("|cff777777GitHub: Yangparing|r")
+	Option.Author:SetText("|cff777777MumuRing|r")
 	Option.Author:SetPoint("TOPRIGHT", -13, -13)
 end
 if Option.combatWarn then

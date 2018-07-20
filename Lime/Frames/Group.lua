@@ -6,16 +6,18 @@ lime:SetAttribute("state-group", "solo")
 lime:SetAttribute("state-grouptype", "1")
 lime:SetAttribute("state-combat", "no")
 
--- 감시 드라이버 작동
+-- 감시 드라이버 작동 (솔플/파티/공격대 감시)
 RegisterStateDriver(lime, "group", "[group:raid]raid;[group:party]party;solo")
 RegisterStateDriver(lime, "grouptype", "[@raid36]8;[@raid31]7;[@raid26]6;[@raid21]5;[@raid16]4;[@raid11]3;[@raid6]2;1")
+
+-- 감시 드라이버 작동 (전투 중인지 감시)
 RegisterStateDriver(lime, "combat", "[combat]yes;no")
 
 -- 전역 변수 초기화
 local _G = _G
 local select = _G.select
 
--- 그룹 배열 스크립트
+-- 그룹 배열 스크립트 초기화
 for i = 0, 8 do
 	lime.headers[i] = CreateFrame("Frame", lime:GetName().."Group"..i, lime, "limeGroupHeaderTemplate")
 	lime:SetFrameRef("header", lime.headers[i])
@@ -32,8 +34,11 @@ for i = 0, 8 do
 	lime.headers[i]:SetScript("OnHide", limeMember_OnDragStop)
 end
 lime:Hide()
+-- 속성 변경 시 후킹
 lime:HookScript("OnAttributeChanged", lime.StopMovingOrSizing)
+-- 상속 프레임 속성 지정 
 lime:SetAttribute("_childupdate-clearunit", "self:ChildUpdate(scriptid, message)")
+-- 그룹 배열 스크립트
 lime:SetAttribute("_onattributechanged", [=[
 	if name == "state-combat" and value == "yes" and self:GetAttribute("preview") then
 		self:SetAttribute("preview", nil)
