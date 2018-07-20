@@ -1,3 +1,7 @@
+Lime r28 [2018.7.20.]
+- Minor bugs fix
+
+
 Lime r27 [2018.7.19.]
 - Fixed bug: the skill book list doesn't appear correctly.
 - Add help for profile commands.
