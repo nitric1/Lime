@@ -383,7 +383,12 @@ SLASH_lime7 = "/ㄹㅇ"
 -- 슬래시 명령어 스크립트
 local function handler(msg)
 local command, arg1 = strsplit(" ",msg)
-	if command == "s" and arg1 then  -- /lime s sample (프로필 환경 설정의 인자를 제대로 넣음)
+	if command == "h" or command == "help" then
+		lime:Message(L["lime_profile_help"])  -- 도움말 출력
+	elseif command == "t" then  -- 공격대 창 ON/OFF
+		lime:SetAttribute("run", not lime.db.run)
+		LimeOverlord:GetScript("PostClick")(LimeOverlord)	
+	elseif command == "s" and arg1 then  -- /lime s sample (프로필 환경 설정의 인자를 제대로 넣음)
 		if limeDB.profiles[arg1] then
 			if not InCombatLockdown() then  -- 전투 중이 아닐 때에만 프로필 교체를 허용
 				lime:SetProfile(arg1)
@@ -396,7 +401,7 @@ local command, arg1 = strsplit(" ",msg)
 			lime:Message(L[("Lime_profile_error2")]:format(arg1))  -- 해당되는 프로필이 없다고 알려줌
 		end
 	elseif command == "s" then		-- /lime s (프로필 환경 설정을 쳤으나 인자를 입력하지 않음)
-			lime:Message(L["Lime_profile_info"])
+		lime:Message(L["Lime_profile_info"])
 	else -- 그 외의 명령어는 무조건 환경 설정을 열도록 함
 		InterfaceOptionsFrame_Show()
 		InterfaceOptionsFrame_OpenToCategory(lime.optionFrame)

@@ -13,7 +13,6 @@ lime.numMouseButtons = 15
 local startWheelButton = 31
 local clearWheelBinding = "self:ClearBindings()"
 local state = {}
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 lime.overrideClickCastingSpells = {
 	ROGUE = {
@@ -62,7 +61,7 @@ end
 function lime:GetClickCasting(modifilter, button)
 	ckey = lime.ccdb[modifilter..button]
 	if ckey == "togglemenu" then
-		ckey = "menu"
+		ckey = "togglemenu"
 		lime.ccdb[modifilter..button] = ckey
 	end
 	if ckey then

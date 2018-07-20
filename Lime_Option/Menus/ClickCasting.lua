@@ -20,7 +20,6 @@ local floor = _G.math.floor
 local ceil = _G.math.ceil
 local min = _G.math.min
 local max = _G.math.max
--- [[8.0PH]] local GetSpellSubtext = _G.GetSpellSubtext
 
 local LBO = LibStub("LibLimeOption-1.0")
 
@@ -87,6 +86,8 @@ function Option:CreateClickCastingMenu(menu, parent)
 				if SpellHasRange(overrideSpells[spell]) and not IsPassiveSpell(overrideSpells[spell]) then
 					return true
 				end
+			elseif not IsPassiveSpell(spell) then
+				return true	
 			end
 		end
 		return nil
@@ -196,7 +197,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 				info.text, info.arg1, info.arg2 = L["대상 선택"], "target"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
 				UIDropDownMenu_AddButton(info, level)
-				info.text, info.arg1, info.arg2 = L["메뉴"], "menu"
+				info.text, info.arg1, info.arg2 = L["메뉴"], "togglemenu"
 				info.checked = self.arg1 == info.arg1 and self.arg2 == info.arg2
 				UIDropDownMenu_AddButton(info, level)
 				info.text, info.arg1, info.arg2 = INSPECT, "macrotext", inspectMacro
@@ -352,7 +353,7 @@ function Option:CreateClickCastingMenu(menu, parent)
 		modifilter = modifilter..buttonNames[menu.buttons:GetValue()].id
 		if lime.ccdb[modifilter] == "target" then
 			modifilter = L["대상 선택"]
-		elseif lime.ccdb[modifilter] == "menu" then
+		elseif lime.ccdb[modifilter] == "togglemenu" then
 			modifilter = L["메뉴"]
 		elseif lime.ccdb[modifilter] and lime.ccdb[modifilter]:find("(.+)__(.+)") then
 			modifilter = select(2, lime.ccdb[modifilter]:match("(.+)__(.+)"))
@@ -383,14 +384,14 @@ function Option:CreateClickCastingMenu(menu, parent)
 	local function modKeyOnClick(self)
 		dropdown.modifilter, dropdown.button = self.modifilter, buttonNames[menu.buttons:GetValue()].id
 		dropdown.set = lime.ccdb[dropdown.modifilter..dropdown.button]
-		if dropdown.set == "target" or dropdown.set == "menu" then
+		if dropdown.set == "target" or dropdown.set == "togglemenu" then
 			dropdown.arg1, dropdown.arg2 = dropdown.set
 		elseif dropdown.set and dropdown.set:find("(.+)__(.+)") then
 			dropdown.arg1, dropdown.arg2 = dropdown.set:match("(.+)__(.+)")
 		elseif dropdown.button == 1 then
 			dropdown.arg1, dropdown.arg2 = "target"
 		elseif dropdown.button == 2 then
-			dropdown.arg1, dropdown.arg2 = "menu"
+			dropdown.arg1, dropdown.arg2 = "togglemenu"
 		else
 			dropdown.arg1, dropdown.arg2 = nil
 		end

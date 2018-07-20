@@ -214,6 +214,8 @@ L["lime_advanced_07"] = "Allow ALT Dragging"
 L["lime_advanced_desc_07"] = "When the raid frame is locked, you can drag it while pressing the ALT key."
 L["lime_advanced_08"] = "|cffff6600Allow Spelltimer Names|r"
 L["lime_advanced_desc_08"] = "Once checked, the Spelltimer can be entered by name. This consumes significant CPU resources."
+L["lime_advanced_09"] = "Shows Spell ID on tooltip"
+L["lime_advanced_desc_09"] = "Shows Spell ID on tooltip"
 
 
 L["사용하기"] = "Enable"
@@ -295,6 +297,7 @@ L["lime_profile_delete_message_01"] = "[|cff8080ff%s|r] profile has been deleted
 L["lime_profile_apply"] = "Do you want to apply the '%s' profile to the current character?"
 L["lime_profile_apply_message_01"] = "[|cff8080ff%s|r] profile has been applied to the current character."
 L["Lime_profile_info"] = "Please specify a Profile name. How to use the command: /lime [Profile name]"
+L["lime_profile_help"] = "Lime Command\n|cffa2e665/lime|r: Opens Preference for Lime.\n|cffa2e665/lime s [Profile name]|r: Switch to [Profile name] Profile. You can't change it while in battle.\n|cffa2e665/lime t|r: Toggle on/off Lime Raid frames.\n|cffa2e665/lime h|r: Show list of commands."
 
 L["lime_layout_01"] = "Bar texture"
 L["lime_layout_desc_01"] = "Set the bar texture."

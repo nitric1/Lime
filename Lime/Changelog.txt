@@ -1,3 +1,9 @@
+Lime r27 [2018.7.19.]
+- Fixed bug: the skill book list doesn't appear correctly.
+- Add help for profile commands.
+- Add: toggle on/off spell ID on tooltip.
+
+
 Lime r26 [2018.7.19.]
 - Remove Debug code
 

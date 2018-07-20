@@ -211,7 +211,8 @@ L["lime_advanced_07"] = "ALT 드래그 허용"
 L["lime_advanced_desc_07"] = "잠금 상태일 때 ALT를 이용하여 공격대 프레임을 드래그할 수 있습니다."
 L["lime_advanced_08"] = "|cffff6600주문 타이머: 이름 입력 허용|r"
 L["lime_advanced_desc_08"] = "체크하면 주문 이름으로 주문 타이머를 등록할 수 있습니다. 상당한 CPU를 사용하므로 주의하세요."
-
+L["lime_advanced_09"] = "주문 ID를 툴팁에 표시"
+L["lime_advanced_desc_09"] = "주문 ID를 툴팁에 표시합니다."
 
 
 L["사용하기"] = "사용하기"
@@ -291,6 +292,7 @@ L["lime_profile_delete"] = "'%s' 설정을 삭제합니다.\n정말 삭제하시
 L["lime_profile_delete_message_01"] = "[|cff8080ff%s|r] 설정이 삭제되었습니다."
 L["lime_profile_apply"] = "현재 캐릭터에 '%s' 설정을 적용하시겠습니까?"
 L["lime_profile_apply_message_01"] = "[|cff8080ff%s|r] 설정이 현재 캐릭터에 적용되었습니다."
+L["lime_profile_help"] = "Lime 명령어\n|cffa2e665/lime|r: 환경 설정을 엽니다.\n|cffa2e665/lime s [설정 이름]|r: 환경 설정을 [설정 이름]으로 바꿉니다. 전투 중에는 바꿀 수 없습니다.\n|cffa2e665/lime t|r: 공격대 창을 켜거나 끕니다.\n|cffa2e665/lime h|r: 전체 명령어 및 도움말을 보여줍니다."
 
 L["lime_layout_01"] = "바 텍스처"
 L["lime_layout_desc_01"] = "바 텍스처를 설정합니다."
@@ -419,11 +421,9 @@ L["lime_func_desc_22"] = "이름과 생명력/생존기를 두 줄로 표시합�
 L["lime_func_desc_23"] = "생명력 글자에 색상을 표시합니다. (손실: 붉은색, 흡수: 파란색)"
 L["lime_func_desc_24"] = "최대 체력 상태에서 보호막이 있을 경우 보호막 수치를 표시합니다."
 
-
 L["lime_func_spelltimer_1"] = "[|cff8080ff%s|r] 주문이 주문 타이머에 저장되었습니다."
 L["lime_func_spelltimer_2"] = "주문 타이머 "
 L["lime_func_spelltimer_3"] = "의 사용 여부 및 강화 및 약화 효과를 설정합니다."
-
 L["lime_func_spelltimer_4"] = "의 위치를 설정합니다."
 L["lime_func_spelltimer_5"] = "의 표시 방식을 설정합니다."
 L["lime_func_spelltimer_6"] = "의 크기를 설정합니다."
@@ -455,7 +455,6 @@ L["lime_func2_9"] = "치유/흡수 아이콘 위치"
 L["lime_func2_desc_9"] = "치유/흡수 아이콘의 위치를 설정합니다."
 L["lime_func2_10"] = "치유/흡수 아이콘 크기"
 L["lime_func2_desc_10"] = "치유/흡수 아이콘의 크기를 설정합니다."
-
 L["lime_func2_11"] = "내가 시전한 치유 색상"
 L["lime_func2_desc_11"] = "내가 시전한 치유바 혹은 아이콘의 색상을 설정합니다."
 L["lime_func2_12"] = "타인이 시전한 치유 색상"
