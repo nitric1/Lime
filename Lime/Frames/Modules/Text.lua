@@ -216,8 +216,8 @@ function limeMember_UpdateNameColor(self)
 	self.name:SetTextColor(lime.db.colors.name[1], lime.db.colors.name[2], lime.db.colors.name[3])
 	end
 	if self.outRange and (self.isGhost or self.isDead) then
-	self.name:SetAlpha(lime.db.units.outRangeAlpha)
+		self.name:SetAlpha(lime.db.units.fadeOutAlpha)
 	else 
-	self.name:SetAlpha(1)
+		self.name:SetAlpha(1)
 	end
 end

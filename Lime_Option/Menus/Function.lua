@@ -196,6 +196,28 @@ function Option:CreateRangeMenu(menu, parent)
 		end
 	)
 	menu.mana:SetPoint("TOP", menu.outRangeName, "BOTTOM", 0, 0)
+
+	menu.fadeOutColorFlag = LBO:CreateWidget("CheckBox", parent, L["lime_outRangeColorFlag_1"], L["lime_outRangeColorFlag_2"], nil, nil, true,
+		function()
+			return lime.db.units.fadeOutColorFlag
+		end,
+		function(v)
+			lime.db.units.fadeOutColorFlag = v
+			Option:UpdateMember(update)
+		end
+	)
+	menu.fadeOutColorFlag:SetPoint("TOP", menu.mana, "BOTTOM", 0, 0)
+
+	menu.fadeOutColor = LBO:CreateWidget("ColorPicker", parent, L["색상"], L["lime_outRangeColorFlag_3"], nil, nil, true,
+		function()
+			return lime.db.units.fadeOutColor[1], lime.db.units.fadeOutColor[2], lime.db.units.fadeOutColor[3]
+		end,
+		function(r, g, b)
+			lime.db.units.fadeOutColor[1], lime.db.units.fadeOutColor[2], lime.db.units.fadeOutColor[3] = r, g, b
+			Option:UpdateMember(update)
+		end
+	)
+	menu.fadeOutColor:SetPoint("TOP", menu.fadeOutColorFlag, "BOTTOM", 0, 0)
 end
 
 function Option:CreateLostHealthMenu(menu, parent)

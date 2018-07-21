@@ -202,7 +202,6 @@ limeMember_UpdateBuffs = function(self)
 			if buff then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[spellId].icon)
-				lime:Message("SHOW")
 			end
 		end
 		if buffCnt == 2 then return end
@@ -236,11 +235,9 @@ limeMember_UpdateBuffs = function(self)
 			if buff then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[a].icon)
-				lime:Message("SHOW2")
 			elseif buff2 then
 				buffCnt = buffCnt + 1
 				showBuffIcon(self["buffIcon"..buffCnt], raidBuffInfo[b].icon)
-				lime:Message("SHOW3")
 			end
 		end
 		if buffCnt == 2 then return end

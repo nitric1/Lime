@@ -349,7 +349,7 @@ lime.optionFrame:SetScript("OnShow", function(self)
 			self.version:SetText(lime.version)
 			self.version:SetPoint("LEFT", self.title, "RIGHT", 2, 0)
 			self.combatWarn = self:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-			self.combatWarn:SetText("combatWarn")
+			self.combatWarn:SetText(L["Lime_profile_error1"])
 			self.combatWarn:SetPoint("CENTER", 0, 0)
 		end
 		if not self:IsEventRegistered("PLAYER_REGEN_ENABLED") then

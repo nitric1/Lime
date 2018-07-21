@@ -51,16 +51,16 @@ local default = {
 		healIcon = true, healIconOther = true, healIconPos = "BOTTOMLEFT", healIconSize = 10,
 		displayRaidRoleIcon = true, roleIconPos = "TOPLEFT", roleIconSize = 12, centerStatusIcon = true, roleIcontype = 0,
 		useRaidIcon = true, raidIconPos = "TOPLEFT", raidIconSize = 12, raidIconSelf = true, raidIconTarget = false, raidIconFilter = { true, true, true, true, true, true, true, true },
-		useClassColors = true, className = false, outRangeName = true, offlineName = true, deathName = true, outRangeAlpha = 0.35,
+		useClassColors = true, className = false, outRangeName = true, offlineName = true, deathName = true,
 		useBossAura = true, bossAuraSize = 18, bossAuraPos = "CENTER", bossAuraAlpha = 0.75, bossAuraTimer = true,
 		bossAuraOpt = 1,	-- 1:남은 시간 2:경과 시간 0:시간 표시 안함
 		useSurvivalSkill = true, showSurvivalSkillTimer = true, showSurvivalSkillSub = false, showSurvivalSkillPotion = true,
-		fadeOutOfRangeHealth = true, fadeOutOfRangePower = true, fadeOutAlpha = 0.35,
+		fadeOutOfRangeHealth = true, fadeOutOfRangePower = true, fadeOutAlpha = 0.35, fadeOutColorFlag = false, fadeOutColor = { 0.2, 0.2, 0.2 },
 		texture = "Smooth",
 		tooltip = 2,		-- 1:항상 2:비전투중에만 3:전투중에만 0:표시안함
 		healthRange = 1,	-- 1:항상 2:사정거리 안 3:사정거리 밖
 		healthType = 0,	-- 1:손실생명력 2:손실생명력% 3:남은생명력 4:남은생명력% 0:표시안함
-		nameEndl = false, shortLostHealth = false, healthRed = false, showAbsorbHealth = false,
+		nameEndl = false, shortLostHealth = false, healthRed = false, showAbsorbHealth = false, 
 		useCastingBar = true, castingBarColor = { 0.2, 0.8, 0.2 }, castingBarHeight = 3, castingBarPos = 2, -- 1:TOP 2:BOTTOM 3:LEFT 4:RIGHT
 		usePowerBarAlt = true, powerBarAltHeight = 3, powerBarAltPos = 1, -- 1:TOP 2:BOTTOM 3:LEFT 4:RIGHT
 		useResurrectionBar = true, resurrectionBarColor = { 0, 0.75, 1 },

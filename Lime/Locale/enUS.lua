@@ -580,3 +580,8 @@ L["lime_func_button_24"] = "Time remaining"
 L["lime_func_button_25"] = "icon + Elapsed time"
 L["lime_func_button_26"] = "Elapsed time"
 L["lime_func_button_27"] = "icon + color"
+
+L["lime_outRangeColorFlag_1"] = "Change Color"
+L["lime_outRangeColorFlag_2"] = "Allows you to change the health bar color of members who are out of range."
+
+L["lime_outRangeColorFlag_3"] = "Change the health bar color of members who are out of range."

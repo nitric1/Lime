@@ -644,11 +644,28 @@ function limeMember_UpdateState(self)
 			colorR, colorG, colorB = lime.db.colors[self.dispelType][1], lime.db.colors[self.dispelType][2], lime.db.colors[self.dispelType][3]
 		elseif self.displayedUnit:find("pet") then
 			colorR, colorG, colorB = lime.db.colors.vehicle[1], lime.db.colors.vehicle[2], lime.db.colors.vehicle[3]
+		elseif lime.db.units.fadeOutColorFlag then	
+			-- 거리 측정 로직
+			local prevRange = self.outRange
+			if self.isOffline then
+				self.outRange = false
+			else
+				local inRange, checkedRange = UnitInRange(self.displayedUnit)
+				self.outRange = checkedRange and not inRange
+			end
+			-- 거리 측정을 해보니 거리가 바뀌었다면
+			if prevRange ~= self.outRange or self.outRange then
+				colorR, colorG, colorB = lime.db.units.fadeOutColor[1], lime.db.units.fadeOutColor[2], lime.db.units.fadeOutColor[3]
+			elseif self.optionTable.useClassColors and lime.db.colors[self.class] then
+				colorR, colorG, colorB = lime.db.colors[self.class][1], lime.db.colors[self.class][2], lime.db.colors[self.class][3]
+			else
+				colorR, colorG, colorB = lime.db.colors.help[1], lime.db.colors.help[2], lime.db.colors.help[3]
+			end
 		elseif self.optionTable.useClassColors and lime.db.colors[self.class] then
 			colorR, colorG, colorB = lime.db.colors[self.class][1], lime.db.colors[self.class][2], lime.db.colors[self.class][3]
 		else
 			colorR, colorG, colorB = lime.db.colors.help[1], lime.db.colors.help[2], lime.db.colors.help[3]
-		end
+		end	
 	else
 		self.isOffline, self.isGhost, self.isDead, self.isAFK = true, nil, nil, nil
 		colorR, colorG, colorB = lime.db.colors.offline[1], lime.db.colors.offline[2], lime.db.colors.offline[3]
@@ -862,6 +879,7 @@ function limeMember_OnUpdate(self)
 			limeMember_UpdateCenterStatusIcon(self)
 		end
 	end
+
 end
 
 --- 타이머에서 지속적으로 체크하지 않는 거리 측정 함수

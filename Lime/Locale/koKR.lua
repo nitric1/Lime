@@ -572,3 +572,8 @@ L["lime_func_button_24"] = "남은 시간"
 L["lime_func_button_25"] = "아이콘 + 경과 시간"
 L["lime_func_button_26"] = "경과 시간"
 L["lime_func_button_27"] = "아이콘 + 색상"
+
+L["lime_outRangeColorFlag_1"] = "색 변경 허용"
+L["lime_outRangeColorFlag_2"] = "사정거리를 벗어난 사람의 체력 바 색상을 변경하도록 허용합니다."
+
+L["lime_outRangeColorFlag_3"] = "사정거리를 벗어난 사람의 체력 바 색상을 변경합니다."

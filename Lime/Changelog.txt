@@ -1,3 +1,8 @@
+Lime r30 [2018.7.21.]
+- added color when people are not in range.
+- remove buff debug string
+
+
 Lime r29 [2018.7.21.]
 - Removed mp3 resources, and converted to ogg/vorbis.
 - [for developer only] I've added Korean comment to some files.
