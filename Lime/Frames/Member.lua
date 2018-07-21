@@ -425,7 +425,7 @@ function limeMember_OnShow(self)
 	if lime.db then
 	self:SetScript("OnEvent", limeMember_OnEvent)
 		if not self.ticker then
-			self.ticker = C_Timer.NewTicker(lime.db.globaltimer, function() limeMember_OnUpdate(self) end) --전역 타이머 설정
+			self.ticker = C_Timer.NewTicker(0.5, function() limeMember_OnUpdate(self) end) --전역 타이머 설정
 		end
 		self:GetParent().visible = self:GetParent().visible + 1
 		limeMember_UpdateAll(self)
@@ -1047,10 +1047,10 @@ end
 eventHandler.UNIT_ABSORB_AMOUNT_CHANGED = eventHandler.UNIT_HEAL_PREDICTION
 eventHandler.UNIT_AURA = function(self, unit)
 	if (unit == self.unit or unit == self.displayedUnit) then
-		limeMember_UpdateAura(self) --taint error
-		limeMember_UpdateSpellTimer(self)
-		limeMember_UpdateSurvivalSkill(self)
-		limeMember_UpdateBuffs(self)
+		limeMember_UpdateAura(self)					--- cpu impact score : 0.02 
+		limeMember_UpdateSpellTimer(self) 			--- cpu impact score : 0.01
+		limeMember_UpdateSurvivalSkill(self)		--- cpu impact score : 0.10
+		limeMember_UpdateBuffs(self)				--- cpu impact score : 0.04
 		if self.optionTable.outline.type == 1 then
 			limeMember_UpdateOutline(self)
 		end
@@ -1083,7 +1083,7 @@ end
 eventHandler.UNIT_EXITED_VEHICLE = function(self, unit)
 	if unit == self.unit then
 		limeMember_UpdateAll(self)
-		C_Timer.After(1, function()
+		C_Timer.After(1.0, function()
 			if UnitExists(self.unit) then
 				limeMember_UpdateHealth(self)
 				limeMember_UpdateLostHealth(self)

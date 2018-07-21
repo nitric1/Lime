@@ -131,7 +131,7 @@ function limeMember_UpdateSpellTimer(self)
 			local filterNum = spell[3]
 			local spellId = tonumber(spellname)
 			if type(spellId) == "number" then
-				-------- 주문 ID로 표시 (권장)
+				-- 주문 ID로 표시 (권장)
 				for i = 1, 40 do
 					local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i , filter)
 					if name2 and spellId2 == spellId then
@@ -141,7 +141,7 @@ function limeMember_UpdateSpellTimer(self)
 					end
 				end
 			elseif lime.db.LimeAuraSoName then
-				---[주문명으로 (비권장)
+				-- 주문명으로 (비권장)
 				local name, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = LimeAura:UnitAura(self.displayedUnit, spellname, filter)
 				if name and (filterNum == 1 or filterNum == 2) and unitCaster ~= "player" then
 				-- fix 6.0 UnitAura bug.

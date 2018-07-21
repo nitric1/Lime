@@ -8,7 +8,7 @@ CREDIT
 Team Lime
 
 Current developer
-* Kim So-yeon (Rural Development Administration)
+* 무무링 (Rural Development Administration)
 
 Former developer
 * 양파 (Ministry of Science and ICT, Wow@WindRunner Da Capo)
