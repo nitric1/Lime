@@ -7,7 +7,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Frame parentKey="outline" useParentLevel="true" hidden="true">
+			<Frame parentKey="outline" toplevel="true" useParentLevel="true" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset x="-4" y="4"/>
