@@ -1,3 +1,13 @@
+Lime r32 [2018.7.23.]
+- Fixed an issue that was not easily outlined under certain circumstances.
+- Adjusted the frame priority.
+- Display a legion potion temporarily.
+
+
+Lime r31 [2018.7.22.]
+- translated missing strings. (enUS)
+
+
 Lime r30 [2018.7.21.]
 - added color when people are not in range.
 - remove buff debug string
