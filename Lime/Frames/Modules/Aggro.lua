@@ -1,6 +1,7 @@
 local _G = _G
 local lime = _G[...]
 local UnitThreatSituation = _G.UnitThreatSituation
+local UnitDetailedThreatSituation = _G.UnitDetailedThreatSituation
 local GetNumGroupMembers = _G.GetNumGroupMembers
 local GetNumSubgroupMembers = _G.GetNumSubgroupMembers
 local PlaySoundFile = _G.PlaySoundFile
@@ -19,6 +20,7 @@ end
 local aggro = CreateFrame("Frame", nil, lime)
 aggro.timer, aggro.check1 = 0, false
 aggro:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE")
+aggro:RegisterEvent("UNIT_THREAT_LIST_UPDATE")
 aggro:SetScript("OnEvent", function(self, event, unit)
 	if unit == "player" and lime.db then
 		self.check1, self.check2 = hasAggro(unit), self.check2

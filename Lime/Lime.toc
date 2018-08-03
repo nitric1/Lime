@@ -2,7 +2,7 @@
 ## Title: |cffa2e665Lime|r
 ## Notes: Lime Raid Frames
 ## Author: Yangpa
-## Version: r32
+## Version: r33
 ## SavedVariables: limeDB
 ## SavedVariablesPerCharacter: limeCharDB
 ## OptionalDeps: Ace3, LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0.lua

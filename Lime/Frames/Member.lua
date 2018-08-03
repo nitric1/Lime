@@ -180,28 +180,30 @@ local function checkMouseOver(self)
 end
 
 local function setupMemberOutline(self)
-	self.outline:SetScript("OnUpdate", nil)
-	self.outline:SetScale(self.optionTable.outline.scale)
-	self.outline:SetAlpha(self.optionTable.outline.alpha)
-	self:UnregisterEvent("PLAYER_TARGET_CHANGED")
-	self:UnregisterEvent("UPDATE_MOUSEOVER_UNIT")
-	if self.optionTable.outline.type == 2 then
-		self:RegisterEvent("PLAYER_TARGET_CHANGED")
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.targetColor[1], self.optionTable.outline.targetColor[2], self.optionTable.outline.targetColor[3])
-	elseif self.optionTable.outline.type == 3 then
-		self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.mouseoverColor[1], self.optionTable.outline.mouseoverColor[2], self.optionTable.outline.mouseoverColor[3])
-		self.outline:SetScript("OnUpdate", checkMouseOver)
-	elseif self.optionTable.outline.type == 4 then
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.lowHealthColor[1], self.optionTable.outline.lowHealthColor[2], self.optionTable.outline.lowHealthColor[3])
-	elseif self.optionTable.outline.type == 5 then
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.aggroColor[1], self.optionTable.outline.aggroColor[2], self.optionTable.outline.aggroColor[3])
-	elseif self.optionTable.outline.type == 6 then
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.raidIconColor[1], self.optionTable.outline.raidIconColor[2], self.optionTable.outline.raidIconColor[3])
-	elseif self.optionTable.outline.type == 7 then
-		self.outline:SetBackdropBorderColor(self.optionTable.outline.lowHealthColor2[1], self.optionTable.outline.lowHealthColor2[2], self.optionTable.outline.lowHealthColor2[3])
-	else
-		self.outline:Hide()
+	for i = 1, 3 do
+		self["outline"..i]:SetScript("OnUpdate", nil)
+		self["outline"..i]:SetScale(self.optionTable.outline[i].scale)
+		self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+		self:UnregisterEvent("PLAYER_TARGET_CHANGED")
+		self:UnregisterEvent("UPDATE_MOUSEOVER_UNIT")
+		if self.optionTable.outline[i].type == 2 then
+			self:RegisterEvent("PLAYER_TARGET_CHANGED")
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].targetColor[1], self.optionTable.outline[i].targetColor[2], self.optionTable.outline[i].targetColor[3])
+		elseif self.optionTable.outline[i].type == 3 then
+			self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].mouseoverColor[1], self.optionTable.outline[i].mouseoverColor[2], self.optionTable.outline[i].mouseoverColor[3])
+			self["outline"..i]:SetScript("OnUpdate", checkMouseOver)
+		elseif self.optionTable.outline[i].type == 4 then
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].lowHealthColor[1], self.optionTable.outline[i].lowHealthColor[2], self.optionTable.outline[i].lowHealthColor[3])
+		elseif self.optionTable.outline[i].type == 5 then
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].aggroColor[1], self.optionTable.outline[i].aggroColor[2], self.optionTable.outline[i].aggroColor[3])
+		elseif self.optionTable.outline[i].type == 6 then
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].raidIconColor[1], self.optionTable.outline[i].raidIconColor[2], self.optionTable.outline[i].raidIconColor[3])
+		elseif self.optionTable.outline[i].type == 7 then
+			self["outline"..i]:SetBackdropBorderColor(self.optionTable.outline[i].lowHealthColor2[1], self.optionTable.outline[i].lowHealthColor2[2], self.optionTable.outline[i].lowHealthColor2[3])
+		else
+			self["outline"..i]:SetAlpha(0)
+		end
 	end
 end
 
@@ -350,6 +352,7 @@ local function memberOnAttributeChanged(self, key, value)
 			key = getUnitPetOrOwner(value)
 			self:RegisterUnitEvent("READY_CHECK_CONFIRM", value, key)
 			self:RegisterUnitEvent("UNIT_THREAT_SITUATION_UPDATE", value, key)
+			self:RegisterUnitEvent("UNIT_THREAT_LIST_UPDATE", value, key)
 			self:RegisterUnitEvent("UNIT_ENTERED_VEHICLE", value, key)
 			self:RegisterUnitEvent("UNIT_EXITED_VEHICLE", value, key)
 			self:RegisterUnitEvent("UNIT_SPELLCAST_START", value, key)
@@ -362,6 +365,7 @@ local function memberOnAttributeChanged(self, key, value)
 		else
 			self:UnregisterEvent("READY_CHECK_CONFIRM")
 			self:UnregisterEvent("UNIT_THREAT_SITUATION_UPDATE")
+			self:UnregisterEvent("UNIT_THREAT_LIST_UPDATE")
 			self:UnregisterEvent("UNIT_ENTERED_VEHICLE")
 			self:UnregisterEvent("UNIT_EXITED_VEHICLE")
 			self:UnregisterEvent("UNIT_SPELLCAST_START")
@@ -794,37 +798,39 @@ function limeMember_CenterStatusIconOnHide(self)
 end
 
 function limeMember_UpdateOutline(self)
-	if self.optionTable.outline.type == 1 then
-		if self.dispelType and lime.db.colors[self.dispelType] then
-			self.outline:SetBackdropBorderColor(lime.db.colors[self.dispelType][1], lime.db.colors[self.dispelType][2], lime.db.colors[self.dispelType][3])
-			return self.outline:Show()
+	for i = 1, 3 do
+		if self.optionTable.outline[i].type == 1 then
+			if self.dispelType and lime.db.colors[self.dispelType] then
+				self["outline"..i]:SetBackdropBorderColor(lime.db.colors[self.dispelType][1], lime.db.colors[self.dispelType][2], lime.db.colors[self.dispelType][3])
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 2 then
+			if UnitIsUnit(self.displayedUnit, "target") then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 3 then
+			if UnitIsUnit(self.displayedUnit, "mouseover") then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 4 then
+			if not UnitIsDeadOrGhost(self.displayedUnit) and (self.health / self.maxHealth) <= self.optionTable.outline[i].lowHealth then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 5 then
+			if self.hasAggro then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 6 then
+			if self.optionTable.outline[i].raidIcon[GetRaidTargetIndex(self.displayedUnit)] then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
+		elseif self.optionTable.outline[i].type == 7 then
+			if not UnitIsDeadOrGhost(self.displayedUnit) and self.maxHealth >= self.optionTable.outline[i].lowHealth2 and self.health < self.optionTable.outline[i].lowHealth2 then
+				return self["outline"..i]:SetAlpha(self.optionTable.outline[i].alpha)
+			end
 		end
-	elseif self.optionTable.outline.type == 2 then
-		if UnitIsUnit(self.displayedUnit, "target") then
-			return self.outline:Show()
-		end
-	elseif self.optionTable.outline.type == 3 then
-		if UnitIsUnit(self.displayedUnit, "mouseover") then
-			return self.outline:Show()
-		end
-	elseif self.optionTable.outline.type == 4 then
-		if not UnitIsDeadOrGhost(self.displayedUnit) and (self.health / self.maxHealth) <= self.optionTable.outline.lowHealth then
-			return self.outline:Show()
-		end
-	elseif self.optionTable.outline.type == 5 then
-		if self.hasAggro then
-			return self.outline:Show()
-		end
-	elseif self.optionTable.outline.type == 6 then
-		if self.optionTable.outline.raidIcon[GetRaidTargetIndex(self.displayedUnit)] then
-			return self.outline:Show()
-		end
-	elseif self.optionTable.outline.type == 7 then
-		if not UnitIsDeadOrGhost(self.displayedUnit) and self.maxHealth >= self.optionTable.outline.lowHealth2 and self.health < self.optionTable.outline.lowHealth2 then
-			return self.outline:Show()
-		end
+	self["outline"..i]:SetAlpha(0)
 	end
-	self.outline:Hide()
 end
 
 --- 타이머에서 지속적으로 체크하는 거리 측정 함수
@@ -860,7 +866,7 @@ function limeMember_OnUpdate(self)
 		limeMember_UpdateAura(self)
  		limeMember_UpdateSpellTimer(self)
  		limeMember_UpdateSurvivalSkill(self)
- 		limeMember_UpdateBuffs(self)
+ 		--limeMember_UpdateBuffs(self)
  		limeMember_UpdateHealPrediction(self)
  		limeMember_UpdateState(self)
  		limeMember_UpdateNameColor(self)
@@ -933,7 +939,7 @@ function limeMember_UpdateAll(self)
 			limeMember_UpdateSurvivalSkill(self)
 			limeMember_UpdateOutline(self)
 			limeMember_OnUpdate2(self)
-			limeMember_UpdateBuffs(self)
+			--limeMember_UpdateBuffs(self)
 			limeMember_UpdateRaidIconTarget(self)
 			limeMember_UpdateDisplayText(self)
 			limeMember_UpdateCenterStatusIcon(self)
@@ -962,7 +968,7 @@ eventHandler.PLAYER_ROLES_ASSIGNED = limeMember_UpdateRoleIcon
 eventHandler.PARTY_LEADER_CHANGED = limeMember_UpdateLeaderIcon
 eventHandler.RAID_TARGET_UPDATE = function(self)
 	limeMember_UpdateRaidIcon(self)
-	if self.optionTable.outline.type == 6 then
+	if self.optionTable.outline[1].type == 6 or self.optionTable.outline[2].type == 6 or self.optionTable.outline[3].type == 6 then
 		limeMember_UpdateOutline(self)
 	end
 end
@@ -997,7 +1003,7 @@ eventHandler.UNIT_HEALTH = function(self, unit)
 		limeMember_UpdateLostHealth(self)
 		limeMember_UpdateHealPrediction(self)
 		limeMember_UpdateState(self)
-		if self.optionTable.outline.type == 4 or self.optionTable.outline.type == 7 then
+		if self.optionTable.outline[1].type == 4 or self.optionTable.outline[2].type == 4 or self.optionTable.outline[3].type == 4 then
 			limeMember_UpdateOutline(self)
 		end
 	end
@@ -1050,8 +1056,8 @@ eventHandler.UNIT_AURA = function(self, unit)
 		limeMember_UpdateAura(self)					--- cpu impact score : 0.02 
 		limeMember_UpdateSpellTimer(self) 			--- cpu impact score : 0.01
 		limeMember_UpdateSurvivalSkill(self)		--- cpu impact score : 0.10
-		limeMember_UpdateBuffs(self)				--- cpu impact score : 0.04
-		if self.optionTable.outline.type == 1 then
+		--limeMember_UpdateBuffs(self)				--- cpu impact score : 0.04
+		if self.optionTable.outline[1].type == 1 or self.optionTable.outline[2].type == 1 or self.optionTable.outline[3].type == 1 then
 			limeMember_UpdateOutline(self)
 		end
 		if self.optionTable.useDispelColor then
@@ -1063,11 +1069,22 @@ eventHandler.UNIT_THREAT_SITUATION_UPDATE = function(self, unit)
 	if unit == self.displayedUnit then
 		limeMember_UpdateThreat(self)
 		limeMember_UpdateDisplayText(self)
-		if self.optionTable.outline.type == 5 then
+		if self.optionTable.outline[1].type == 5 or self.optionTable.outline[2].type == 5 or self.optionTable.outline[3].type == 5 then
 			limeMember_UpdateOutline(self)
 		end
 	end
 end
+
+eventHandler.UNIT_THREAT_LIST_UPDATE = function(self, unit)
+	if unit == self.displayedUnit then
+		limeMember_UpdateThreat(self)
+		limeMember_UpdateDisplayText(self)
+		if self.optionTable.outline[1].type == 5 or self.optionTable.outline[2].type == 5 or self.optionTable.outline[3].type == 5 then
+			limeMember_UpdateOutline(self)
+		end
+	end
+end
+
 eventHandler.READY_CHECK_CONFIRM = function(self, unit)
 	if unit == self.unit then
 		limeMember_UpdateReadyCheck(self)

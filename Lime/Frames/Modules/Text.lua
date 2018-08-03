@@ -27,7 +27,7 @@ function lime:UpdateFont()
 	else
 		fontString:SetShadowOffset(0, 0)
 	end
-	fontString.arrowWidth = getTextWidth("▶")
+	fontString.arrowWidth = getTextWidth(">")
 end
 
 local function getCuttingName(names, width)
@@ -90,7 +90,8 @@ local function getHealthText2(self)
 		if lime.db.units.shortLostHealth then
 			return ("+%.1f"):format(self.overAbsorb / 1000)
 		else
-			return self.health
+			return "+"..self.overAbsorb
+			--return self.health
 		end
 	elseif lime.db.units.healthType == 4 then
 		if lime.db.units.shortLostHealth then
@@ -156,14 +157,14 @@ end
 
 function limeMember_UpdateDisplayText(self)
 	if lime.db.units.nameEndl then
-		self.name:SetFormattedText("%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000▶|r" or "", getCuttingName(self.nameTable, lime.nameWidth - ((self.optionTable.useAggroArrow and self.hasAggro) and fontString.arrowWidth or 0)))
+		self.name:SetFormattedText("%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000>|r" or "", getCuttingName(self.nameTable, lime.nameWidth - ((self.optionTable.useAggroArrow and self.hasAggro) and fontString.arrowWidth or 0)))
 		limeMember_UpdateLostHealth(self)
 	else
 		if self.survivalSkill then
-			self.name:SetFormattedText("%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000▶|r" or "", getStatusText(self))
+			self.name:SetFormattedText("%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000>|r" or "", getStatusText(self))
 		else
 			local statusText, statusWidth = getStatusText(self, true)
-			self.name:SetFormattedText("%s%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000▶|r" or "", getCuttingName(self.nameTable, lime.nameWidth - ((self.optionTable.useAggroArrow and self.hasAggro) and fontString.arrowWidth or 0) - statusWidth), statusText)
+			self.name:SetFormattedText("%s%s%s", (self.optionTable.useAggroArrow and self.hasAggro) and "|cffff0000>|r" or "", getCuttingName(self.nameTable, lime.nameWidth - ((self.optionTable.useAggroArrow and self.hasAggro) and fontString.arrowWidth or 0) - statusWidth), statusText)
 		end
 	end
 end

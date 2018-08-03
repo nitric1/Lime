@@ -31,9 +31,6 @@ Thank you for providing your beta key.
 -- AceLocale 언어 라이브러리 로딩
 local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 
--- LibAuras - Old UnitAura 호출 라이브러리
---local LimeAura = LibStub:GetLibrary("LibAuras")
-
 -- 전역 함수 로딩
 local _G = _G
 local type = _G.type

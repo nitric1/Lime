@@ -1,6 +1,3 @@
-
-local LimeAura = LibStub:GetLibrary("LibAuras")
-
 local _G = _G
 local lime = _G[...]
 local ipairs = _G.ipairs
@@ -141,8 +138,8 @@ function limeMember_UpdateSpellTimer(self)
 					end
 				end
 			elseif lime.db.LimeAuraSoName then
-				-- 주문명으로 (비권장)
-				local name, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = LimeAura:UnitAura(self.displayedUnit, spellname, filter)
+				--[[주문명으로 (비권장)
+				local name, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = UnitAura(self.displayedUnit, spellname, filter)
 				if name and (filterNum == 1 or filterNum == 2) and unitCaster ~= "player" then
 				-- fix 6.0 UnitAura bug.
 				elseif name and blockSpellID[name] then
@@ -160,7 +157,7 @@ function limeMember_UpdateSpellTimer(self)
 					found = true
 					setIcon(self["spellTimer"..index], index, duration, expirationTime, icon, count)
 					break
-				end
+				end]]
 			end
 		end
 		if not found then

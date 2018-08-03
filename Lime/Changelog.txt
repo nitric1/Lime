@@ -1,3 +1,15 @@
+
+Lime r33 [UTC+9 2018.8.3. PM 02:55]
+- Threat arrow should now look normal.
+- Improved: Now you can specify up to three Outline functions.
+- Improved: The outline has been adjusted for a better look.
+- Removed: LibAuras (Memory Leak Issue)
+- Temporary Removed: Raid Buffs (Memory Leak Issue)
+- Resolved: Memory leak during combat.
+- CPU usage was reduced by about 5%.
+- Due to the data structure change, the profile will be initialized upon update to this version.
+
+
 Lime r32 [2018.7.23.]
 - Fixed an issue that was not easily outlined under certain circumstances.
 - Adjusted the frame priority.

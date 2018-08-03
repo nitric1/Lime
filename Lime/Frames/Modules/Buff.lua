@@ -1,6 +1,3 @@
-
-local LimeAura = LibStub:GetLibrary("LibAuras")
-
 local _G = _G
 local next = _G.next
 local pairs = _G.pairs
@@ -150,22 +147,23 @@ local function hideBuffIcon(icon)
 end
 
 local function getBuff(unit, spellId)
-	if LimeAura:UnitBuff(unit, raidBuffInfo[spellId].name) then
+	--[[if UnitBuff(unit, raidBuffInfo[spellId].name) then
 		for _, i in ipairs(classRaidBuffs[spellId]) do
 			checkMask[i] = raidBuffInfo[spellId]
-		end
-	elseif sameBuffs[spellId] and LimeAura:UnitBuff(unit, raidBuffInfo[sameBuffs[spellId]].name) then
-		for _, i in ipairs(classRaidBuffs[spellId]) do
-			checkMask[i] = raidBuffInfo[sameBuffs[spellId]]
-		end
-	else
+		end]]
+	--elseif sameBuffs[spellId] and LimeAura:UnitBuff(unit, raidBuffInfo[sameBuffs[spellId]].name) then
+	--	for _, i in ipairs(classRaidBuffs[spellId]) do
+	--		checkMask[i] = raidBuffInfo[sameBuffs[spellId]]
+	--	end
+	--else
 		for _, i in ipairs(classRaidBuffs[spellId]) do
 			if checkMask[i] == nil then
 				checkMask[i] = false
 				for _, v in ipairs(raidBuffs[i]) do
-					if LimeAura:UnitBuff(unit, v.name) then
+					for j = 1, 40 do
+						if UnitBuff(unit, j) then
 						checkMask[i] = v
-						break
+						break end
 					end
 				end
 				if checkMask[i] == false then
@@ -177,7 +175,7 @@ local function getBuff(unit, spellId)
 				break
 			end
 		end
-	end
+	--end
 	return spellId
 end
 
@@ -207,8 +205,10 @@ limeMember_UpdateBuffs = function(self)
 		if buffCnt == 2 then return end
 	end
 	for a, b in pairs(linkRaidBuffs) do
-		buff = LimeAura:UnitBuff(self.displayedUnit, raidBuffInfo[a].name, "PLAYER")
-		buff2 = not buff and LimeAura:UnitBuff(self.displayedUnit, raidBuffInfo[b].name, "PLAYER") or nil
+		for i = 1, 40 do
+			buff = UnitBuff(self.displayedUnit, i, "PLAYER")
+			buff2 = not buff and UnitBuff(self.displayedUnit, i, "PLAYER") or nil
+		end
 		if limeCharDB.classBuff2[b] == 1 then
 			-- 버프가 없을 때 표시
 			if not buff and not buff2 then

@@ -38,7 +38,7 @@ function limeMember_UpdateCastingBar(self)
 			self.castingBar.startTime, self.castingBar.endTime, self.castingBar.isChannel = self.castingBar.startTime / 1000, self.castingBar.endTime / 1000
 			self.castingBar:SetMinMaxValues(self.castingBar.startTime, self.castingBar.endTime)
 			if not self.castingBar.ticker then
-				self.castingBar.ticker = C_Timer.NewTicker(0.05, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
+				self.castingBar.ticker = C_Timer.NewTicker(0.04, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
 			end
 			limeMember_CastingBarOnUpdate(self.castingBar)
 			return self.castingBar:Show()
@@ -48,7 +48,7 @@ function limeMember_UpdateCastingBar(self)
 				self.castingBar.startTime, self.castingBar.endTime, self.castingBar.isChannel = self.castingBar.startTime / 1000, self.castingBar.endTime / 1000, true
 				self.castingBar:SetMinMaxValues(self.castingBar.startTime, self.castingBar.endTime)
 				if not self.castingBar.ticker then
-					self.castingBar.ticker = C_Timer.NewTicker(0.05, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
+					self.castingBar.ticker = C_Timer.NewTicker(0.04, function() limeMember_CastingBarOnUpdate(self.castingBar) end)
 				end
 				limeMember_CastingBarOnUpdate(self.castingBar)
 				return self.castingBar:Show()

@@ -64,99 +64,110 @@ function Option:CreateOutlineMenu(menu, parent)
 		end
 	end
 	local outlineList = { L["lime_func_button_1"], L["lime_func_button_2"], L["lime_func_button_3"], L["lime_func_button_4"], L["lime_func_button_5"], L["lime_func_button_6"], L["lime_func_button_7"], L["lime_func_button_8"] }
-	menu.use = LBO:CreateWidget("DropDown", parent, L["lime_func_5"], L["lime_func_desc_5"], nil, nil, true,
-		function()
-			return lime.db.units.outline.type + 1, outlineList
-		end,
-		function(v)
-			lime.db.units.outline.type = v - 1
-			Option:UpdateMember(update)
-			LBO:Refresh(parent)
-		end
-	)
-	menu.use:SetPoint("TOPLEFT", 5, -5)
-	local function disable()
-		return lime.db.units.outline.type == 0
-	end
-	menu.scale = LBO:CreateWidget("Slider", parent, L["lime_func_6"], L["lime_func_desc_6"], nil, disable, true,
-		function() return lime.db.units.outline.scale * 100, 50, 150, 1, "%" end,
-		function(v)
-			lime.db.units.outline.scale = v / 100
-			Option:UpdateMember(update)
-		end
-	)
-	menu.scale:SetPoint("TOP", menu.use, "BOTTOM", 0, -10)
-	menu.alpha = LBO:CreateWidget("Slider", parent, L["lime_func_7"], L["lime_func_desc_7"], nil, disable, true,
-		function() return lime.db.units.outline.alpha * 100, 10, 100, 1, "%" end,
-		function(v)
-			lime.db.units.outline.alpha = v / 100
-			Option:UpdateMember(update)
-		end
-	)
-	menu.alpha:SetPoint("TOP", menu.scale, "TOP", 0, 0)
-	menu.alpha:SetPoint("RIGHT", -5, 0)
-	local function getColor(key)
-		return lime.db.units.outline[key][1], lime.db.units.outline[key][2], lime.db.units.outline[key][3]
-	end
-	local function setColor(r, g, b, key)
-		lime.db.units.outline[key][1], lime.db.units.outline[key][2], lime.db.units.outline[key][3] = r, g, b
-		Option:UpdateMember(update)
-	end
-	menu.targetColor = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_8"], function() return lime.db.units.outline.type ~= 2 end, nil, true, getColor, setColor, "targetColor")
-	menu.targetColor:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	menu.mouseoverColor = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_9"], function() return lime.db.units.outline.type ~= 3 end, nil, true, getColor, setColor, "mouseoverColor")
-	menu.mouseoverColor:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	menu.aggroColor = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_10"], function() return lime.db.units.outline.type ~= 5 end, nil, true, getColor, setColor, "aggroColor")
-	menu.aggroColor:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	local function isLowHealth()
-		return lime.db.units.outline.type ~= 4
-	end
-	menu.lowHealthColor = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_11"], isLowHealth, nil, true, getColor, setColor, "lowHealthColor")
-	menu.lowHealthColor:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	menu.lowHealth = LBO:CreateWidget("Slider", parent, L["lime_func_9"], L["lime_func_desc_12"], isLowHealth, nil, true,
-		function() return lime.db.units.outline.lowHealth * 100, 1, 99, 1, "%" end,
-		function(v)
-			lime.db.units.outline.lowHealth = v / 100
-			Option:UpdateMember(update)
-		end
-	)
-	menu.lowHealth:SetPoint("TOP", menu.alpha, "BOTTOM", 0, -10)
-	local function isRaidIcon()
-		return lime.db.units.outline.type ~= 6
-	end
-	menu.raidIconColor = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_13"], isRaidIcon, nil, true, getColor, setColor, "raidIconColor")
-	menu.raidIconColor:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	local function getRaidIcon(icon)
-		return lime.db.units.outline.raidIcon[icon]
-	end
-	local function setRaidIcon(v, icon)
-		lime.db.units.outline.raidIcon[icon] = v
-		Option:UpdateMember(update)
-	end
-	for i, text in ipairs(Option.dropdownTable["징표"]) do
-		menu["raidIcon"..i] = LBO:CreateWidget("CheckBox", parent, text, text..L["lime_func_desc_14"], isRaidIcon, nil, true, getRaidIcon, setRaidIcon, i)
+	
+	for i = 1, 3 do 
+		menu["use"..i] = LBO:CreateWidget("DropDown", parent, L["lime_func_5"]..i, L["lime_func_desc_5"], nil, nil, true,
+			function()
+				return lime.db.units.outline[i].type + 1, outlineList
+			end,
+			function(v)
+				lime.db.units.outline[i].type = v - 1
+				Option:UpdateMember(update)
+				LBO:Refresh(parent)
+			end
+		)
+
+		menu["use"..i]:ClearAllPoints()
 		if i == 1 then
-			menu["raidIcon"..i]:SetPoint("TOP", menu.raidIconColor, "BOTTOM", 0, 0)
-		elseif i == 2 then
-			menu["raidIcon"..i]:SetPoint("TOP", menu.raidIcon1, 0, 0)
-			menu["raidIcon"..i]:SetPoint("RIGHT", -5, 0)
+			menu["use"..i]:SetPoint("TOPLEFT", 5, -5)
 		else
-			menu["raidIcon"..i]:SetPoint("TOP", menu["raidIcon"..(i - 2)], "BOTTOM", 0, 14)
+			menu["use"..i]:SetPoint("TOP", menu["scale"..(i - 1)], "BOTTOM", 0, -200)	
 		end
-	end
-	local function isLowHealth2()
-		return lime.db.units.outline.type ~= 7
-	end
-	menu.lowHealthColor2 = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_15"], isLowHealth2, nil, true, getColor, setColor, "lowHealthColor2")
-	menu.lowHealthColor2:SetPoint("TOP", menu.scale, "BOTTOM", 0, -10)
-	menu.lowHealth2 = LBO:CreateWidget("Slider", parent, L["lime_func_9"], L["lime_func_desc_16"], isLowHealth2, nil, true,
-		function() return lime.db.units.outline.lowHealth2, 1, 5000000, 1, "" end,
-		function(v)
-			lime.db.units.outline.lowHealth2 = v
+
+		local function disable()
+			return lime.db.units.outline[i].type == 0
+		end
+		menu["scale"..i] = LBO:CreateWidget("Slider", parent, L["lime_func_6"], L["lime_func_desc_6"], nil, disable, true,
+			function() return lime.db.units.outline[i].scale * 100, 50, 150, 1, "%" end,
+			function(v)
+				lime.db.units.outline[i].scale = v / 100
+				Option:UpdateMember(update)
+			end
+		)
+		menu["scale"..i]:SetPoint("TOP", menu["use"..i], "BOTTOM", 0, -10)
+		menu["alpha"..i] = LBO:CreateWidget("Slider", parent, L["lime_func_7"], L["lime_func_desc_7"], nil, disable, true,
+			function() return lime.db.units.outline[i].alpha * 100, 10, 100, 1, "%" end,
+			function(v)
+				lime.db.units.outline[i].alpha = v / 100
+				Option:UpdateMember(update)
+			end
+		)
+		menu["alpha"..i]:SetPoint("TOP", menu["scale"..i], "TOP", 0, 0)
+		menu["alpha"..i]:SetPoint("RIGHT", -5, 0)
+		local function getColor(key)
+			return lime.db.units.outline[i][key][1], lime.db.units.outline[i][key][2], lime.db.units.outline[i][key][3]
+		end
+		local function setColor(r, g, b, key)
+			lime.db.units.outline[i][key][1], lime.db.units.outline[i][key][2], lime.db.units.outline[i][key][3] = r, g, b
 			Option:UpdateMember(update)
 		end
-	)
-	menu.lowHealth2:SetPoint("TOP", menu.alpha, "BOTTOM", 0, -10)
+
+		menu["targetColor"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_8"], function() return lime.db.units.outline[i].type ~= 2 end, nil, true, getColor, setColor, "targetColor")
+		menu["targetColor"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		menu["mouseoverColor"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_9"], function() return lime.db.units.outline[i].type ~= 3 end, nil, true, getColor, setColor, "mouseoverColor")
+		menu["mouseoverColor"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		menu["aggroColor"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_10"], function() return lime.db.units.outline[i].type ~= 5 end, nil, true, getColor, setColor, "aggroColor")
+		menu["aggroColor"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		local function isLowHealth()
+			return lime.db.units.outline[i].type ~= 4
+		end
+		menu["lowHealthColor"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_11"], isLowHealth, nil, true, getColor, setColor, "lowHealthColor")
+		menu["lowHealthColor"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		menu["lowHealth"..i] = LBO:CreateWidget("Slider", parent, L["lime_func_9"], L["lime_func_desc_12"], isLowHealth, nil, true,
+			function() return lime.db.units.outline[i].lowHealth * 100, 1, 99, 1, "%" end,
+			function(v)
+				lime.db.units.outline[i].lowHealth = v / 100
+				Option:UpdateMember(update)
+			end
+		)
+		menu["lowHealth"..i]:SetPoint("TOP", menu["alpha"..i], "BOTTOM", 0, -10)
+		local function isRaidIcon()
+			return lime.db.units.outline[i].type ~= 6
+		end
+		menu["raidIconColor"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_13"], isRaidIcon, nil, true, getColor, setColor, "raidIconColor")	
+		menu["raidIconColor"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		local function getRaidIcon(icon)
+			return lime.db.units.outline[i].raidIcon[icon]
+		end
+		local function setRaidIcon(v, icon)
+			lime.db.units.outline[i].raidIcon[icon] = v
+			Option:UpdateMember(update)
+		end
+		for j, text in ipairs(Option.dropdownTable["징표"]) do
+			menu["raidIcon"..j] = LBO:CreateWidget("CheckBox", parent, text, text..L["lime_func_desc_14"], isRaidIcon, nil, true, getRaidIcon, setRaidIcon, j)
+			if j == 1 then
+				menu["raidIcon"..j]:SetPoint("TOP", menu["raidIconColor"..i], "BOTTOM", 0, 0)
+			elseif j == 2 then
+				menu["raidIcon"..j]:SetPoint("TOP", menu.raidIcon1, 0, 0)
+				menu["raidIcon"..j]:SetPoint("RIGHT", -5, 0)
+			else
+				menu["raidIcon"..j]:SetPoint("TOP", menu["raidIcon"..(j - 2)], "BOTTOM", 0, 14)
+			end
+		end
+		local function isLowHealth2()
+			return lime.db.units.outline[i].type ~= 7
+		end
+		menu["lowHealthColor2"..i] = LBO:CreateWidget("ColorPicker", parent, L["lime_func_8"], L["lime_func_desc_15"], isLowHealth2, nil, true, getColor, setColor, "lowHealthColor2")
+		menu["lowHealthColor2"..i]:SetPoint("TOP", menu["scale"..i], "BOTTOM", 0, -10)
+		menu["lowHealth2"..i] = LBO:CreateWidget("Slider", parent, L["lime_func_9"], L["lime_func_desc_16"], isLowHealth2, nil, true,
+			function() return lime.db.units.outline[i].lowHealth2, 1, 200000, 1, "" end,
+			function(v)
+				lime.db.units.outline[i].lowHealth2 = v
+				Option:UpdateMember(update)
+			end
+		)
+		menu["lowHealth2"..i]:SetPoint("TOP", menu["alpha"..i], "BOTTOM", 0, -10)
+	end
 end
 
 function Option:CreateRangeMenu(menu, parent)
@@ -299,7 +310,7 @@ end
 function Option:UpdateIconPos()
 	Option:UpdateMember(limeMember_SetupIconPos)
 end
-
+--[[
 function Option:CreateBuffCheckMenu(menu, parent)
 	local raidBuffs = {}
 	for spellId in pairs(limeCharDB.classBuff2) do
@@ -356,15 +367,15 @@ function Option:CreateBuffCheckMenu(menu, parent)
 		end
 	)
 	menu.size:SetPoint("TOPRIGHT", -5, -10)
-
-	--[==[
-	local printedSpell = {}
-	if lime.playerClass == "PALADIN" and lime.castableBuffs[1] and lime.castableBuffs[8] then
-		printedSpell[lime.castableBuffs[1][1]] = 8
-		printedSpell[lime.castableBuffs[8][1]] = true
-	end
-	]==]
-
+]]
+--	--[==[
+--	local printedSpell = {}
+--	if lime.playerClass == "PALADIN" and lime.castableBuffs[1] and lime.castableBuffs[8] then
+--		printedSpell[lime.castableBuffs[1][1]] = 8
+--		printedSpell[lime.castableBuffs[8][1]] = true
+--	end
+--	]==]
+--[[
 	local buffTypeList = { L["lime_func_buff_4"], L["lime_func_buff_5"], L["lime_func_buff_6"] }
 
 	local function getBuff(spellId)
@@ -376,18 +387,18 @@ function Option:CreateBuffCheckMenu(menu, parent)
 			limeMember_UpdateBuffs(member)
 		end
 	end
+]]	
+--	local function setBuff(v, spellId)
+--		limeCharDB.classBuff2[spellId] = v - 1
+--		if lime.raidBuffData.link and lime.raidBuffData.link[spellId] then
+--			limeCharDB.classBuff2[lime.raidBuffData.link[spellId]] = v - 1
+--		end
+--		Option:UpdateMember(update)
+--	end
 
-	local function setBuff(v, spellId)
-		limeCharDB.classBuff2[spellId] = v - 1
-		if lime.raidBuffData.link and lime.raidBuffData.link[spellId] then
-			limeCharDB.classBuff2[lime.raidBuffData.link[spellId]] = v - 1
-		end
-		Option:UpdateMember(update)
-	end
+--	local _, spellName, spellIcon, text
 
-	local _, spellName, spellIcon, text
-
-	for i, spellId in ipairs(raidBuffs) do
+--[[	for i, spellId in ipairs(raidBuffs) do
 		spellName, _, spellIcon = GetSpellInfo(spellId)
 		text = ("|T%s:0:0:0:-1|t %s"):format(spellIcon, spellName)
 		if lime.raidBuffData.link then
@@ -409,7 +420,7 @@ function Option:CreateBuffCheckMenu(menu, parent)
 		end
 	end
 end
-
+]]
 function Option:CreateSpellTimerMenu(menu, parent)
 	local function update(member)
 		if member:IsVisible() then
