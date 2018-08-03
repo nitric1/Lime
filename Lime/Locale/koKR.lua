@@ -209,8 +209,6 @@ L["lime_advanced_desc_05"] = "호환성 경고를 무시하고 제한된 기능�
 L["lime_advanced_06"] = "|cffff6600아군 이름표를 표시하면 Lime의 툴팁 표시 기능이 비활성화됩니다. 모든 경고를 무시하도록 설정하면 툴팁 기능을 다시 사용할 수 있으나 심각한 충돌이 발생할 가능성이 높습니다.|r"
 L["lime_advanced_07"] = "ALT 드래그 허용"
 L["lime_advanced_desc_07"] = "잠금 상태일 때 ALT를 이용하여 공격대 프레임을 드래그할 수 있습니다."
-L["lime_advanced_08"] = "|cffff6600주문 타이머: 이름 입력 허용|r"
-L["lime_advanced_desc_08"] = "체크하면 주문 이름으로 주문 타이머를 등록할 수 있습니다. 상당한 CPU를 사용하므로 주의하세요."
 L["lime_advanced_09"] = "주문 ID를 툴팁에 표시"
 L["lime_advanced_desc_09"] = "주문 ID를 툴팁에 표시합니다."
 

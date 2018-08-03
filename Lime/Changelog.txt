@@ -1,3 +1,6 @@
+Lime r34 [UTC+9 2018.8.3. PM 06:10]
+- No longer register an Spelltimer with the Spell name.
+
 
 Lime r33 [UTC+9 2018.8.3. PM 02:55]
 - Threat arrow should now look normal.

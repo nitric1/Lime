@@ -35,7 +35,8 @@ local classskills = {
 	["MAGE"] = { 
 	[45438] = L["lime_survival_얼방"], 
 	[32612] = L["lime_survival_투명"], 
-	[110960] = L["lime_survival_상투"]},
+	[110960] = L["lime_survival_상투"]
+	},
 
 	["MONK"] = { 
 	[115203] = L["lime_survival_강화"], -- 양조
@@ -131,7 +132,7 @@ ignoreEndTime[""] = nil
 
 local function findSkill(unit, lookup)
 	for i = 1, 40 do 
-		local name, _, _, _, _, endTime, _, _, _, spellId = UnitBuff(unit, i) --- Legacy Code
+		local name, _, _, _, _, endTime, _, _, _, spellId = UnitBuff(unit, i)
 		for key, val in pairs(lookup) do
 			if spellId == key then
 				return val, (not ignoreEndTime[spell] and endTime and endTime > 0) and endTime

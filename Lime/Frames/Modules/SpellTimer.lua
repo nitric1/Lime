@@ -130,34 +130,13 @@ function limeMember_UpdateSpellTimer(self)
 			if type(spellId) == "number" then
 				-- 주문 ID로 표시 (권장)
 				for i = 1, 40 do
-					local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i , filter)
+					local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i, filter)
 					if name2 and spellId2 == spellId then
 						found = true
 						setIcon(self["spellTimer"..index], index, duration2, expirationTime2, icon2, count2)
 						break
 					end
 				end
-			elseif lime.db.LimeAuraSoName then
-				--[[주문명으로 (비권장)
-				local name, icon, count, _, duration, expirationTime, unitCaster, _, _, spellId = UnitAura(self.displayedUnit, spellname, filter)
-				if name and (filterNum == 1 or filterNum == 2) and unitCaster ~= "player" then
-				-- fix 6.0 UnitAura bug.
-				elseif name and blockSpellID[name] then
-					if name and blockSpellID[name] then
-						for i = 1, 40 do
-							local name2, icon2, count2, _, duration2, expirationTime2, _, _, _, spellId2 = UnitAura(self.displayedUnit, i, filter)
-							if name2 and name2 == spellname and spellId2 ~= blockSpellID[name2] then
-								found = true
-								setIcon(self["spellTimer"..index], index, duration2, expirationTime2, icon2, count2)
-							break
-							end
-						end
-					end
-				elseif name then
-					found = true
-					setIcon(self["spellTimer"..index], index, duration, expirationTime, icon, count)
-					break
-				end]]
 			end
 		end
 		if not found then

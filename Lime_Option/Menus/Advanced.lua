@@ -60,20 +60,12 @@ function Option:CreateAdvancedMenu(menu, parent)
 	)
 	menu.lockmasterkey:SetPoint("TOP", menu.cpass, "BOTTOM", 0, -50)
 
-	menu.LimeAuraSoName = LBO:CreateWidget("CheckBox", parent, L["lime_advanced_08"], L["lime_advanced_desc_08"], nil, nil, true,
-		function() return lime.db.LimeAuraSoName end,
-		function(v)
-			lime.db.LimeAuraSoName = v
-		end
-	)
-	menu.LimeAuraSoName:SetPoint("TOP", menu.lockmasterkey, "BOTTOM", 0, 0)
-
-	menu.LimeTooltipSpellID = LBO:CreateWidget("CheckBox", parent, "Tooltip ID", "Tooltip ID", nil, nil, true,
+	menu.LimeTooltipSpellID = LBO:CreateWidget("CheckBox", parent, "Show Tooltip ID", "Show Tooltip ID", nil, nil, true,
 		function() return lime.db.LimeTooltipSpellID end,
 		function(v)
 			lime.db.LimeTooltipSpellID = v
 		end
 	)
-	menu.LimeTooltipSpellID:SetPoint("TOP", menu.LimeAuraSoName, "BOTTOM", 0, 0)
+	menu.LimeTooltipSpellID:SetPoint("TOP", menu.lockmasterkey, "BOTTOM", 0, 0)
 
 end
