@@ -423,7 +423,7 @@ function Option:CreateBorderMenu(menu, parent)
 	end
 	menu.reset = LBO:CreateWidget("Button", parent, L["lime_layout_26"], L["lime_layout_26"], nil, disable, true,
 		function()
-			lime.db.borderBackdrop[1], lime.db.borderBackdrop[2], lime.db.borderBackdrop[3], lime.db.borderBackdrop[4] = 0, 0, 0, 0.58
+			lime.db.borderBackdrop[1], lime.db.borderBackdrop[2], lime.db.borderBackdrop[3], lime.db.borderBackdrop[4] = 0, 0, 0, 0
 			lime.db.borderBackdropBorder[1], lime.db.borderBackdropBorder[2], lime.db.borderBackdropBorder[3], lime.db.borderBackdropBorder[4] = 0.58, 0.58, 0.58, 1
 			updateColor()
 			LBO:Refresh(parent)

@@ -68,7 +68,7 @@ local default = {
 		outline = {
 			[1] = {
 				type = 1,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75 , alpha = 1,
+				scale = 0.75, alpha = 1,
 				lowHealth = 0.7, lowHealthColor = colorRed,
 				lowHealth2 = 10000, lowHealthColor2 = colorRed,
 				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
@@ -76,7 +76,7 @@ local default = {
 			},
 			[2] = {
 				type = 5,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75 , alpha = 1,
+				scale = 0.75, alpha = 1,
 				lowHealth = 0.7, lowHealthColor = colorRed,
 				lowHealth2 = 10000, lowHealthColor2 = colorRed,
 				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
@@ -84,7 +84,7 @@ local default = {
 			},
 			[3] = {
 				type = 0,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75 , alpha = 1,
+				scale = 0.75, alpha = 1,
 				lowHealth = 0.7, lowHealthColor = colorRed,
 				lowHealth2 = 10000, lowHealthColor2 = colorRed,
 				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,

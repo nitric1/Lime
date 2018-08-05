@@ -154,7 +154,7 @@
 				<Texture name="$parentBuffIcon2" parentKey="buffIcon2" hidden="true">
 					<Size x="0.001" y="0.001"/>
 					<TexCoords left="0.07" right="0.93" top="0.07" bottom="0.93"/>
-				</Texture> -->
+				</Texture>-->
 				<Texture name="$parentHealIcon" parentKey="healIcon" file="Interface\ChatFrame\ChatFrameColorSwatch" hidden="true">
 					<Size x="0.001" y="0.001"/>
 				</Texture>

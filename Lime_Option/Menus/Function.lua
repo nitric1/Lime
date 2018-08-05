@@ -66,7 +66,7 @@ function Option:CreateOutlineMenu(menu, parent)
 	local outlineList = { L["lime_func_button_1"], L["lime_func_button_2"], L["lime_func_button_3"], L["lime_func_button_4"], L["lime_func_button_5"], L["lime_func_button_6"], L["lime_func_button_7"], L["lime_func_button_8"] }
 	
 	for i = 1, 3 do 
-		menu["use"..i] = LBO:CreateWidget("DropDown", parent, L["lime_func_5"]..i, L["lime_func_desc_5"], nil, nil, true,
+		menu["use"..i] = LBO:CreateWidget("DropDown", parent, L["lime_func_5"].." - "..i, L["lime_func_desc_5"], nil, nil, true,
 			function()
 				return lime.db.units.outline[i].type + 1, outlineList
 			end,
@@ -77,11 +77,10 @@ function Option:CreateOutlineMenu(menu, parent)
 			end
 		)
 
-		menu["use"..i]:ClearAllPoints()
 		if i == 1 then
 			menu["use"..i]:SetPoint("TOPLEFT", 5, -5)
 		else
-			menu["use"..i]:SetPoint("TOP", menu["scale"..(i - 1)], "BOTTOM", 0, -200)	
+			menu["use"..i]:SetPoint("TOP", menu["scale"..(i - 1)], "BOTTOM", 0, -60)
 		end
 
 		local function disable()
@@ -143,15 +142,17 @@ function Option:CreateOutlineMenu(menu, parent)
 			lime.db.units.outline[i].raidIcon[icon] = v
 			Option:UpdateMember(update)
 		end
-		for j, text in ipairs(Option.dropdownTable["징표"]) do
-			menu["raidIcon"..j] = LBO:CreateWidget("CheckBox", parent, text, text..L["lime_func_desc_14"], isRaidIcon, nil, true, getRaidIcon, setRaidIcon, j)
-			if j == 1 then
-				menu["raidIcon"..j]:SetPoint("TOP", menu["raidIconColor"..i], "BOTTOM", 0, 0)
-			elseif j == 2 then
-				menu["raidIcon"..j]:SetPoint("TOP", menu.raidIcon1, 0, 0)
-				menu["raidIcon"..j]:SetPoint("RIGHT", -5, 0)
-			else
-				menu["raidIcon"..j]:SetPoint("TOP", menu["raidIcon"..(j - 2)], "BOTTOM", 0, 14)
+		if i == 3 then
+			for j, text in ipairs(Option.dropdownTable["징표"]) do
+				menu["raidIcon"..j] = LBO:CreateWidget("CheckBox", parent, text, text..L["lime_func_desc_14"], isRaidIcon, nil, true, getRaidIcon, setRaidIcon, j)
+				if j == 1 then
+					menu["raidIcon"..j]:SetPoint("TOP", menu["raidIconColor"..i], "BOTTOM", 0, 0)
+				elseif j == 2 then
+					menu["raidIcon"..j]:SetPoint("TOP", menu.raidIcon1, 0, 0)
+					menu["raidIcon"..j]:SetPoint("RIGHT", -5, 0)
+				else
+					menu["raidIcon"..j]:SetPoint("TOP", menu["raidIcon"..(j - 2)], "BOTTOM", 0, 14)
+				end
 			end
 		end
 		local function isLowHealth2()
@@ -310,9 +311,9 @@ end
 function Option:UpdateIconPos()
 	Option:UpdateMember(limeMember_SetupIconPos)
 end
---[[
+
 function Option:CreateBuffCheckMenu(menu, parent)
-	local raidBuffs = {}
+	--[[local raidBuffs = {}
 	for spellId in pairs(limeCharDB.classBuff2) do
 		if type(spellId) == "number" and spellId > 0 and spellId == floor(spellId) and GetSpellInfo(spellId) and not IsPassiveSpell(spellId) then
 			if not (lime.raidBuffData.link and lime.raidBuffData.link[spellId]) then
@@ -321,11 +322,11 @@ function Option:CreateBuffCheckMenu(menu, parent)
 		end
 	end
 
-	if #raidBuffs == 0 then
+	if #raidBuffs == 0 then]]
 		menu.text = parent:GetParent():CreateFontString(nil, "OVERLAY", "GameFontNormal")
 		menu.text:SetPoint("CENTER", 0, 0)
-		menu.text:SetText(L["lime_func_buff_1"])
-		return
+		menu.text:SetText("The function is currently unavailable.")
+		--[[return
 	else
 		table.sort(raidBuffs, function(a, b)
 			local A, B = GetSpellInfo(a), GetSpellInfo(b)
@@ -367,15 +368,15 @@ function Option:CreateBuffCheckMenu(menu, parent)
 		end
 	)
 	menu.size:SetPoint("TOPRIGHT", -5, -10)
-]]
---	--[==[
---	local printedSpell = {}
---	if lime.playerClass == "PALADIN" and lime.castableBuffs[1] and lime.castableBuffs[8] then
---		printedSpell[lime.castableBuffs[1][1]] = 8
---		printedSpell[lime.castableBuffs[8][1]] = true
---	end
---	]==]
---[[
+	]]
+	--[==[
+	local printedSpell = {}
+	if lime.playerClass == "PALADIN" and lime.castableBuffs[1] and lime.castableBuffs[8] then
+		printedSpell[lime.castableBuffs[1][1]] = 8
+		printedSpell[lime.castableBuffs[8][1]] = true
+	end
+	]==]
+	--[[
 	local buffTypeList = { L["lime_func_buff_4"], L["lime_func_buff_5"], L["lime_func_buff_6"] }
 
 	local function getBuff(spellId)
@@ -387,18 +388,18 @@ function Option:CreateBuffCheckMenu(menu, parent)
 			limeMember_UpdateBuffs(member)
 		end
 	end
-]]	
---	local function setBuff(v, spellId)
---		limeCharDB.classBuff2[spellId] = v - 1
---		if lime.raidBuffData.link and lime.raidBuffData.link[spellId] then
+	
+	local function setBuff(v, spellId)
+		limeCharDB.classBuff2[spellId] = v - 1
+		if lime.raidBuffData.link and lime.raidBuffData.link[spellId] then ]]
 --			limeCharDB.classBuff2[lime.raidBuffData.link[spellId]] = v - 1
---		end
---		Option:UpdateMember(update)
---	end
+--[[		end
+		Option:UpdateMember(update)
+	end
 
---	local _, spellName, spellIcon, text
+	local _, spellName, spellIcon, text
 
---[[	for i, spellId in ipairs(raidBuffs) do
+	for i, spellId in ipairs(raidBuffs) do
 		spellName, _, spellIcon = GetSpellInfo(spellId)
 		text = ("|T%s:0:0:0:-1|t %s"):format(spellIcon, spellName)
 		if lime.raidBuffData.link then
@@ -418,9 +419,9 @@ function Option:CreateBuffCheckMenu(menu, parent)
 		else
 			menu["buff"..i]:SetPoint("TOP", menu["buff"..(i - 2)], "BOTTOM", 0, -10)
 		end
-	end
+	end]]
 end
-]]
+
 function Option:CreateSpellTimerMenu(menu, parent)
 	local function update(member)
 		if member:IsVisible() then

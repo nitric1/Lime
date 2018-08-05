@@ -79,6 +79,7 @@ function lime:PLAYER_LOGIN()
 	end,
 	OnLeave = GameTooltip_Hide,
 	})
+	
 	-- 맵 아이콘 라이브러리
 	local lime_mapicon = LibStub("LibDBIcon-1.0")
 	lime_mapicon:Register("Lime", LDB, limeDB.minimapButton)
@@ -235,6 +236,7 @@ function lime:GetHeaderHeight(member)
 	end
 end
 
+-- SL() legacy code
 function lime.GetSpellName(id)
 	return GetSpellInfo(id) or ""
 end

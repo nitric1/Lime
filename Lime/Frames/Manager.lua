@@ -92,9 +92,9 @@ lime.manager:SetScript("OnEvent", function(self, event, ...)
 		lime:SetManagerPosition()
 	elseif event == "GROUP_ROSTER_UPDATE" then
 		if checkMode() then
-			if self.run then
+			--if self.run then	(r35 bug fixed)
 				lime:SetManagerMode()
-			end
+			--end
 		elseif self.run and self.isExpand then
 			updateCount()
 		end
@@ -165,7 +165,7 @@ local inCombat
 
 -- 공격대 관리자 유형 스크립트
 function lime:SetManagerMode()
-	if (self.db.use == 1 or (self.db.use == 2 and self.manager.mode ~= "solo") or (self.db.use == 3 and self.manager.mode == "raid")) and not onPetBattle then
+	if ((self.db.use == 1) or (self.db.use == 2 and self.manager.mode ~= "solo") or (self.db.use == 3 and self.manager.mode == "raid")) and not onPetBattle then
 		self.manager.run = true
 		self.manager:Show()
 		self:SetManagerPosition()
