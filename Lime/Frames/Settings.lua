@@ -9,7 +9,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 local lime = _G[...]
 local wipe = _G.table.wipe
 local LBDB = LibStub("LibLimeDB-1.1")
-local version = 3
+local version = 4
 
 lime.classes = { "WARRIOR", "DRUID", "PALADIN", "DEATHKNIGHT", "PRIEST", "SHAMAN", "ROGUE", "MAGE", "WARLOCK", "HUNTER", "MONK", "DEMONHUNTER" }
 local function newTable() return {} end
@@ -66,31 +66,14 @@ local default = {
 		useResurrectionBar = true, resurrectionBarColor = { 0, 0.75, 1 },
 		dispelSound = "None", dispelSoundDelay = 5, useHarm = true,
 		outline = {
-			[1] = {
-				type = 1,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75, alpha = 1,
-				lowHealth = 0.7, lowHealthColor = colorRed,
-				lowHealth2 = 10000, lowHealthColor2 = colorRed,
-				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
-				targetColor = colorYellow, mouseoverColor = colorYellow, aggroColor = colorRed,
-			},
-			[2] = {
-				type = 5,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75, alpha = 1,
-				lowHealth = 0.7, lowHealthColor = colorRed,
-				lowHealth2 = 10000, lowHealthColor2 = colorRed,
-				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
-				targetColor = colorYellow, mouseoverColor = colorYellow, aggroColor = colorRed,
-			},
-			[3] = {
-				type = 0,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
-				scale = 0.75, alpha = 1,
-				lowHealth = 0.7, lowHealthColor = colorRed,
-				lowHealth2 = 10000, lowHealthColor2 = colorRed,
-				raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
-				targetColor = colorYellow, mouseoverColor = colorYellow, aggroColor = colorRed,
-			}, --[3]
+			type = 1,	-- 1:해제 가능한 디버프 2:대상 3:마우스 오버 4:체력 낮음 5:어그로 6:전술목표 아이콘 0:사용 안함
+			scale = 0.75 , alpha = 1,
+			lowHealth = 0.7, lowHealthColor = colorRed,
+			lowHealth2 = 10000, lowHealthColor2 = colorRed,
+			raidIcon = { true, true, true, true, true, true, true, true }, raidIconColor = colorWhite,
+			targetColor = colorYellow, mouseoverColor = colorYellow, aggroColor = colorRed,
 		},
+		targetColor = colorYellow, mouseoverColor = colorYellow, aggroColor = colorRed,
 		debuffIcon = 5, debuffIconSize = 10, debuffIconPos = "TOPRIGHT", debuffIconType = 1,	-- 1:Icon+Color 2:Icon 3:Color
 		debuffIconFilter = { Magic = true, Curse = true, Disease = true, Poison = true, none = true },
 		buffIconSize = 12, buffIconPos = "LEFT",

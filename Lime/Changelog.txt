@@ -1,3 +1,9 @@
+Lime r37 [UTC+9 2018.8.8. PM 07:00]
+- Removed: specify up to three Outline functions. [moved alpha testing]
+- Adjust FrameStrata.
+
+THANK YOU FOR USING LIME, It is final Release.
+
 
 Lime r36 [UTC+9 2018.8.5. AM 07:45]
 - Update Library (LibUIDropDownMenu)

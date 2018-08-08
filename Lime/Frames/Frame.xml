@@ -7,37 +7,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Frame parentKey="outline1" frameStrata="HIGH" frameLevel="11" useParentLevel="true" hidden="false">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="-2" y="0"/>
-					</Anchor>
-					<Anchor point="BOTTOMRIGHT">
-						<Offset x="2" y="-2"/>
-					</Anchor>
-				</Anchors>
-				<Backdrop edgeFile="Interface\Addons\lime\Shared\Texture\Border.tga">
-					<EdgeSize>
-						<AbsValue val="12"/>
-					</EdgeSize>
-				</Backdrop>
-			</Frame>
-			<Frame parentKey="outline2" frameStrata="HIGH" frameLevel="13" useParentLevel="true" hidden="false">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="-2" y="0"/>
-					</Anchor>
-					<Anchor point="BOTTOMRIGHT">
-						<Offset x="2" y="-2"/>
-					</Anchor>
-				</Anchors>
-				<Backdrop edgeFile="Interface\Addons\lime\Shared\Texture\Border.tga">
-					<EdgeSize>
-						<AbsValue val="12"/>
-					</EdgeSize>
-				</Backdrop>
-			</Frame>
-			<Frame parentKey="outline3" frameStrata="HIGH" frameLevel="15" useParentLevel="true" hidden="false">
+			<Frame parentKey="outline" useParentLevel="true" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset x="-2" y="0"/>
