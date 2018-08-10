@@ -117,14 +117,6 @@
 				<Texture name="$parentRaidIcon2" parentKey="raidIcon2" file="Interface\TargetingFrame\UI-RaidTargetingIcons" hidden="true">
 					<Size x="0.001" y="0.001"/>
 				</Texture>
-				<!--<Texture name="$parentBuffIcon1" parentKey="buffIcon1" hidden="true">
-					<Size x="0.001" y="0.001"/>
-					<TexCoords left="0.07" right="0.93" top="0.07" bottom="0.93"/>
-				</Texture>
-				<Texture name="$parentBuffIcon2" parentKey="buffIcon2" hidden="true">
-					<Size x="0.001" y="0.001"/>
-					<TexCoords left="0.07" right="0.93" top="0.07" bottom="0.93"/>
-				</Texture>-->
 				<Texture name="$parentHealIcon" parentKey="healIcon" file="Interface\ChatFrame\ChatFrameColorSwatch" hidden="true">
 					<Size x="0.001" y="0.001"/>
 				</Texture>
@@ -161,10 +153,6 @@
 			<Frame name="$parentSpellTimer2" parentKey="spellTimer2" inherits="limeSpellTimerTemplate"/>
 			<Frame name="$parentSpellTimer3" parentKey="spellTimer3" inherits="limeSpellTimerTemplate"/>
 			<Frame name="$parentSpellTimer4" parentKey="spellTimer4" inherits="limeSpellTimerTemplate"/>
-			<Frame name="$parentSpellTimer5" parentKey="spellTimer5" inherits="limeSpellTimerTemplate"/>
-			<Frame name="$parentSpellTimer6" parentKey="spellTimer6" inherits="limeSpellTimerTemplate"/>
-			<Frame name="$parentSpellTimer7" parentKey="spellTimer7" inherits="limeSpellTimerTemplate"/>
-			<Frame name="$parentSpellTimer8" parentKey="spellTimer8" inherits="limeSpellTimerTemplate"/>
 			<Frame name="$parentBossAura" parentKey="bossAura" hidden="true" enableMouse="false">
 				<Size x="0.001" y="0.001"/>
 				<Layers>
@@ -287,63 +275,6 @@
 				</Scripts>
 			</Frame>
 		</Frames>
-	</Frame>
-	<Frame name="limePing" parent="UIParent" frameStrata="MEDIUM" frameLevel="11" hidden="true">
-		<Size x="22" y="22"/>
-		<Layers>
-			<Layer level="OVERLAY">
-				<Texture parentKey="centerRing" file="Interface\minimap\UI-Minimap-Ping-Center">
-					<Size x="14" y="14"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-				<Texture parentKey="rotatingRing" file="Interface\minimap\UI-Minimap-Ping-Rotate">
-					<Size x="22" y="22"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-				<Texture parentKey="expandingRing" file="Interface\minimap\UI-Minimap-Ping-Expand">
-					<Size x="14" y="14"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
-		<Animations>
-			<AnimationGroup parentKey="Ping" looping="REPEAT">
-				<Rotation targetKey="$parent.$parent.rotatingRing" degrees="-180" duration="0.75" order="1"/>
-				<Scale targetKey="$parent.$parent.expandingRing" scaleX="1.75" scaleY="1.75" duration="0.75" order="1"/>
-			</AnimationGroup>
-		</Animations>
-		<Scripts>
-			<OnLoad>
-				lime.ping = self
-			</OnLoad>
-			<OnShow>
-				self:SetAlpha(1)
-				self.timer = 0
-				self.Ping:Play()
-
-			</OnShow>
-			<OnHide>
-				self.timer = nil
-				self.Ping:Stop()
-				self:Hide()
-			</OnHide>
-			<OnUpdate>
-				self.timer = self.timer + elapsed
-				if self.timer > 1 then
-					if self.timer > 1.5 then
-						self:Hide()
-					else
-						self:SetAlpha((1.5 - self.timer) * 2)
-					end
-				end
-			</OnUpdate>
-		</Scripts>
 	</Frame>
 	<Button name="limeManagerGroupButtonTemplate" movable="true" dontSavePosition="true" clampedToScreen="true" inherits="CRFManagerFilterGroupButtonTemplate" virtual="true"/>
 	<Frame name="limeManager" hidden="true" parent="UIParent" frameStrata="MEDIUM" frameLevel="10" enableMouse="true" dontSavePosition="true">

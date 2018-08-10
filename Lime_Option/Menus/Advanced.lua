@@ -59,13 +59,4 @@ function Option:CreateAdvancedMenu(menu, parent)
 		end
 	)
 	menu.lockmasterkey:SetPoint("TOP", menu.cpass, "BOTTOM", 0, -50)
-
-	menu.LimeTooltipSpellID = LBO:CreateWidget("CheckBox", parent, "Show Tooltip ID", "Show Tooltip ID", nil, nil, true,
-		function() return lime.db.LimeTooltipSpellID end,
-		function(v)
-			lime.db.LimeTooltipSpellID = v
-		end
-	)
-	menu.LimeTooltipSpellID:SetPoint("TOP", menu.lockmasterkey, "BOTTOM", 0, 0)
-
 end

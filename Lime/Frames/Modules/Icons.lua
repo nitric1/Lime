@@ -15,13 +15,11 @@ local iconOrder = {
 	leaderIcon = 2,
 	raidIcon1 = 3,
 	raidIcon2 = 4,
-	buffIcon1 = 5,
-	buffIcon2 = 6,
-	debuffIcon1 = 7,
-	debuffIcon2 = 8,
-	debuffIcon3 = 9,
-	debuffIcon4 = 10,
-	debuffIcon5 = 11,
+	debuffIcon1 = 5,
+	debuffIcon2 = 6,
+	debuffIcon3 = 7,
+	debuffIcon4 = 8,
+	debuffIcon5 = 9,
 }
 local centerIndex
 
@@ -32,14 +30,12 @@ local posTableDefault = {
 	raidIcon1 = { "raidIconPos", "TOPLEFT" },
 	healIcon = { "healIconPos", "BOTTOMLEFT" },
 	debuffIcon1 = { "debuffIconPos", "TOPRIGHT" },
-	buffIcon1 = { "buffIconPos", "LEFT" },
 }
 posTableDefault.raidIcon2 = posTableDefault.raidIcon1
 posTableDefault.debuffIcon2 = posTableDefault.debuffIcon1
 posTableDefault.debuffIcon3 = posTableDefault.debuffIcon1
 posTableDefault.debuffIcon4 = posTableDefault.debuffIcon1
 posTableDefault.debuffIcon5 = posTableDefault.debuffIcon1
-posTableDefault.buffIcon2 = posTableDefault.buffIcon1
 
 local function addIcon(self, icon, pos)
 	if self[icon] then
@@ -104,9 +100,7 @@ function limeMember_SetupIconPos(self)
 	addIcon(self, "debuffIcon3", self.optionTable.debuffIconPos)
 	addIcon(self, "debuffIcon4", self.optionTable.debuffIconPos)
 	addIcon(self, "debuffIcon5", self.optionTable.debuffIconPos)
-	addIcon(self, "buffIcon1", self.optionTable.buffIconPos)
-	addIcon(self, "buffIcon2", self.optionTable.buffIconPos)
-	for i = 1, 8 do
+	for i = 1, 4 do
 		addIcon(self, "spellTimer"..i, limeCharDB.spellTimer[i].pos)
 	end
 	for pos, tbl in pairs(iconTable) do

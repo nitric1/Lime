@@ -9,7 +9,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lime")
 local lime = _G[...]
 local wipe = _G.table.wipe
 local LBDB = LibStub("LibLimeDB-1.1")
-local version = 4
+local version = 5
 
 lime.classes = { "WARRIOR", "DRUID", "PALADIN", "DEATHKNIGHT", "PRIEST", "SHAMAN", "ROGUE", "MAGE", "WARLOCK", "HUNTER", "MONK", "DEMONHUNTER" }
 local function newTable() return {} end
@@ -42,7 +42,6 @@ local default = {
 	classorder = lime.classes,
 	classshown = { WARRIOR = true, DRUID = true, PALADIN = true, DEATHKNIGHT = true, PRIEST = true, SHAMAN = true, ROGUE = true, MAGE = true, WARLOCK = true, HUNTER = true, MONK = true, DEMONHUNTER = true },
 	useManager = true, managerPos = 25,
-	castingSent = 0,	-- 0:사용 안함 1: 항상 표시 2: 마우스 오버시 표시
 	units = {
 		backgroundColor = { 0.10, 0.10, 0.10, 0.55 },
 		orientation = 1,

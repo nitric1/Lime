@@ -109,14 +109,6 @@ function Option:CreateUseMenu(menu, parent)
 	)
 
 	menu.managerPos:SetPoint("TOP", menu.clear, "BOTTOM", 0, -10)
-	local castingSentList = { L["표시 안함"], L["항상 표시"], L["마우스를 올릴 때 표시"] }
-	menu.castingSent = LBO:CreateWidget("DropDown", parent, L["lime_basic_11"], L["lime_basic_desc_11"], nil, nil, true,
-		function() return lime.db.castingSent + 1, castingSentList end,
-		function(v)
-			lime.db.castingSent = v - 1
-		end
-	)
-	menu.castingSent:SetPoint("TOP", menu.manager, "BOTTOM", 0, -10)
 end
 
 function Option:CreateGroupMenu(menu, parent)
